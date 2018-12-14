@@ -5,14 +5,14 @@
   
 
   
-  <title>wp-hxp_ctf | Hexo</title>
+  <title>wp-hxp_ctf | 你逃避过的事情，总会在未来成为你的绊脚石</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="cat flag明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：用pwntools直接查看接收到的字节码：发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释 补充两个从其他人的writeup中">
 <meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wp-hxp_ctf">
 <meta property="og:url" content="http://yoursite.com/2018/12/07/wp-hxp-ctf/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="你逃避过的事情，总会在未来成为你的绊脚石">
 <meta property="og:description" content="cat flag明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：用pwntools直接查看接收到的字节码：发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释 补充两个从其他人的writeup中">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.loli.net/2018/12/14/5c1366142fcc7.png">
@@ -27,7 +27,7 @@
 <meta name="twitter:description" content="cat flag明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：用pwntools直接查看接收到的字节码：发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释 补充两个从其他人的writeup中">
 <meta name="twitter:image" content="https://i.loli.net/2018/12/14/5c1366142fcc7.png">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="你逃避过的事情，总会在未来成为你的绊脚石" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,8 +46,12 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">你逃避过的事情，总会在未来成为你的绊脚石</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">在这个世界上，永远不要妄想去依赖别人</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -96,14 +100,14 @@
       
         <h2 id="cat-flag"><a href="#cat-flag" class="headerlink" title="cat flag"></a>cat flag</h2><p>明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：<br><img src="https://i.loli.net/2018/12/14/5c1366142fcc7.png" alt=""><br>用pwntools直接查看接收到的字节码：<br><img src="https://i.loli.net/2018/12/14/5c13663d6afcd.png" alt=""><br>发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。<br>从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释</p>
 <p>补充两个从其他人的writeup中找到的方法：<br><img src="https://i.loli.net/2018/12/14/5c136d0c2a311.png" alt=""><br><img src="https://i.loli.net/2018/12/14/5c136d1ef29be.png" alt=""><br><img src="https://i.loli.net/2018/12/14/5c136d3640bb3.png" alt=""></p>
-<h2 id="angrme"><a href="#angrme" class="headerlink" title="angrme"></a>angrme</h2>  
+<h2 id="angrme"><a href="#angrme" class="headerlink" title="angrme"></a>angrme</h2><a href="/2018/12/07/wp-hxp-ctf/angrme" title="点击下载题目文件">点击下载题目文件</a>  
 <p>其实这是一道非常基础的angr题目，但是因为我之前从来没有接触过angr，所以先用了一天的时间把angr的基础概念看了看，然后模仿其他ctf题目的脚本解出了这道题目：<br>推荐教程：<a href="https://github.com/firmianay/CTF-All-In-One" target="_blank" rel="noopener">CTF-All-In-One这本书5.3.1章节</a><br>脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"></span><br><span class="line">find  = <span class="number">0x00402370</span>  <span class="comment"># 输出:)的地址</span></span><br><span class="line">avoid = <span class="number">0x00402390</span>  <span class="comment"># 输出:(的地址</span></span><br><span class="line"></span><br><span class="line">p = angr.Project(<span class="string">'./angrme'</span>)</span><br><span class="line">state = p.factory.entry_state()</span><br><span class="line">pg = p.factory.simgr(state)</span><br><span class="line">ex = pg.explore(find=find, avoid=avoid)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> pg.found[<span class="number">0</span>].posix.dumps(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
 <p>脚本运行的结果：<br><img src="https://i.loli.net/2018/12/14/5c13754558e44.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/07/wp-hxp-ctf/" data-id="cjpo3htn90000rgvl7l8935c5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/07/wp-hxp-ctf/" data-id="cjpo4gc70000dycvlfmr22qq2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>

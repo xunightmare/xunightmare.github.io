@@ -5,14 +5,14 @@
   
 
   
-  <title>wp-日常练习.md | Hexo</title>
+  <title>wp-日常练习.md | 你逃避过的事情，总会在未来成为你的绊脚石</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="wp-Easy-KeygenMe题目链接：http://reversing.kr/download.php?n=2 先看题目描述：给出的序列号是一个线索，需要通过这个序列号找到对应的用户名。 尝试运行程序看看程序的流程：可以看到程序逻辑很简单，输入Name和Serial，然后程序会给出判断结果，很容易猜到，如果我们输入的Name和Serial对应的话，那么应该会输出correct。这里有一个小窍门">
 <meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wp-日常练习.md">
 <meta property="og:url" content="http://yoursite.com/2018/10/15/wp-日常练习/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="你逃避过的事情，总会在未来成为你的绊脚石">
 <meta property="og:description" content="wp-Easy-KeygenMe题目链接：http://reversing.kr/download.php?n=2 先看题目描述：给出的序列号是一个线索，需要通过这个序列号找到对应的用户名。 尝试运行程序看看程序的流程：可以看到程序逻辑很简单，输入Name和Serial，然后程序会给出判断结果，很容易猜到，如果我们输入的Name和Serial对应的话，那么应该会输出correct。这里有一个小窍门">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811031129_491.png">
@@ -28,7 +28,7 @@
 <meta name="twitter:description" content="wp-Easy-KeygenMe题目链接：http://reversing.kr/download.php?n=2 先看题目描述：给出的序列号是一个线索，需要通过这个序列号找到对应的用户名。 尝试运行程序看看程序的流程：可以看到程序逻辑很简单，输入Name和Serial，然后程序会给出判断结果，很容易猜到，如果我们输入的Name和Serial对应的话，那么应该会输出correct。这里有一个小窍门">
 <meta name="twitter:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811031129_491.png">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="你逃避过的事情，总会在未来成为你的绊脚石" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -47,8 +47,12 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">你逃避过的事情，总会在未来成为你的绊脚石</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">在这个世界上，永远不要妄想去依赖别人</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -107,7 +111,7 @@
 <p>这里附上解题脚本和结果证明：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"\x5B\x13\x49\x77\x13\x5E\x7D\x13"</span></span><br><span class="line">operand = [<span class="number">16</span>, <span class="number">32</span>, <span class="number">48</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(str)):</span><br><span class="line">    print(chr(ord(str[i])^operand[i%<span class="number">3</span>]), end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure></p>
 <p><img src="http://pdt2ibwo5.bkt.clouddn.com/201811031140_124.png" alt=""></p>
 <h1 id="wp-Volga-Quals-CTF-2014-Reverse-100"><a href="#wp-Volga-Quals-CTF-2014-Reverse-100" class="headerlink" title="wp-Volga Quals CTF 2014 Reverse 100"></a>wp-Volga Quals CTF 2014 Reverse 100</h1><blockquote>
-<p>这是一道简单的迷宫题<br>相关附件下载：   </p>
+<p>这是一道简单的迷宫题<br>相关附件下载：<a href="/2018/10/15/wp-日常练习/rev100" title="ELF文件">ELF文件</a>  <a href="/2018/10/15/wp-日常练习/rev100.i64" title="idb">idb</a> </p>
 </blockquote>
 <p>在字符串窗口看到这样的字符串：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810142304_662.png" alt=""><br>意识到这是一个迷宫问题  </p>
 <p>进入伪代码界面，按照行号将字符串进行排列，组成迷宫。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">**########################################################################################</span><br><span class="line">#*######################*******************************************#####*************#####</span><br><span class="line">#************************####*####################################*#####*###########*#####</span><br><span class="line">#########*#########*#########*#######***************************##*#####*###########*#####</span><br><span class="line">#******##*#########*#########*#######*#########################*##*#####*###########*#####</span><br><span class="line">#*####*##*#########*#########*#######*#########################*##*#####********####*#####</span><br><span class="line">#*####*##*#########*######*******####*###**********####****####*##*############*####*#####</span><br><span class="line">#*##***#**#########*#################*###*########*####*#######*##*############*####*#####</span><br><span class="line">#*##*###*##########*##############****###*******##*####*#######*##*##*****#####*####*#####</span><br><span class="line">#*##*###*##########*##############*############*##*####*#######*##*##*###*#####*####*#####</span><br><span class="line">#************######*##############**************##*####*#######*##*##*###*#####*####*#####</span><br><span class="line">###################*##############################*####***#####*##*##*###*#####*####*#####</span><br><span class="line">###################********************************############*##*##*###*#####*####*#####</span><br><span class="line">###############################################################*##*##*###*#####*####*#####</span><br><span class="line">###***************************************************#########*##*##*###*#####*####*#####</span><br><span class="line">###*#################################################*#########*##*######*#####*####*#####</span><br><span class="line">###*####*****#####**********************#############*#########*##********#####*####*#####</span><br><span class="line">###*####*###*#####*####################***************#########*###############*####*#####</span><br><span class="line">###*####*###*#####*############################################*****************####*#####</span><br><span class="line">###******###*#####*#################################################################*#####</span><br><span class="line">############*#####*******************************************************************#####</span><br><span class="line">###**********#############################################################################</span><br><span class="line">###*#########*****************************************************************############</span><br><span class="line">###*#########*###############################################*############################</span><br><span class="line">###*#########*###############################################*######*****************#####</span><br><span class="line">###**************************************************########*######*#####################</span><br><span class="line">#############################################################*######*#####################</span><br><span class="line">#*#######*####**###*#######***#######*########**###*******##*****#########################</span><br><span class="line">#########################*****************************************************************</span><br><span class="line">##*#####*###*###*##*######*#########*#*######*##*#####*#####*#############################</span><br><span class="line">###*###*####*###*##*######*##**####*###*####*#########*#####***###########################</span><br><span class="line">####*#*#####*###*##*##*###*###*###*******####*##*#####*#####*#############################</span><br><span class="line">#####*#######**####****####**####*#######*####**######*#####*#############################</span><br></pre></td></tr></table></figure></p>
@@ -118,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/15/wp-日常练习/" data-id="cjpo49mm30007ssvl21o7yabg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/15/wp-日常练习/" data-id="cjpo4gc70000iycvlqrjaviyf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
