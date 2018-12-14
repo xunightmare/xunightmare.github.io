@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>从一个有趣的例子引出C语言缓冲区 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从一个有趣的例子引出C语言缓冲区#include &amp;lt;stdio.h&amp;gt;  int main(){     printf(&amp;quot;I&amp;apos;m ok&amp;quot;);     sleep(5);     printf(&amp;quot;I&amp;apos;m ok2&amp;quot;);     sleep(5); } 上面的程序，在执行的时候，并不是我刚开始所预期的先输出第一句话，然后休眠5s，然后">
+<meta name="keywords" content="The C Language">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从一个有趣的例子引出C语言缓冲区">
+<meta property="og:url" content="http://yoursite.com/2018/10/09/从一个有趣的例子引出C语言缓冲区/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="从一个有趣的例子引出C语言缓冲区#include &amp;lt;stdio.h&amp;gt;  int main(){     printf(&amp;quot;I&amp;apos;m ok&amp;quot;);     sleep(5);     printf(&amp;quot;I&amp;apos;m ok2&amp;quot;);     sleep(5); } 上面的程序，在执行的时候，并不是我刚开始所预期的先输出第一句话，然后休眠5s，然后">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-09T13:35:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从一个有趣的例子引出C语言缓冲区">
+<meta name="twitter:description" content="从一个有趣的例子引出C语言缓冲区#include &amp;lt;stdio.h&amp;gt;  int main(){     printf(&amp;quot;I&amp;apos;m ok&amp;quot;);     sleep(5);     printf(&amp;quot;I&amp;apos;m ok2&amp;quot;);     sleep(5); } 上面的程序，在执行的时候，并不是我刚开始所预期的先输出第一句话，然后休眠5s，然后">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-从一个有趣的例子引出C语言缓冲区" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/09/从一个有趣的例子引出C语言缓冲区/" class="article-date">
+  <time datetime="2018-10-08T16:00:00.000Z" itemprop="datePublished">2018-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从一个有趣的例子引出C语言缓冲区
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="从一个有趣的例子引出C语言缓冲区"><a href="#从一个有趣的例子引出C语言缓冲区" class="headerlink" title="从一个有趣的例子引出C语言缓冲区"></a>从一个有趣的例子引出C语言缓冲区</h1><pre><code>#include &lt;stdio.h&gt;
+
+int main(){
+    printf(&quot;I&apos;m ok&quot;);
+    sleep(5);
+    printf(&quot;I&apos;m ok2&quot;);
+    sleep(5);
+}
+</code></pre><p>上面的程序，在执行的时候，并不是我刚开始所预期的先输出第一句话，然后休眠5s，然后再输出第二句，然后再休眠5s，而是休眠10s之后再依次输出这两句话。</p>
+<p>感觉很奇怪，程序是不是按顺序执行的吗？</p>
+<p>去google了一下，加上自己的尝试，终于搞明白了问题所在：标准输出有缓冲区，printf的内容并不会马上打印出来，而是会先暂时保存在缓冲区里。</p>
+<p>为什么要这样做呢？<br>为了提高磁盘的读写效率，提高计算机的运行速度。</p>
+<p>如果想要让内容马上打印出来，有什么方法吗？ </p>
+<ol>
+<li>用输出的内容将缓冲区填满，这个方法我只是觉得理论上可行，但是并没有实际尝试过，我也不知道缓冲区究竟有多大。</li>
+<li>在想要立即输出的内容后面输出<code>\n</code>，或者调用函数<code>fflush(stdout)</code></li>
+<li>程序退出的时候会清空缓冲区</li>
+</ol>
+<p>关于C语言缓冲区的详细解释，请参考这篇博客：<a href="https://www.zfl9.com/c-buffer.html" target="_blank" rel="noopener">c语言 - 缓冲区详解</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/10/09/从一个有趣的例子引出C语言缓冲区/" data-id="cjpo3d15j0004o8vl1vucxkfl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/The-C-Language/">The C Language</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/14/ctf/护网杯总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          护网杯总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/05/ctf/wp--CrackMe01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">writeup--CrackMe01</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCTF/">LCTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-C-Language/">The C Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hctf/">hctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo使用/">hexo使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/LCTF/" style="font-size: 10px;">LCTF</a> <a href="/tags/The-C-Language/" style="font-size: 10px;">The C Language</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/hctf/" style="font-size: 10px;">hctf</a> <a href="/tags/hexo使用/" style="font-size: 10px;">hexo使用</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/14/os kernel experiment/软中断通信/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/07/wp-hxp-ctf/">wp-hxp_ctf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/25/wp-柏鹭杯/">wp-柏鹭杯</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/18/wp-LCTF/">wp-LCTF</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/12/ctf搭建题目环境/">ctf搭建题目环境</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

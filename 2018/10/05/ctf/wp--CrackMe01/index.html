@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>writeup--CrackMe01 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="writeup–CrackMe01 题目地址：https://www.ichunqiu.com/battalion?t=1&amp;amp;r=0   拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了： 函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数">
+<meta name="keywords" content="ctf,reverse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="writeup--CrackMe01">
+<meta property="og:url" content="http://yoursite.com/2018/10/05/ctf/wp--CrackMe01/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="writeup–CrackMe01 题目地址：https://www.ichunqiu.com/battalion?t=1&amp;amp;r=0   拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了： 函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051101_118.png">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051107_1000.png">
+<meta property="og:updated_time" content="2018-10-05T03:20:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="writeup--CrackMe01">
+<meta name="twitter:description" content="writeup–CrackMe01 题目地址：https://www.ichunqiu.com/battalion?t=1&amp;amp;r=0   拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了： 函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数">
+<meta name="twitter:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ctf/wp--CrackMe01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/05/ctf/wp--CrackMe01/" class="article-date">
+  <time datetime="2018-10-04T16:00:00.000Z" itemprop="datePublished">2018-10-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      writeup--CrackMe01
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="writeup–CrackMe01"><a href="#writeup–CrackMe01" class="headerlink" title="writeup–CrackMe01"></a>writeup–CrackMe01</h1><blockquote>
+<p>题目地址：<a href="https://www.ichunqiu.com/battalion?t=1&amp;r=0" target="_blank" rel="noopener">https://www.ichunqiu.com/battalion?t=1&amp;r=0</a></p>
+</blockquote>
+<ol>
+<li>拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了：<ul>
+<li>函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数  </li>
+<li>搜索字符串也找不到有意义的字符串  </li>
+</ul>
+</li>
+<li><p>这个时候最重要的就是要定位到关键代码，运行程序的时候会有一个图形界面，图形界面中有一个输入框，我尝试随便输入一些东西，并没有反应，但是可以猜测，如果输入的是正确的flag，那么一定会有不一定的反应，很大可能就是会有一个弹框，于是尝试去找弹框的函数，先尝试了MessageBox函数没有找到关键代码，后来尝试了PostMessageW函数，向下翻找到了关键的代码：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png" alt=""><br>按F5反编译：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051101_118.png" alt=""><br>发现如果v6等于0x4b6的时候，就会弹窗<br>往前找可以发现v6用来和chText中的字符进行了异或，所以猜测异或得到的结果就是flag，于是写脚本验证：  </p>
+<p> #include &lt;stdio.h&gt;<br> #include&lt;string.h&gt;</p>
+</li>
+</ol>
+<pre><code>int main()
+{
+    char flag[] = { 0xF0,0xDA,0xD7,0xD1,0x8C,0xFF,0xF5,0xFE,0xE3,0xF8,0xE7,0xFF,0xE3,0xE9,0xF0,0xF3,0x85,0x80,0x84,0xF2,0xF4,0xF3,0 };
+
+
+    for (int i = 0; i &lt; strlen(flag); i++)
+    {
+        printf(&quot;%c&quot;,flag[i] ^ 0x4b6);
+    }
+
+
+    return 0;
+}
+</code></pre><p>得到结果：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051107_1000.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/10/05/ctf/wp--CrackMe01/" data-id="cjpo3bu4z0005k8vluuy7j6e4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/09/从一个有趣的例子引出C语言缓冲区/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          从一个有趣的例子引出C语言缓冲区
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/04/Vscode配置markdown主题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">为什么我要搭建这个博客+搭建这个博客的过程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCTF/">LCTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-C-Language/">The C Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hctf/">hctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo使用/">hexo使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/LCTF/" style="font-size: 10px;">LCTF</a> <a href="/tags/The-C-Language/" style="font-size: 10px;">The C Language</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/hctf/" style="font-size: 10px;">hctf</a> <a href="/tags/hexo使用/" style="font-size: 10px;">hexo使用</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/14/os kernel experiment/软中断通信/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/07/wp-hxp-ctf/">wp-hxp_ctf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/25/wp-柏鹭杯/">wp-柏鹭杯</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/18/wp-LCTF/">wp-LCTF</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/12/ctf搭建题目环境/">ctf搭建题目环境</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

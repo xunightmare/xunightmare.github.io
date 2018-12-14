@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>护网杯总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="护网杯总结 从大一开始断断续续接触ctf，也很多次下定决心要好好学一波，但是始终没有坚持下来，10月13日参加了护网杯的线上赛，只做出来了一道misc签到题，还是总结一下得失。  先写一下签到题的wirteup。 write-up 迟到的签到题题目给出了一个txt文件，里面是一串字符串：  AAoHAR1UIFBSJFFQU1AjUVEjVidWUVJVJVZUIyUnI18jVFNXVRs= 很">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="护网杯总结">
+<meta property="og:url" content="http://yoursite.com/2018/10/14/ctf/护网杯总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="护网杯总结 从大一开始断断续续接触ctf，也很多次下定决心要好好学一波，但是始终没有坚持下来，10月13日参加了护网杯的线上赛，只做出来了一道misc签到题，还是总结一下得失。  先写一下签到题的wirteup。 write-up 迟到的签到题题目给出了一个txt文件，里面是一串字符串：  AAoHAR1UIFBSJFFQU1AjUVEjVidWUVJVJVZUIyUnI18jVFNXVRs= 很">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810141548_260.png">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810141552_484.png">
+<meta property="og:updated_time" content="2018-10-14T13:34:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="护网杯总结">
+<meta name="twitter:description" content="护网杯总结 从大一开始断断续续接触ctf，也很多次下定决心要好好学一波，但是始终没有坚持下来，10月13日参加了护网杯的线上赛，只做出来了一道misc签到题，还是总结一下得失。  先写一下签到题的wirteup。 write-up 迟到的签到题题目给出了一个txt文件，里面是一串字符串：  AAoHAR1UIFBSJFFQU1AjUVEjVidWUVJVJVZUIyUnI18jVFNXVRs= 很">
+<meta name="twitter:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810141548_260.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ctf/护网杯总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/14/ctf/护网杯总结/" class="article-date">
+  <time datetime="2018-10-13T16:00:00.000Z" itemprop="datePublished">2018-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      护网杯总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="护网杯总结"><a href="#护网杯总结" class="headerlink" title="护网杯总结"></a>护网杯总结</h1><blockquote>
+<p>从大一开始断断续续接触ctf，也很多次下定决心要好好学一波，但是始终没有坚持下来，10月13日参加了护网杯的线上赛，只做出来了一道misc签到题，还是总结一下得失。</p>
+</blockquote>
+<p>先写一下签到题的wirteup。</p>
+<h3 id="write-up-迟到的签到题"><a href="#write-up-迟到的签到题" class="headerlink" title="write-up 迟到的签到题"></a>write-up 迟到的签到题</h3><p>题目给出了一个txt文件，里面是一串字符串：  AAoHAR1UIFBSJFFQU1AjUVEjVidWUVJVJVZUIyUnI18jVFNXVRs=</p>
+<p>很明显这个是base编码，用在线base64解码，会得到一串奇怪的字符：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810141548_260.png" alt=""></p>
+<p>然后根据题目描述<code>easy xor???</code>，将之前解码得到的字符串，取其16进制，依次和0-255进行异或，然后找出其中的flag。<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810141552_484.png" alt=""></p>
+<p>总结：</p>
+<ol>
+<li>base64解码出来的是不可见字符，并不能说明我们的做法是错误的</li>
+<li>对于这样的不可见字符，手动复制粘贴容易导致字符的错误和丢失，而且效率也很低，能不能想办法提高效率呢？<br>用python进行base64解码并转成16进制，然后将输出保存到文件中：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s = <span class="string">"AAoHAR1UIFBSJFFQU1AjUVEjVidWUVJVJVZUIyUnI18jVFNXVRs="</span></span><br><span class="line"><span class="comment"># 解码结果</span></span><br><span class="line">decode_result = base64.b64decode(s)</span><br><span class="line"><span class="comment"># 打印解码结果</span></span><br><span class="line">print(decode_result)</span><br><span class="line"><span class="comment"># 打印异或结果</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">256</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(decode_result)):</span><br><span class="line">        print(chr(decode_result[i]^j), end = <span class="string">""</span>)</span><br><span class="line">    print()</span><br></pre></td></tr></table></figure>
+<p>除了<code>迟来的签到</code>这道题，我还试着做了做<code>rerere</code>这道题，发现一个问题在于：</p>
+<ol>
+<li>在windows10下面用od调试，因为地址随机化的问题，每次加载内存地址都会改变，增大了调试难度，但是程序是64位的，我的windows xp虚拟机又是32位的，无法运行，考虑能否配置一个windows xp 64环境用于调试。</li>
+</ol>
+<p>还是太菜了，得学呀！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/10/14/ctf/护网杯总结/" data-id="cjpo3bu4w0002k8vlkfgpihix" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/10/14/给我最亲爱的小猪/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          给我亲爱的小猪
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/09/从一个有趣的例子引出C语言缓冲区/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">从一个有趣的例子引出C语言缓冲区</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCTF/">LCTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-C-Language/">The C Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hctf/">hctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo使用/">hexo使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/LCTF/" style="font-size: 10px;">LCTF</a> <a href="/tags/The-C-Language/" style="font-size: 10px;">The C Language</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/hctf/" style="font-size: 10px;">hctf</a> <a href="/tags/hexo使用/" style="font-size: 10px;">hexo使用</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/14/os kernel experiment/软中断通信/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/07/wp-hxp-ctf/">wp-hxp_ctf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/25/wp-柏鹭杯/">wp-柏鹭杯</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/18/wp-LCTF/">wp-LCTF</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/12/ctf搭建题目环境/">ctf搭建题目环境</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
