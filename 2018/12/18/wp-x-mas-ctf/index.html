@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>wp-x-mas-ctf | 自己抱抱自己就好了</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="##点击下载题目文件题目很简单，在磁盘映像文件中隐藏了很多png图片，用binwalk分析磁盘映像文件，然后用foremost工具提取出来：12binwalk classified_gift_distribution_schema.imgforemost classified_gift_distribution_schema.img 最后用powerpoint将图片拼接起来得到flag： flag">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wp-x-mas-ctf">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/wp-x-mas-ctf/index.html">
+<meta property="og:site_name" content="自己抱抱自己就好了">
+<meta property="og:description" content="##点击下载题目文件题目很简单，在磁盘映像文件中隐藏了很多png图片，用binwalk分析磁盘映像文件，然后用foremost工具提取出来：12binwalk classified_gift_distribution_schema.imgforemost classified_gift_distribution_schema.img 最后用powerpoint将图片拼接起来得到flag： flag">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.loli.net/2018/12/18/5c183aed514fb.png">
+<meta property="og:updated_time" content="2018-12-18T00:12:22.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wp-x-mas-ctf">
+<meta name="twitter:description" content="##点击下载题目文件题目很简单，在磁盘映像文件中隐藏了很多png图片，用binwalk分析磁盘映像文件，然后用foremost工具提取出来：12binwalk classified_gift_distribution_schema.imgforemost classified_gift_distribution_schema.img 最后用powerpoint将图片拼接起来得到flag： flag">
+<meta name="twitter:image" content="https://i.loli.net/2018/12/18/5c183aed514fb.png">
+  
+    <link rel="alternate" href="/atom.xml" title="自己抱抱自己就好了" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">自己抱抱自己就好了</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-wp-x-mas-ctf" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/18/wp-x-mas-ctf/" class="article-date">
+  <time datetime="2018-12-18T00:05:47.000Z" itemprop="datePublished">2018-12-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      wp-x-mas-ctf
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##<br><a href="/2018/12/18/wp-x-mas-ctf/classified_gift_distribution_schema.img" title="点击下载题目文件">点击下载题目文件</a><br>题目很简单，在磁盘映像文件中隐藏了很多png图片，用binwalk分析磁盘映像文件，然后用foremost工具提取出来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">binwalk classified_gift_distribution_schema.img</span><br><span class="line">foremost classified_gift_distribution_schema.img</span><br></pre></td></tr></table></figure></p>
+<p>最后用powerpoint将图片拼接起来得到flag：<br><img src="https://i.loli.net/2018/12/18/5c183aed514fb.png" alt=""></p>
+<p><strong>flag</strong>: <em>X-MAS{1t_l00k5_l1k3_s4nta_m4de_4_m1stak3_sorry}</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/18/wp-x-mas-ctf/" data-id="cjrn3ci4g000glsvluoauinot" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/07/wp-hxp-ctf/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">wp-hxp_ctf</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-C-Language/">The C Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo使用/">hexo使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/The-C-Language/" style="font-size: 15px;">The C Language</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/hexo使用/" style="font-size: 10px;">hexo使用</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/18/wp-x-mas-ctf/">wp-x-mas-ctf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/07/wp-hxp-ctf/">wp-hxp_ctf</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/25/wp-柏鹭杯/">wp-柏鹭杯</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/18/wp-LCTF/">wp-LCTF</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/12/ctf搭建题目环境/">ctf搭建题目环境</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
