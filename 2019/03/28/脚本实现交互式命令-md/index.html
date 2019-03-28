@@ -96,32 +96,25 @@
 
 
 
-  <meta name="description" content="cat flag明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：用pwntools直接查看接收到的字节码：发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释 补充两个从其他人的writeup中">
-<meta name="keywords" content="ctf">
+  <meta name="description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wp-hxp_ctf">
-<meta property="og:url" content="http://yoursite.com/2018/12/07/wp-hxp-ctf/index.html">
+<meta property="og:title" content="脚本实现交互式命令.md">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/index.html">
 <meta property="og:site_name" content="我喜欢你">
-<meta property="og:description" content="cat flag明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：用pwntools直接查看接收到的字节码：发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释 补充两个从其他人的writeup中">
+<meta property="og:description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.loli.net/2018/12/14/5c1366142fcc7.png">
-<meta property="og:image" content="https://i.loli.net/2018/12/14/5c13663d6afcd.png">
-<meta property="og:image" content="https://i.loli.net/2018/12/14/5c136d0c2a311.png">
-<meta property="og:image" content="https://i.loli.net/2018/12/14/5c136d1ef29be.png">
-<meta property="og:image" content="https://i.loli.net/2018/12/14/5c136d3640bb3.png">
-<meta property="og:image" content="https://i.loli.net/2018/12/14/5c13754558e44.png">
-<meta property="og:updated_time" content="2018-12-14T14:26:13.160Z">
+<meta property="og:updated_time" content="2019-03-28T04:05:48.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wp-hxp_ctf">
-<meta name="twitter:description" content="cat flag明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：用pwntools直接查看接收到的字节码：发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释 补充两个从其他人的writeup中">
-<meta name="twitter:image" content="https://i.loli.net/2018/12/14/5c1366142fcc7.png">
+<meta name="twitter:title" content="脚本实现交互式命令.md">
+<meta name="twitter:description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/07/wp-hxp-ctf/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
 
 
 
@@ -131,7 +124,7 @@
   };
 </script>
 
-  <title>wp-hxp_ctf | 我喜欢你</title>
+  <title>脚本实现交互式命令.md | 我喜欢你</title>
   
 
 
@@ -300,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/wp-hxp-ctf/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -317,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">wp-hxp_ctf
+          <h1 class="post-title" itemprop="name headline">脚本实现交互式命令.md
 
               
             
@@ -343,24 +336,12 @@
                 
               
 
-              <time title="Erstellt: 2018-12-07 21:00:41" itemprop="dateCreated datePublished" datetime="2018-12-07T21:00:41+08:00">2018-12-07</time>
+              <time title="Erstellt: 2019-03-28 11:53:03 / Geändert am: 12:05:48" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:03+08:00">2019-03-28</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2018-12-14 22:26:13" itemprop="dateModified" datetime="2018-12-14T22:26:13+08:00">2018-12-14</time>
               
             
           </span>
@@ -394,11 +375,15 @@
       
 
       
-        <h2 id="cat-flag"><a href="#cat-flag" class="headerlink" title="cat flag"></a>cat flag</h2><p>明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：<br><img src="https://i.loli.net/2018/12/14/5c1366142fcc7.png" alt=""><br>用pwntools直接查看接收到的字节码：<br><img src="https://i.loli.net/2018/12/14/5c13663d6afcd.png" alt=""><br>发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。<br>从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释</p>
-<p>补充两个从其他人的writeup中找到的方法：<br><img src="https://i.loli.net/2018/12/14/5c136d0c2a311.png" alt=""><br><img src="https://i.loli.net/2018/12/14/5c136d1ef29be.png" alt=""><br><img src="https://i.loli.net/2018/12/14/5c136d3640bb3.png" alt=""></p>
-<h2 id="angrme"><a href="#angrme" class="headerlink" title="angrme"></a>angrme</h2><a href="/2018/12/07/wp-hxp-ctf/angrme" title="点击下载题目文件">点击下载题目文件</a>  
-<p>其实这是一道非常基础的angr题目，但是因为我之前从来没有接触过angr，所以先用了一天的时间把angr的基础概念看了看，然后模仿其他ctf题目的脚本解出了这道题目：<br>推荐教程：<a href="https://github.com/firmianay/CTF-All-In-One" target="_blank" rel="noopener">CTF-All-In-One这本书5.3.1章节</a><br>脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"></span><br><span class="line">find  = <span class="number">0x00402370</span>  <span class="comment"># 输出:)的地址</span></span><br><span class="line">avoid = <span class="number">0x00402390</span>  <span class="comment"># 输出:(的地址</span></span><br><span class="line"></span><br><span class="line">p = angr.Project(<span class="string">'./angrme'</span>)</span><br><span class="line">state = p.factory.entry_state()</span><br><span class="line">pg = p.factory.simgr(state)</span><br><span class="line">ex = pg.explore(find=find, avoid=avoid)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> pg.found[<span class="number">0</span>].posix.dumps(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
-<p>脚本运行的结果：<br><img src="https://i.loli.net/2018/12/14/5c13754558e44.png" alt=""></p>
+        <blockquote>
+<p>在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。</p>
+</blockquote>
+<ol>
+<li>创建一个输入文件。</li>
+<li>将交互时需要用到的数据写入到文件。</li>
+<li>重定向。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RUN touch input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt;&gt; input.data</span><br><span class="line">RUN passwd root &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data</span><br><span class="line">RUN adduser test &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN rm input.data</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -422,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ctf/" rel="tag"># ctf</a>
+            <a href="/tags/docker/" rel="tag"># docker</a>
           
         </div>
       
@@ -435,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/25/wp-柏鹭杯/" rel="next" title="wp-柏鹭杯">
-                <i class="fa fa-chevron-left"></i> wp-柏鹭杯
+              <a href="/2019/03/21/搭建vsftpd-2.3.4笑脸漏洞环境过程/" rel="next" title="vsftpd-2.3.4笑脸漏洞">
+                <i class="fa fa-chevron-left"></i> vsftpd-2.3.4笑脸漏洞
               </a>
             
           </div>
@@ -444,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/18/wp-x-mas-ctf/" rel="prev" title="wp-x-mas-ctf">
-                wp-x-mas-ctf <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,17 +472,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -574,23 +546,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat-flag"><span class="nav-number">1.</span> <span class="nav-text">cat flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#angrme"><span class="nav-number">2.</span> <span class="nav-text">angrme</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
