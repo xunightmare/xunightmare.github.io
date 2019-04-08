@@ -195,7 +195,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -223,7 +223,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
 
   </li>
         
@@ -240,7 +240,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
   </li>
 
@@ -276,6 +276,173 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/语音识别工作总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="人们说，人生最痛苦的事情，是在最无力的年纪，遇到了最想要照顾的人。但是，我想说，努力，就还有一线机会，可若是就此放弃，便是彻底的失败！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我喜欢你">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/08/语音识别工作总结/" class="post-title-link" itemprop="url">语音识别工作总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-04-08 09:53:46 / Geändert am: 10:30:01" itemprop="dateCreated datePublished" datetime="2019-04-08T09:53:46+08:00">2019-04-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="0x00-语音分段"><a href="#0x00-语音分段" class="headerlink" title="0x00 语音分段"></a>0x00 语音分段</h2><blockquote>
+<p>输入的音频是一段话，将音频截成多个小段，每一个小段都包含一完整的话。<br>使用代码：<a href="https://github.com/wblgers/py_speech_seg.git" target="_blank" rel="noopener">https://github.com/wblgers/py_speech_seg.git</a></p>
+</blockquote>
+<ol>
+<li>安装Anaconda：<a href="https://www.jianshu.com/p/895bcd4430c9" target="_blank" rel="noopener">https://www.jianshu.com/p/895bcd4430c9</a>  （注意！最上面的是最老版本的安装文件，我们需要的是下面的新版本）</li>
+<li>执行<code>python multi_detect.py</code>，遇到报错缺少库就使用命令<code>conda install package_name</code>安装</li>
+<li><code>librosa</code>比较特殊，需要用命令<code>conda install -c conda-forge librosa</code>安装</li>
+<li>安装成功之后，在multi_detect.py中填入需要分段的音频路径，执行<code>python multi_detect.py</code>，就会在文件夹<code>save_audio</code>生成分段后的音频。</li>
+</ol>
+<h2 id="0x01-使用百度语音识别Python-SDK进行语音识别"><a href="#0x01-使用百度语音识别Python-SDK进行语音识别" class="headerlink" title="0x01 使用百度语音识别Python SDK进行语音识别"></a>0x01 使用百度语音识别Python SDK进行语音识别</h2><p>百度语音识别官方文档：<a href="http://ai.baidu.com/docs#/ASR-API/top" target="_blank" rel="noopener">http://ai.baidu.com/docs#/ASR-API/top</a></p>
+<p><strong>注意事项：</strong></p>
+<ol>
+<li>编码问题<blockquote>
+<p>格式支持：pcm（不压缩）、wav（不压缩，pcm编码）、amr（压缩格式）。推荐pcm 采样率 ：16000 固定值。 编码：16bit 位深的单声道。百度服务端会将非pcm格式，转为pcm格式，因此使用wav、amr会有额外的转换耗时。</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>如果音频不是指定的格式，用在线音频格式转换或者格式工厂可能会出现编码错误，进而导致百度语音识别出一堆乱七八糟的东西，最好使用ffmpeg转换：</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 转码示例</span></span><br><span class="line">ffmpeg -y  -i test5.m4a  -acodec pcm_s16le -f s16le -ac 1 -ar 16000 test5.pcm</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>搜索模型问题<blockquote>
+<p>搜索模型： 效果同手机百度搜索的语音输入。适合于短语识别，没有逗号。<br>输入法模型：效果同百度输入法的语音输入。适合于长句识别，有逗号。<br><img src="https://i.loli.net/2019/04/07/5ca9b9f18720d.png" alt=""></p>
+</blockquote>
+</li>
+</ol>
+<p><strong>代码示例：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> aip <span class="keyword">import</span> AipSpeech</span><br><span class="line"></span><br><span class="line"><span class="string">""" 你的 APPID AK SK """</span></span><br><span class="line">APP_ID = <span class="string">'你的 App ID'</span></span><br><span class="line">API_KEY = <span class="string">'你的 Api Key'</span></span><br><span class="line">SECRET_KEY = <span class="string">'你的 Secret Key'</span></span><br><span class="line"></span><br><span class="line">client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file_content</span><span class="params">(filePath)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(filePath, <span class="string">'rb'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        <span class="keyword">return</span> fp.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 识别本地文件</span></span><br><span class="line">result = client.asr(get_file_content(<span class="string">'audio.pcm'</span>), <span class="string">'pcm'</span>, <span class="number">16000</span>, &#123;</span><br><span class="line">    <span class="string">'dev_pid'</span>: <span class="number">1536</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># result是一个字典</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -330,14 +497,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-05 21:16:24 / Modified: 21:20:05" itemprop="dateCreated datePublished" datetime="2019-04-05T21:16:24+08:00">2019-04-05</time>
+              <time title="Erstellt: 2019-04-05 21:16:24 / Geändert am: 21:20:05" itemprop="dateCreated datePublished" datetime="2019-04-05T21:16:24+08:00">2019-04-05</time>
             
 
             
@@ -477,14 +644,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-01 10:29:39" itemprop="dateCreated datePublished" datetime="2019-04-01T10:29:39+08:00">2019-04-01</time>
+              <time title="Erstellt: 2019-04-01 10:29:39" itemprop="dateCreated datePublished" datetime="2019-04-01T10:29:39+08:00">2019-04-01</time>
             
 
             
@@ -615,14 +782,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-03-28 11:53:03 / Modified: 12:05:48" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:03+08:00">2019-03-28</time>
+              <time title="Erstellt: 2019-03-28 11:53:03 / Geändert am: 12:05:48" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:03+08:00">2019-03-28</time>
             
 
             
@@ -766,14 +933,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-03-21 00:00:00 / Modified: 22:40:49" itemprop="dateCreated datePublished" datetime="2019-03-21T00:00:00+08:00">2019-03-21</time>
+              <time title="Erstellt: 2019-03-21 00:00:00 / Geändert am: 22:40:49" itemprop="dateCreated datePublished" datetime="2019-03-21T00:00:00+08:00">2019-03-21</time>
             
 
             
@@ -935,14 +1102,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-12-18 08:05:47 / Modified: 08:12:22" itemprop="dateCreated datePublished" datetime="2018-12-18T08:05:47+08:00">2018-12-18</time>
+              <time title="Erstellt: 2018-12-18 08:05:47 / Geändert am: 08:12:22" itemprop="dateCreated datePublished" datetime="2018-12-18T08:05:47+08:00">2018-12-18</time>
             
 
             
@@ -1080,14 +1247,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-12-07 21:00:41" itemprop="dateCreated datePublished" datetime="2018-12-07T21:00:41+08:00">2018-12-07</time>
+              <time title="Erstellt: 2018-12-07 21:00:41" itemprop="dateCreated datePublished" datetime="2018-12-07T21:00:41+08:00">2018-12-07</time>
             
 
             
@@ -1102,9 +1269,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2018-12-14 22:26:13" itemprop="dateModified" datetime="2018-12-14T22:26:13+08:00">2018-12-14</time>
+                <time title="Geändert am: 2018-12-14 22:26:13" itemprop="dateModified" datetime="2018-12-14T22:26:13+08:00">2018-12-14</time>
               
             
           </span>
@@ -1239,14 +1406,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-11-25 22:53:31" itemprop="dateCreated datePublished" datetime="2018-11-25T22:53:31+08:00">2018-11-25</time>
+              <time title="Erstellt: 2018-11-25 22:53:31" itemprop="dateCreated datePublished" datetime="2018-11-25T22:53:31+08:00">2018-11-25</time>
             
 
             
@@ -1261,9 +1428,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2018-12-14 22:26:15" itemprop="dateModified" datetime="2018-12-14T22:26:15+08:00">2018-12-14</time>
+                <time title="Geändert am: 2018-12-14 22:26:15" itemprop="dateModified" datetime="2018-12-14T22:26:15+08:00">2018-12-14</time>
               
             
           </span>
@@ -1419,14 +1586,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-11-18 19:07:12" itemprop="dateCreated datePublished" datetime="2018-11-18T19:07:12+08:00">2018-11-18</time>
+              <time title="Erstellt: 2018-11-18 19:07:12" itemprop="dateCreated datePublished" datetime="2018-11-18T19:07:12+08:00">2018-11-18</time>
             
 
             
@@ -1441,9 +1608,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2018-12-14 22:38:05" itemprop="dateModified" datetime="2018-12-14T22:38:05+08:00">2018-12-14</time>
+                <time title="Geändert am: 2018-12-14 22:38:05" itemprop="dateModified" datetime="2018-12-14T22:38:05+08:00">2018-12-14</time>
               
             
           </span>
@@ -1578,14 +1745,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-11-12 20:35:23" itemprop="dateCreated datePublished" datetime="2018-11-12T20:35:23+08:00">2018-11-12</time>
+              <time title="Erstellt: 2018-11-12 20:35:23" itemprop="dateCreated datePublished" datetime="2018-11-12T20:35:23+08:00">2018-11-12</time>
             
 
             
@@ -1600,9 +1767,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2018-12-14 22:26:04" itemprop="dateModified" datetime="2018-12-14T22:26:04+08:00">2018-12-14</time>
+                <time title="Geändert am: 2018-12-14 22:26:04" itemprop="dateModified" datetime="2018-12-14T22:26:04+08:00">2018-12-14</time>
               
             
           </span>
@@ -1685,166 +1852,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/wp-hctf/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="人们说，人生最痛苦的事情，是在最无力的年纪，遇到了最想要照顾的人。但是，我想说，努力，就还有一线机会，可若是就此放弃，便是彻底的失败！">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我喜欢你">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/11/wp-hctf/" class="post-title-link" itemprop="url">wp-xor_game-hctf</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-11 01:46:04" itemprop="dateCreated datePublished" datetime="2018-11-11T01:46:04+08:00">2018-11-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-14 22:38:03" itemprop="dateModified" datetime="2018-12-14T22:38:03+08:00">2018-12-14</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>戏剧性的一幕，直接用别人的脚本跑出来了，先贴几个链接<br><a href="https://blog.csdn.net/Kudou_Shinichi/article/details/81002013" target="_blank" rel="noopener">https://blog.csdn.net/Kudou_Shinichi/article/details/81002013</a><br><a href="https://github.com/nasume/cryptopals" target="_blank" rel="noopener">https://github.com/nasume/cryptopals</a><br><a href="https://cryptopals.com/sets/1/challenges/6" target="_blank" rel="noopener">https://cryptopals.com/sets/1/challenges/6</a><br><a href="https://www.anquanke.com/post/id/161171#h3-5" target="_blank" rel="noopener">https://www.anquanke.com/post/id/161171#h3-5</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
   </nav>
 
 
@@ -1886,8 +1898,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -1917,8 +1929,10 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">tags</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">schlagwörter</span>
                   
                 </div>
               
@@ -1971,7 +1985,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -1979,7 +1993,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
