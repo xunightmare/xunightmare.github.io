@@ -195,7 +195,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -223,7 +223,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
 
   </li>
         
@@ -240,7 +240,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/Vscode配置markdown主题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/ctf/wp--CrackMe01/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
@@ -312,7 +312,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/10/04/Vscode配置markdown主题/" class="post-title-link" itemprop="url">为什么我要搭建这个博客+搭建这个博客的过程</a>
+                <a href="/2018/10/05/ctf/wp--CrackMe01/" class="post-title-link" itemprop="url">writeup--CrackMe01</a>
               
             
           </h1>
@@ -330,31 +330,19 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2018-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">2018-10-04</time>
+              <time title="Created: 2018-10-05 00:00:00 / Modified: 11:20:20" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">2018-10-05</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2018-12-14 22:26:10" itemprop="dateModified" datetime="2018-12-14T22:26:10+08:00">2018-12-14</time>
               
             
           </span>
@@ -390,9 +378,245 @@
       
         
           
-            <h1 id="Vscode配置markdown主题"><a href="#Vscode配置markdown主题" class="headerlink" title="Vscode配置markdown主题"></a>Vscode配置markdown主题</h1><p>一直想要找一个好用的markdown编辑器，各种推荐的都试过了，发现vs code最符合我的编辑偏好，但是它的预览功能并不能让我满意，而typora则刚好相反。</p>
-<p>终于找到了一位博主推荐的插件，完美符合我的要求：<a href="https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles" target="_blank" rel="noopener">Markdown Preview Github Styling</a></p>
-<p>源网页：<a href="https://zhangkun1117.github.io/2017/11/09/vscode%E9%85%8D%E7%BD%AEmarkdown%E4%B8%BB%E9%A2%98/" target="_blank" rel="noopener">https://zhangkun1117.github.io/2017/11/09/vscode%E9%85%8D%E7%BD%AEmarkdown%E4%B8%BB%E9%A2%98/</a></p>
+            <h1 id="writeup–CrackMe01"><a href="#writeup–CrackMe01" class="headerlink" title="writeup–CrackMe01"></a>writeup–CrackMe01</h1><blockquote>
+<p>题目地址：<a href="https://www.ichunqiu.com/battalion?t=1&amp;r=0" target="_blank" rel="noopener">https://www.ichunqiu.com/battalion?t=1&amp;r=0</a></p>
+</blockquote>
+<ol>
+<li>拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了：<ul>
+<li>函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数  </li>
+<li>搜索字符串也找不到有意义的字符串  </li>
+</ul>
+</li>
+<li><p>这个时候最重要的就是要定位到关键代码，运行程序的时候会有一个图形界面，图形界面中有一个输入框，我尝试随便输入一些东西，并没有反应，但是可以猜测，如果输入的是正确的flag，那么一定会有不一定的反应，很大可能就是会有一个弹框，于是尝试去找弹框的函数，先尝试了MessageBox函数没有找到关键代码，后来尝试了PostMessageW函数，向下翻找到了关键的代码：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png" alt=""><br>按F5反编译：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051101_118.png" alt=""><br>发现如果v6等于0x4b6的时候，就会弹窗<br>往前找可以发现v6用来和chText中的字符进行了异或，所以猜测异或得到的结果就是flag，于是写脚本验证：  </p>
+<p> #include &lt;stdio.h&gt;<br> #include&lt;string.h&gt;</p>
+</li>
+</ol>
+<pre><code>int main()
+{
+    char flag[] = { 0xF0,0xDA,0xD7,0xD1,0x8C,0xFF,0xF5,0xFE,0xE3,0xF8,0xE7,0xFF,0xE3,0xE9,0xF0,0xF3,0x85,0x80,0x84,0xF2,0xF4,0xF3,0 };
+
+
+    for (int i = 0; i &lt; strlen(flag); i++)
+    {
+        printf(&quot;%c&quot;,flag[i] ^ 0x4b6);
+    }
+
+
+    return 0;
+}
+</code></pre><p>得到结果：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051107_1000.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/README/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="人们说，人生最痛苦的事情，是在最无力的年纪，遇到了最想要照顾的人。但是，我想说，努力，就还有一线机会，可若是就此放弃，便是彻底的失败！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我喜欢你">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/04/README/" class="post-title-link" itemprop="url">为什么我要搭建这个博客+搭建这个博客的过程</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">2018-10-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-08 11:17:14" itemprop="dateModified" datetime="2019-04-08T11:17:14+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>其实想要搭建这样一个博客很久了，觉得作为一个程序员，有一个自己域名的博客是一件非常酷的事情，但是因为各种各样的原因，一直拖着没有动手。10月2日是我的生日，那天突然想要发一些分享，但是又不想在QQ空间或者朋友圈发，所以就想要买一个域名，祝自己生日快乐！</p>
+</blockquote>
+<p>下面简单记录我搭建这个博客的过程</p>
+<h2 id="0x00-搭建步骤："><a href="#0x00-搭建步骤：" class="headerlink" title="0x00 搭建步骤："></a>0x00 搭建步骤：</h2><ul>
+<li>创建自己的<code>github pages</code></li>
+<li>在本地用<code>hexo</code>搭建博客</li>
+<li>将本地的<code>hexo</code>博客发布到自己的<code>github pages</code>上</li>
+<li>用github学生优惠包在<code>namecheap</code>上获得<code>.me</code>的免费域名</li>
+<li>设置<code>DNS解析</code></li>
+<li>设置<code>github pages</code>的<code>CNAME</code>文件</li>
+</ul>
+<h2 id="0x01-创建自己的github-pages"><a href="#0x01-创建自己的github-pages" class="headerlink" title="0x01 创建自己的github pages"></a>0x01 创建自己的<code>github pages</code></h2><p>我的理解，github pages其实就是一个特殊的repository，就像create一个普通的repository一样来创建它，<strong>唯一不同的在于：这个repository的名字是固定的（user_name.github.io）</strong></p>
+<p>创建这个了这个repository之后，就可以通过域名<code>user_name.github.io</code>来访问自己的github pages，其中，刚刚创建的名为user_name.github.io的repository为主页，而其他的页面则是子页面</p>
+<h2 id="0x02-在本地用hexo搭建博客"><a href="#0x02-在本地用hexo搭建博客" class="headerlink" title="0x02 在本地用hexo搭建博客"></a>0x02 在本地用<code>hexo</code>搭建博客</h2><p>分享一篇教程：<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">知乎专栏：GitHub+Hexo 搭建个人网站详细教程</a></p>
+<p>首先需要进行配置环境（Node.js + git）：</p>
+<ol>
+<li>Hexo基于Node.js，安装过程：从<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">官方网站</a>下载对应的版本并安装，安装完成后可以通过<code>Node.js command prompt</code>打开命令行界面，输入命令<code>node -v</code>来判断是否安装成功，因为Node.js还包含了环境变量和npm的安装，所以还需要用命令<code>npm -v</code>来判断npm是否安装成功。</li>
+<li>安装git的过程：到官网下载安装，配置用户名和密码，然后生成密钥文件，在github上配置ssh公钥，最后可以在<code>git bash</code>中输入命令<code>ssh git@github.com</code>来检测是否配置完成。</li>
+</ol>
+<p>完成了上面两步，安装Hexo的环境就已经全部搭建完成了。<br>下面开始安装Hexo：</p>
+<pre><code>npm install -g hexo-cli
+</code></pre><p>安装完成后，生成blog文件：</p>
+<pre><code>hexo init blog
+</code></pre><p>可以在本地先检测网站的雏形，输入命令：</p>
+<pre><code>hexo g 
+hexo s
+</code></pre><p>第一句命令的意思是通过source文件夹中的文件生成网页，第二句是启动服务器，我们就可以在浏览器地址栏输入<code>localhost:4000</code>来访问我们的博客。</p>
+<h2 id="0x03-将本地的hexo博客发布到自己的github-pages上"><a href="#0x03-将本地的hexo博客发布到自己的github-pages上" class="headerlink" title="0x03  将本地的hexo博客发布到自己的github pages上"></a>0x03  将本地的<code>hexo</code>博客发布到自己的<code>github pages</code>上</h2><p>首先需要配置文件：<br>编辑blog根目录下的<code>_config.yml</code>文件，将最后的deploy修改为如图所示（用户名注意改成自己的）：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810041956_872.png" alt=""></p>
+<p>接下来使用命令：</p>
+<pre><code>hexo clean
+hexo g
+hexo d
+</code></pre><p>就把博客推送到<code>github pages</code>上了。</p>
+<h2 id="0x04-用github学生优惠包在namecheap上获得-me的免费域名"><a href="#0x04-用github学生优惠包在namecheap上获得-me的免费域名" class="headerlink" title="0x04 用github学生优惠包在namecheap上获得.me的免费域名"></a>0x04 用github学生优惠包在<code>namecheap</code>上获得<code>.me</code>的免费域名</h2><p>这个就不详细写了，给一个地址：<a href="https://education.github.com/students" target="_blank" rel="noopener">https://education.github.com/students</a></p>
+<h2 id="0x05-设置DNS解析"><a href="#0x05-设置DNS解析" class="headerlink" title="0x05 设置DNS解析"></a>0x05 设置<code>DNS解析</code></h2><p>在namecheap注册域名时，有一步可以选择github pages，我不太清楚那个是什么东西，但是后面发现自己的域名就可以解析了，猜测是自动和github pages绑定了吧<br>本来这样多省事，但是我这个人偏偏有强迫症，莫名其妙来的，我也不知道到底是怎么回事，总是感觉很不爽，于是两天时间断断续续，不断尝试，总算找到了怎么配置：</p>
+<p>namecheap自己提供了DNS解析服务，可以在如下图所示的界面中设置：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810042006_488.png" alt=""></p>
+<p>参考：<a href="https://www.namecheap.com/support/knowledgebase/article.aspx/9645/2208/how-do-i-link-my-domain-to-github-pages" target="_blank" rel="noopener">How do I link my domain to GitHub Pages</a></p>
+<h2 id="0x06-设置github-pages的CNAME文件"><a href="#0x06-设置github-pages的CNAME文件" class="headerlink" title="0x06 设置github pages的CNAME文件"></a>0x06 设置<code>github pages</code>的<code>CNAME</code>文件</h2><p>先说设置的方法，我知道的有两种：</p>
+<ol>
+<li>手动在user_name.github.io这个repository中创建一个名为CNAME的新文件，里面第一行写入你的域名</li>
+<li>在user_name.github.io的settings中设置<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810042011_280.png" alt=""></li>
+</ol>
+<p>我对CNAME这个文件的理解，它的作用有两个：1. 允许我们的域名绑定到github pages上；2. 将user_name.github.io这个域名重定向到我们的域名上</p>
+<p>但是如果只是手动修改的话，每次推送博客之后，CNAME文件就会被覆盖，解决办法是将CNAME文件写入/blog/source/中，这样每次推送也会保留了（README.md文件也是同理）</p>
+<p><strong>完成了上面的步骤，就可以通过自己域名访问自己的博客了，虽然很粗糙，但是成就感满满呢！</strong></p>
+<h2 id="0x07-注意事项"><a href="#0x07-注意事项" class="headerlink" title="0x07 注意事项"></a>0x07 注意事项</h2><ol>
+<li>在设置DNS解析的时候，总是存在一定的延迟，我又没有找到判断刚刚的修改是否生效的方法，所以出现了各种奇奇怪怪的问题，走了很多弯路</li>
+<li>浏览器的缓存可能会影响我们的修改，如果出现了无法理解的现象，可以尝试换个设备，换个浏览器试试，还有一个后来才想到的方法，也许可以利用浏览器的无痕模式</li>
+<li>在0x02中，因为这个过程是事后写的，不太确定安装<code>git</code>是否一定需要在安装<code>Node.js</code>之前</li>
+</ol>
+<h2 id="0x08-参考"><a href="#0x08-参考" class="headerlink" title="0x08 参考"></a>0x08 参考</h2><ul>
+<li><a href="http://ryane.top/2018/01/10/2018%EF%BC%8C%E4%BD%A0%E8%AF%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BA%86%EF%BC%81/" target="_blank" rel="noopener">2018，你该搭建自己的博客了！</a>  </li>
+<li><a href="https://www.jianshu.com/p/4ba39737969a" target="_blank" rel="noopener">域名解析后主机记录和记录值怎么填写？都是什么意思？</a>  </li>
+<li><a href="https://zhuanlan.zhihu.com/p/33261777" target="_blank" rel="noopener">NameCheap域名解析教程 —— BasicDNS</a></li>
+</ul>
+<h2 id="0x09-hexo-client"><a href="#0x09-hexo-client" class="headerlink" title="0x09 hexo-client"></a>0x09 hexo-client</h2><p>新鲜劲慢慢过去后，开始嫌弃手动管理私人博客的麻烦，但是又不愿意放弃自己定制博客的自由和炫酷，最后找到了一个hexo客户端，能够帮助我更加轻松地管理博客。</p>
+<p>我先尝试一段时间，如果感觉好用的话，我会回来加上教程的。<br><a href="https://electronjs.org/apps/hexo-client" target="_blank" rel="noopener">HexoClient</a></p>
 
           
         
@@ -438,7 +662,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 
@@ -480,8 +704,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -514,7 +738,7 @@
                       
                     
                     <span class="site-state-item-count">9</span>
-                    <span class="site-state-item-name">schlagwörter</span>
+                    <span class="site-state-item-name">tags</span>
                   
                 </div>
               
@@ -567,7 +791,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -575,7 +799,7 @@
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
