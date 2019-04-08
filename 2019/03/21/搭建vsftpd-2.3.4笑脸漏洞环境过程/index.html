@@ -96,22 +96,18 @@
 
 
 
-  <meta name="description" content="0x01 在ubuntu 16.04上配置  ✖️安装vsftpd-2.3.4：https://yq.aliyun.com/articles/101651/   make阶段遇到问题一：   解决方案：123456&amp;gt; 打开Makefile&amp;gt; vim Makefile&amp;gt; LIBS    =       `./vsf_findlibs.sh`&amp;gt;末尾增加 -lcrypt 变成&amp;">
+  <meta name="description" content="0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4 源码配置较为麻烦，但是镜像的选用上要自由很多。   安装依赖环境和相关工具。  在使用Dockerfile构建镜像的时候，经常出现fetch error，后来发现是源的问题，使用命令sed -i s@/archive.ubuntu.com/@/mirrors.163.com/@g /etc/apt/sources.list换成16">
 <meta name="keywords" content="vulnerabilities">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vsftpd-2.3.4笑脸漏洞">
 <meta property="og:url" content="http://yoursite.com/2019/03/21/搭建vsftpd-2.3.4笑脸漏洞环境过程/index.html">
 <meta property="og:site_name" content="我喜欢你">
-<meta property="og:description" content="0x01 在ubuntu 16.04上配置  ✖️安装vsftpd-2.3.4：https://yq.aliyun.com/articles/101651/   make阶段遇到问题一：   解决方案：123456&amp;gt; 打开Makefile&amp;gt; vim Makefile&amp;gt; LIBS    =       `./vsf_findlibs.sh`&amp;gt;末尾增加 -lcrypt 变成&amp;">
+<meta property="og:description" content="0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4 源码配置较为麻烦，但是镜像的选用上要自由很多。   安装依赖环境和相关工具。  在使用Dockerfile构建镜像的时候，经常出现fetch error，后来发现是源的问题，使用命令sed -i s@/archive.ubuntu.com/@/mirrors.163.com/@g /etc/apt/sources.list换成16">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.loli.net/2019/03/19/5c904756af033.png">
-<meta property="og:image" content="https://i.loli.net/2019/03/19/5c904e76541e9.png">
-<meta property="og:image" content="https://i.loli.net/2019/03/19/5c9050ec8cf8f.png">
-<meta property="og:updated_time" content="2019-03-21T14:40:49.944Z">
+<meta property="og:updated_time" content="2019-04-08T08:24:17.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vsftpd-2.3.4笑脸漏洞">
-<meta name="twitter:description" content="0x01 在ubuntu 16.04上配置  ✖️安装vsftpd-2.3.4：https://yq.aliyun.com/articles/101651/   make阶段遇到问题一：   解决方案：123456&amp;gt; 打开Makefile&amp;gt; vim Makefile&amp;gt; LIBS    =       `./vsf_findlibs.sh`&amp;gt;末尾增加 -lcrypt 变成&amp;">
-<meta name="twitter:image" content="https://i.loli.net/2019/03/19/5c904756af033.png">
+<meta name="twitter:description" content="0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4 源码配置较为麻烦，但是镜像的选用上要自由很多。   安装依赖环境和相关工具。  在使用Dockerfile构建镜像的时候，经常出现fetch error，后来发现是源的问题，使用命令sed -i s@/archive.ubuntu.com/@/mirrors.163.com/@g /etc/apt/sources.list换成16">
 
 
 
@@ -200,7 +196,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -228,7 +224,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
 
   </li>
         
@@ -245,7 +241,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
   </li>
 
@@ -333,19 +329,31 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-03-21 00:00:00 / Modified: 22:40:49" itemprop="dateCreated datePublished" datetime="2019-03-21T00:00:00+08:00">2019-03-21</time>
+              <time title="Erstellt: 2019-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-21T00:00:00+08:00">2019-03-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-04-08 16:24:17" itemprop="dateModified" datetime="2019-04-08T16:24:17+08:00">2019-04-08</time>
               
             
           </span>
@@ -379,33 +387,44 @@
       
 
       
-        <blockquote>
-<h3 id="0x01-在ubuntu-16-04上配置-✖️"><a href="#0x01-在ubuntu-16-04上配置-✖️" class="headerlink" title="0x01 在ubuntu 16.04上配置  ✖️"></a>0x01 在ubuntu 16.04上配置  ✖️</h3><p>安装vsftpd-2.3.4：<a href="https://yq.aliyun.com/articles/101651/" target="_blank" rel="noopener">https://yq.aliyun.com/articles/101651/</a></p>
+        <h2 id="0x01-在ubuntu镜像上使用源码配置vsftpd-2-3-4"><a href="#0x01-在ubuntu镜像上使用源码配置vsftpd-2-3-4" class="headerlink" title="0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4"></a>0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4</h2><blockquote>
+<p>源码配置较为麻烦，但是镜像的选用上要自由很多。</p>
 </blockquote>
-<blockquote>
-<p><strong>make阶段遇到问题一：</strong><br><img src="https://i.loli.net/2019/03/19/5c904756af033.png" alt=""></p>
+<ol>
+<li>安装依赖环境和相关工具。</li>
+</ol>
+<p>在使用Dockerfile构建镜像的时候，经常出现<code>fetch error</code>，后来发现是源的问题，使用命令<code>sed -i s@/archive.ubuntu.com/@/mirrors.163.com/@g /etc/apt/sources.list</code>换成163的源之后下载速度快了很多，也不会出现<code>fetch error</code>的问题了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RUN sed -i s@/archive.ubuntu.com/@/mirrors.163.com/@g /etc/apt/sources.list \</span><br><span class="line">    &amp;&amp; apt-get clean \</span><br><span class="line">    &amp;&amp; apt-get update --fix-missing \</span><br><span class="line">    &amp;&amp; apt-get upgrade -y \</span><br><span class="line">    &amp;&amp; apt-get install -y wget vim make gcc git autoconf automake byacc flex --fix-missing</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建用户和目录。</li>
+</ol>
+<p>这一步是看着教程做的，具体是为了什么我不清楚。</p>
+<ol start="3">
+<li>下载vsftpd-2.3.4源码并安装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># vsftpd-2.3.4的源码有两个版本：有后门和没有后门的，[trace down the backdoor in vsFTPd 2.3.4](https://0ffff7f000001ipv6literalnet.wordpress.com/2012/06/26/trace-down-the-backdoor-in-vsftpd-2-3-4/)。在github上找到了有后门的版本。</span><br><span class="line">RUN git clone https://github.com/nikdubois/vsftpd-2.3.4-infected \</span><br><span class="line">    &amp;&amp; cd /vsftpd-2.3.4-infected \</span><br><span class="line">    &amp;&amp; sed -i -e &apos;s|#define VSF_SYSDEP_HAVE_LIBCAP|//&amp;|&apos; sysdeputil.c \</span><br><span class="line">    &amp;&amp; cp Makefile Makefile.bak \</span><br><span class="line">    &amp;&amp; sed &apos;s/vsf_findlibs.sh`/&amp; -lcrypt/&apos; Makefile.bak &gt; Makefile \</span><br><span class="line">    &amp;&amp; make</span><br><span class="line"></span><br><span class="line">RUN mkdir /usr/local/man/man8 \</span><br><span class="line">    &amp;&amp; mkdir /usr/local/man/man5 \</span><br><span class="line">    &amp;&amp; cd /vsftpd-2.3.4-infected \</span><br><span class="line">    &amp;&amp; make install \</span><br><span class="line">    &amp;&amp; cp vsftpd.conf /etc/vsftpd.conf.bak \</span><br><span class="line">    &amp;&amp; sed &apos;$a\secure_chroot_dir=/opt/usr/share/empty&apos; /etc/vsftpd.conf.bak &gt; /etc/vsftpd.conf.bak2 \</span><br><span class="line">    &amp;&amp; mkdir -p /opt/usr/share/empty \</span><br><span class="line">    &amp;&amp; sed &apos;s/#local_enable=YES/local_enable=YES/&apos; /etc/vsftpd.conf.bak2 &gt; /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>创建用户并更改密码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RUN touch input.data </span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data </span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data </span><br><span class="line">RUN passwd root &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data </span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data RUN adduser test &lt; input.data</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最后只要进入容器执行vsftpd命令，就可以启动服务了。</p>
+<h2 id="0x02-使用docker镜像配置漏洞环境"><a href="#0x02-使用docker镜像配置漏洞环境" class="headerlink" title="0x02 使用docker镜像配置漏洞环境"></a>0x02 使用docker镜像配置漏洞环境</h2><blockquote>
+<p>使用镜像配置环境非常简单，但是现有的vsftpd-2.3.4的镜像是基于alpine linux的，和ubuntu差别较大，经常遇到一些问题。</p>
 </blockquote>
-<blockquote>
-<p><strong>解决方案：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 打开Makefile</span><br><span class="line">&gt; vim Makefile</span><br><span class="line">&gt; LIBS    =       `./vsf_findlibs.sh`</span><br><span class="line">&gt;末尾增加 -lcrypt 变成</span><br><span class="line">&gt; LIBS    =       `./vsf_findlibs.sh` -lcrypt</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p><strong>make install阶段遇到问题二：</strong><br><img src="https://i.loli.net/2019/03/19/5c904e76541e9.png" alt="20190319100538.png"></p>
-</blockquote>
-<blockquote>
-<p><strong>解决方案</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo mkdir /usr/<span class="built_in">local</span>/man/man5</span><br><span class="line">&gt; sudo mkdir /usr/<span class="built_in">local</span>/man/man8</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p><strong>安装成功并启动vsftpd之后遇到问题三</strong><br><img src="https://i.loli.net/2019/03/19/5c9050ec8cf8f.png" alt="20190319101608.png"><br><strong>最后问题还是没法解决</strong> </p>
-</blockquote>
-<h3 id="0x02-使用docker镜像配置漏洞环境"><a href="#0x02-使用docker镜像配置漏洞环境" class="headerlink" title="0x02 使用docker镜像配置漏洞环境"></a>0x02 使用docker镜像配置漏洞环境</h3><p>找到了一个<a href="https://hub.docker.com/r/penkit/vsftpd" target="_blank" rel="noopener">已经安装好了vsftpd-2.3.4的镜像。</a>,还找到了<a href="https://gitlab.com/penkit/vsftpd" target="_blank" rel="noopener">对应的Dockerfile</a></p>
+<p>找到了一个<a href="https://hub.docker.com/r/penkit/vsftpd" target="_blank" rel="noopener">已经安装好了vsftpd-2.3.4的镜像。</a>,还找到了<a href="https://gitlab.com/penkit/vsftpd" target="_blank" rel="noopener">对应的Dockerfile</a></p>
 <p>拉取镜像：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull penkit/vsftpd:2.3.4</span><br></pre></td></tr></table></figure></p>
 <p>启动镜像<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm -p 21:21 penkit/vsftpd:2.3.4 <span class="string">"vsftpd /etc/vsftpd/vsftpd.conf"</span></span><br></pre></td></tr></table></figure></p>
 <p>启动vsftpd<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vsftpd /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure></p>
-<h3 id="0x03-利用笑脸漏洞"><a href="#0x03-利用笑脸漏洞" class="headerlink" title="0x03 利用笑脸漏洞"></a>0x03 利用笑脸漏洞</h3><h4 id="手工利用"><a href="#手工利用" class="headerlink" title="手工利用"></a>手工利用</h4><p><a href="https://blog.csdn.net/qq_34122419/article/details/82957510" target="_blank" rel="noopener">https://blog.csdn.net/qq_34122419/article/details/82957510</a></p>
-<h4 id="metasploit"><a href="#metasploit" class="headerlink" title="metasploit"></a>metasploit</h4><p><a href="https://www.whj.website/blog/2018/09/13/Vsftpd2.3.4%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">https://www.whj.website/blog/2018/09/13/Vsftpd2.3.4%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/</a></p>
+<h2 id="0x03-使用metasploitable2镜像配置"><a href="#0x03-使用metasploitable2镜像配置" class="headerlink" title="0x03 使用metasploitable2镜像配置"></a>0x03 使用metasploitable2镜像配置</h2><p>这种方法网上教程应该很多，我自己并没有尝试，所以不详细介绍。</p>
+<h2 id="0x03-利用笑脸漏洞"><a href="#0x03-利用笑脸漏洞" class="headerlink" title="0x03 利用笑脸漏洞"></a>0x03 利用笑脸漏洞</h2><h3 id="手工利用"><a href="#手工利用" class="headerlink" title="手工利用"></a>手工利用</h3><p><a href="https://blog.csdn.net/qq_34122419/article/details/82957510" target="_blank" rel="noopener">https://blog.csdn.net/qq_34122419/article/details/82957510</a></p>
+<h3 id="metasploit"><a href="#metasploit" class="headerlink" title="metasploit"></a>metasploit</h3><p><a href="https://www.whj.website/blog/2018/09/13/Vsftpd2.3.4%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">https://www.whj.website/blog/2018/09/13/Vsftpd2.3.4%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/</a></p>
 <blockquote>
 <p>注意：在一次攻击结束后，马上进行第二次攻击，会失败。原因是之前的ftp连接和6200端口连接没有关闭。只要等到超时自动关闭就可以了。</p>
 </blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="http://www.linuxfromscratch.org/~thomasp/blfs-book-xsl/server/vsftpd.html" target="_blank" rel="noopener">vsftpd-2.3.4源码安装教程</a></li>
+<li><a href="https://whereisk0shl.top/post/vsftpd-v2.3.4hou-men-fen-xi" target="_blank" rel="noopener">VSFTPD V2.3.4后门分析</a></li>
+</ul>
 
       
     </div>
@@ -500,10 +519,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -523,8 +542,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -556,8 +575,8 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">schlagwörter</span>
                   
                 </div>
               
@@ -594,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-在ubuntu-16-04上配置-✖️"><span class="nav-number">1.</span> <span class="nav-text">0x01 在ubuntu 16.04上配置  ✖️</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-使用docker镜像配置漏洞环境"><span class="nav-number">2.</span> <span class="nav-text">0x02 使用docker镜像配置漏洞环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-利用笑脸漏洞"><span class="nav-number">3.</span> <span class="nav-text">0x03 利用笑脸漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#手工利用"><span class="nav-number">3.1.</span> <span class="nav-text">手工利用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metasploit"><span class="nav-number">3.2.</span> <span class="nav-text">metasploit</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-在ubuntu镜像上使用源码配置vsftpd-2-3-4"><span class="nav-number">1.</span> <span class="nav-text">0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-使用docker镜像配置漏洞环境"><span class="nav-number">2.</span> <span class="nav-text">0x02 使用docker镜像配置漏洞环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-使用metasploitable2镜像配置"><span class="nav-number">3.</span> <span class="nav-text">0x03 使用metasploitable2镜像配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-利用笑脸漏洞"><span class="nav-number">4.</span> <span class="nav-text">0x03 利用笑脸漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手工利用"><span class="nav-number">4.1.</span> <span class="nav-text">手工利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#metasploit"><span class="nav-number">4.2.</span> <span class="nav-text">metasploit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -627,7 +646,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -635,7 +654,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
