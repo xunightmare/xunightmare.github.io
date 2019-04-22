@@ -96,30 +96,29 @@
 
 
 
-  <meta name="description" content="想起LunaticGame题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag 于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag 用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改： 最后保存：这样，程序就不会进入game over的分支，就相当于无敌模式了   最后就是玩游戏通关拿到flag了">
-<meta name="keywords" content="ctf">
+  <meta name="description" content="首先执行程序，有一个输入框，任意输入一些内容，弹出错误： 要破解这个程序，重点就是找到并理解判断输入是否正确的逻辑，于是用IDA查看：搜索字符串找到”Congratulation!!” 进而定位到关键函数： 分析这个函数可知，输入的构造应该为：’E’ + ‘a’ + a5y + aR3versing 所以flag就为：Ea5yR3versing">
+<meta name="keywords" content="reverse">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wp-LCTF">
-<meta property="og:url" content="http://yoursite.com/2018/11/18/wp-LCTF/index.html">
+<meta property="og:title" content="Reversing.Kr -- Easy Crack Writeup">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/Reversing-Kr-Easy-Crack-Writeup/index.html">
 <meta property="og:site_name" content="xnightmare">
-<meta property="og:description" content="想起LunaticGame题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag 于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag 用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改： 最后保存：这样，程序就不会进入game over的分支，就相当于无敌模式了   最后就是玩游戏通关拿到flag了">
+<meta property="og:description" content="首先执行程序，有一个输入框，任意输入一些内容，弹出错误： 要破解这个程序，重点就是找到并理解判断输入是否正确的逻辑，于是用IDA查看：搜索字符串找到”Congratulation!!” 进而定位到关键函数： 分析这个函数可知，输入的构造应该为：’E’ + ‘a’ + a5y + aR3versing 所以flag就为：Ea5yR3versing">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181904_820.png">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181903_328.png">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181910_929.png">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181901_34.png">
-<meta property="og:updated_time" content="2018-12-14T14:38:05.175Z">
+<meta property="og:image" content="https://i.loli.net/2019/04/22/5cbdb833ed2ed.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/22/5cbdb85febe3a.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/22/5cbdb871a8621.png">
+<meta property="og:updated_time" content="2019-04-22T12:51:13.127Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wp-LCTF">
-<meta name="twitter:description" content="想起LunaticGame题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag 于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag 用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改： 最后保存：这样，程序就不会进入game over的分支，就相当于无敌模式了   最后就是玩游戏通关拿到flag了">
-<meta name="twitter:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181904_820.png">
+<meta name="twitter:title" content="Reversing.Kr -- Easy Crack Writeup">
+<meta name="twitter:description" content="首先执行程序，有一个输入框，任意输入一些内容，弹出错误： 要破解这个程序，重点就是找到并理解判断输入是否正确的逻辑，于是用IDA查看：搜索字符串找到”Congratulation!!” 进而定位到关键函数： 分析这个函数可知，输入的构造应该为：’E’ + ‘a’ + a5y + aR3versing 所以flag就为：Ea5yR3versing">
+<meta name="twitter:image" content="https://i.loli.net/2019/04/22/5cbdb833ed2ed.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/18/wp-LCTF/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/22/Reversing-Kr-Easy-Crack-Writeup/">
 
 
 
@@ -129,7 +128,7 @@
   };
 </script>
 
-  <title>wp-LCTF | xnightmare</title>
+  <title>Reversing.Kr -- Easy Crack Writeup | xnightmare</title>
   
 
 
@@ -298,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/wp-LCTF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Reversing-Kr-Easy-Crack-Writeup/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
@@ -315,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">wp-LCTF
+          <h1 class="post-title" itemprop="name headline">Reversing.Kr -- Easy Crack Writeup
 
               
             
@@ -341,25 +340,9 @@
                 
               
 
-              <time title="Erstellt: 2018-11-18 19:07:12" itemprop="dateCreated datePublished" datetime="2018-11-18T19:07:12+08:00">2018-11-18</time>
+              <time title="Erstellt: 2019-04-22 20:51:13" itemprop="dateCreated datePublished" datetime="2019-04-22T20:51:13+08:00">2019-04-22</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2018-12-14 22:38:05" itemprop="dateModified" datetime="2018-12-14T22:38:05+08:00">2018-12-14</time>
-              
             
           </span>
 
@@ -392,11 +375,11 @@
       
 
       
-        <h1 id="想起LunaticGame"><a href="#想起LunaticGame" class="headerlink" title="想起LunaticGame"></a>想起LunaticGame</h1><p>题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag</p>
-<p>于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag</p>
-<p>用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181904_820.png" alt=""></p>
-<p><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181903_328.png" alt=""><br>最后保存：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181910_929.png" alt=""><br>这样，程序就不会进入game over的分支，就相当于无敌模式了  </p>
-<p>最后就是玩游戏通关拿到flag了<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181901_34.png" alt=""></p>
+        <p>首先执行程序，有一个输入框，任意输入一些内容，弹出错误：<br><img src="https://i.loli.net/2019/04/22/5cbdb833ed2ed.png" alt=""></p>
+<p>要破解这个程序，重点就是找到并理解判断输入是否正确的逻辑，于是用IDA查看：<br>搜索字符串找到”Congratulation!!”<br><img src="https://i.loli.net/2019/04/22/5cbdb85febe3a.png" alt=""></p>
+<p>进而定位到关键函数：<br><img src="https://i.loli.net/2019/04/22/5cbdb871a8621.png" alt=""></p>
+<p>分析这个函数可知，输入的构造应该为：’E’ + ‘a’ + a5y + aR3versing</p>
+<p>所以flag就为：<strong>Ea5yR3versing</strong></p>
 
       
     </div>
@@ -420,7 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ctf/" rel="tag"># ctf</a>
+            <a href="/tags/reverse/" rel="tag"># reverse</a>
           
         </div>
       
@@ -433,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/12/ctf搭建题目环境/" rel="next" title="ctf搭建题目环境">
-                <i class="fa fa-chevron-left"></i> ctf搭建题目环境
+              <a href="/2019/04/22/Apache-server配置监听的IP和端口/" rel="next" title="Apache server配置监听的IP和端口">
+                <i class="fa fa-chevron-left"></i> Apache server配置监听的IP和端口
               </a>
             
           </div>
@@ -443,8 +426,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/25/wp-柏鹭杯/" rel="prev" title="wp-柏鹭杯">
-                wp-柏鹭杯 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/22/我喜欢你，我想要再试试/" rel="prev" title="我喜欢你，我想要再试试">
+                我喜欢你，我想要再试试 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -489,17 +472,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -578,23 +552,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#想起LunaticGame"><span class="nav-number">1.</span> <span class="nav-text">想起LunaticGame</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
