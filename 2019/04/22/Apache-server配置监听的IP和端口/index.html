@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="一直想要找一个好用的markdown编辑器，各种推荐的都试过了，发现vs code最符合我的编辑偏好，但是它的预览功能并不能让我满意，而typora则刚好相反。 终于找到了一位博主推荐的插件，完美符合我的要求：Markdown Preview Github Styling 源网页：https://zhangkun1117.github.io/2017/11/09/vscode%E9%85%8D%E">
-<meta name="keywords" content="工具">
+  <meta name="description" content="背景同一台主机上，有两个web服务，一个服务是对外开放的，而另外一个仅限内部人员使用，需要隔离开来。考虑到使用iptables限制IP访问过于死板，最后决定将内部web服务绑定到IPv6端口上，在其他人不知道IPv6地址的情况下，保证一定的安全性。 设置Apache server可以在主要配置文件httpd.conf中设置网站绑定的IP和端口。httpd.conf文件一般在/etc/httpd/目">
+<meta name="keywords" content="Web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vscode配置markdown主题">
-<meta property="og:url" content="http://yoursite.com/2019/04/08/Vscode配置markdown主题-1/index.html">
+<meta property="og:title" content="Apache server配置监听的IP和端口">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/Apache-server配置监听的IP和端口/index.html">
 <meta property="og:site_name" content="我喜欢你">
-<meta property="og:description" content="一直想要找一个好用的markdown编辑器，各种推荐的都试过了，发现vs code最符合我的编辑偏好，但是它的预览功能并不能让我满意，而typora则刚好相反。 终于找到了一位博主推荐的插件，完美符合我的要求：Markdown Preview Github Styling 源网页：https://zhangkun1117.github.io/2017/11/09/vscode%E9%85%8D%E">
+<meta property="og:description" content="背景同一台主机上，有两个web服务，一个服务是对外开放的，而另外一个仅限内部人员使用，需要隔离开来。考虑到使用iptables限制IP访问过于死板，最后决定将内部web服务绑定到IPv6端口上，在其他人不知道IPv6地址的情况下，保证一定的安全性。 设置Apache server可以在主要配置文件httpd.conf中设置网站绑定的IP和端口。httpd.conf文件一般在/etc/httpd/目">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-08T03:16:45.893Z">
+<meta property="og:updated_time" content="2019-04-22T12:35:22.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vscode配置markdown主题">
-<meta name="twitter:description" content="一直想要找一个好用的markdown编辑器，各种推荐的都试过了，发现vs code最符合我的编辑偏好，但是它的预览功能并不能让我满意，而typora则刚好相反。 终于找到了一位博主推荐的插件，完美符合我的要求：Markdown Preview Github Styling 源网页：https://zhangkun1117.github.io/2017/11/09/vscode%E9%85%8D%E">
+<meta name="twitter:title" content="Apache server配置监听的IP和端口">
+<meta name="twitter:description" content="背景同一台主机上，有两个web服务，一个服务是对外开放的，而另外一个仅限内部人员使用，需要隔离开来。考虑到使用iptables限制IP访问过于死板，最后决定将内部web服务绑定到IPv6端口上，在其他人不知道IPv6地址的情况下，保证一定的安全性。 设置Apache server可以在主要配置文件httpd.conf中设置网站绑定的IP和端口。httpd.conf文件一般在/etc/httpd/目">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/08/Vscode配置markdown主题-1/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/22/Apache-server配置监听的IP和端口/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>Vscode配置markdown主题 | 我喜欢你</title>
+  <title>Apache server配置监听的IP和端口 | 我喜欢你</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/Vscode配置markdown主题-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Apache-server配置监听的IP和端口/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vscode配置markdown主题
+          <h1 class="post-title" itemprop="name headline">Apache server配置监听的IP和端口
 
               
             
@@ -336,9 +336,13 @@
                 
               
 
-              <time title="Erstellt: 2019-04-08 11:16:45" itemprop="dateCreated datePublished" datetime="2019-04-08T11:16:45+08:00">2019-04-08</time>
+              <time title="Erstellt: 2019-04-22 20:34:56 / Geändert am: 20:35:22" itemprop="dateCreated datePublished" datetime="2019-04-22T20:34:56+08:00">2019-04-22</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -371,9 +375,21 @@
       
 
       
-        <p>一直想要找一个好用的markdown编辑器，各种推荐的都试过了，发现vs code最符合我的编辑偏好，但是它的预览功能并不能让我满意，而typora则刚好相反。</p>
-<p>终于找到了一位博主推荐的插件，完美符合我的要求：<a href="https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles" target="_blank" rel="noopener">Markdown Preview Github Styling</a></p>
-<p>源网页：<a href="https://zhangkun1117.github.io/2017/11/09/vscode%E9%85%8D%E7%BD%AEmarkdown%E4%B8%BB%E9%A2%98/" target="_blank" rel="noopener">https://zhangkun1117.github.io/2017/11/09/vscode%E9%85%8D%E7%BD%AEmarkdown%E4%B8%BB%E9%A2%98/</a></p>
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>同一台主机上，有两个web服务，一个服务是对外开放的，而另外一个仅限内部人员使用，需要隔离开来。考虑到使用iptables限制IP访问过于死板，最后决定将内部web服务绑定到IPv6端口上，在其他人不知道IPv6地址的情况下，保证一定的安全性。</p>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><p>Apache server可以在主要配置文件<code>httpd.conf</code>中设置网站绑定的IP和端口。<code>httpd.conf</code>文件一般在<code>/etc/httpd/</code>目录下。</p>
+<ol>
+<li><p>可以只绑定IPv4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen IPv4_addr:8000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以只绑定IPv6</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen [IPv6_addr]:8000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以同时绑定IPv4和IPv6（两个端口可以不同）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen [IPv6_addr]:800</span><br><span class="line">Listen IPv4_addr:8000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以绑定一个IP的多个端口，所以可以不同IP和端口之间进行混搭，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 同时监听了IPv6地址的800和8000端口和IPv4地址的8000端口</span><br><span class="line">Listen [IPv6_addr]:8000</span><br><span class="line">Listen [IPv6_addr]:800</span><br><span class="line">Listen IPv4_addr:8000</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -397,7 +413,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/工具/" rel="tag"># 工具</a>
+            <a href="/tags/Web/" rel="tag"># Web</a>
           
         </div>
       
@@ -410,8 +426,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/08/语音识别工作总结/" rel="next" title="语音识别工作总结">
-                <i class="fa fa-chevron-left"></i> 语音识别工作总结
+              <a href="/2019/04/08/O-checker/" rel="next" title="O-checker">
+                <i class="fa fa-chevron-left"></i> O-checker
               </a>
             
           </div>
@@ -419,10 +435,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/08/O-checker/" rel="prev" title="O-checker">
-                O-checker <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -466,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -546,6 +567,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置"><span class="nav-number">2.</span> <span class="nav-text">设置</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
