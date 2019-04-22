@@ -96,16 +96,16 @@
 
 
 
-  <meta name="description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+  <meta name="description" content="信息安全专业学生，喜欢心理学。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="xnightmare">
 <meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="xnightmare">
-<meta property="og:description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+<meta property="og:description" content="信息安全专业学生，喜欢心理学。">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xnightmare">
-<meta name="twitter:description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+<meta name="twitter:description" content="信息安全专业学生，喜欢心理学。">
 
 
 
@@ -292,11 +292,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/wp-日常练习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/15/wp-日常练习/" class="post-title-link" itemprop="url">wp-日常练习.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2018-10-15 10:36:05" itemprop="dateCreated datePublished" datetime="2018-10-15T10:36:05+08:00">2018-10-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2018-12-14 22:26:14" itemprop="dateModified" datetime="2018-12-14T22:26:14+08:00">2018-12-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="wp-Easy-KeygenMe"><a href="#wp-Easy-KeygenMe" class="headerlink" title="wp-Easy-KeygenMe"></a>wp-Easy-KeygenMe</h1><p>题目链接：<a href="http://reversing.kr/download.php?n=2" target="_blank" rel="noopener">http://reversing.kr/download.php?n=2</a></p>
+<p><strong>先看题目描述：</strong><br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811031129_491.png" alt=""><br>给出的序列号是一个线索，需要通过这个序列号找到对应的用户名。</p>
+<p><strong>尝试运行程序看看程序的流程：</strong><br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811031131_267.png" alt=""><br>可以看到程序逻辑很简单，输入Name和Serial，然后程序会给出判断结果，很容易猜到，如果我们输入的Name和Serial对应的话，那么应该会输出correct。<br>这里有一个小窍门，如果你直接双击运行程序，在输出结果之后程序窗口会马上退出，就看不到结果了，这个时候就可以用命令行来运行程序来避免这种情况。</p>
+<p><strong>然后用IDA反编译：</strong><br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811031134_466.png" alt=""><br>程序的逻辑：  </p>
+<ol>
+<li>读入用户输入的Name，将其每个字符循环和v6、v7、v8异或，并将结果<strong>以16进制形式存入</strong>数组v13中</li>
+<li>比较处理后的Name和输入的Serial进行比较，如果相同就输出correct，否则输出wrong。</li>
+</ol>
+<p>这道题目很简单，需要注意的点就是异或后的结果是以16进制存储到字符数组中的，而不是以字符的形式。</p>
+<p>这里附上解题脚本和结果证明：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"\x5B\x13\x49\x77\x13\x5E\x7D\x13"</span></span><br><span class="line">operand = [<span class="number">16</span>, <span class="number">32</span>, <span class="number">48</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(str)):</span><br><span class="line">    print(chr(ord(str[i])^operand[i%<span class="number">3</span>]), end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://pdt2ibwo5.bkt.clouddn.com/201811031140_124.png" alt=""></p>
+<h1 id="wp-Volga-Quals-CTF-2014-Reverse-100"><a href="#wp-Volga-Quals-CTF-2014-Reverse-100" class="headerlink" title="wp-Volga Quals CTF 2014 Reverse 100"></a>wp-Volga Quals CTF 2014 Reverse 100</h1><blockquote>
+<p>这是一道简单的迷宫题<br>相关附件下载：<a href="/2018/10/15/wp-日常练习/rev100" title="ELF文件">ELF文件</a>  <a href="/2018/10/15/wp-日常练习/rev100.i64" title="idb">idb</a> </p>
+</blockquote>
+<p>在字符串窗口看到这样的字符串：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810142304_662.png" alt=""><br>意识到这是一个迷宫问题  </p>
+<p>进入伪代码界面，按照行号将字符串进行排列，组成迷宫。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">**########################################################################################</span><br><span class="line">#*######################*******************************************#####*************#####</span><br><span class="line">#************************####*####################################*#####*###########*#####</span><br><span class="line">#########*#########*#########*#######***************************##*#####*###########*#####</span><br><span class="line">#******##*#########*#########*#######*#########################*##*#####*###########*#####</span><br><span class="line">#*####*##*#########*#########*#######*#########################*##*#####********####*#####</span><br><span class="line">#*####*##*#########*######*******####*###**********####****####*##*############*####*#####</span><br><span class="line">#*##***#**#########*#################*###*########*####*#######*##*############*####*#####</span><br><span class="line">#*##*###*##########*##############****###*******##*####*#######*##*##*****#####*####*#####</span><br><span class="line">#*##*###*##########*##############*############*##*####*#######*##*##*###*#####*####*#####</span><br><span class="line">#************######*##############**************##*####*#######*##*##*###*#####*####*#####</span><br><span class="line">###################*##############################*####***#####*##*##*###*#####*####*#####</span><br><span class="line">###################********************************############*##*##*###*#####*####*#####</span><br><span class="line">###############################################################*##*##*###*#####*####*#####</span><br><span class="line">###***************************************************#########*##*##*###*#####*####*#####</span><br><span class="line">###*#################################################*#########*##*######*#####*####*#####</span><br><span class="line">###*####*****#####**********************#############*#########*##********#####*####*#####</span><br><span class="line">###*####*###*#####*####################***************#########*###############*####*#####</span><br><span class="line">###*####*###*#####*############################################*****************####*#####</span><br><span class="line">###******###*#####*#################################################################*#####</span><br><span class="line">############*#####*******************************************************************#####</span><br><span class="line">###**********#############################################################################</span><br><span class="line">###*#########*****************************************************************############</span><br><span class="line">###*#########*###############################################*############################</span><br><span class="line">###*#########*###############################################*######*****************#####</span><br><span class="line">###**************************************************########*######*#####################</span><br><span class="line">#############################################################*######*#####################</span><br><span class="line">#*#######*####**###*#######***#######*########**###*******##*****#########################</span><br><span class="line">#########################*****************************************************************</span><br><span class="line">##*#####*###*###*##*######*#########*#*######*##*#####*#####*#############################</span><br><span class="line">###*###*####*###*##*######*##**####*###*####*#########*#####***###########################</span><br><span class="line">####*#*#####*###*##*##*###*###*###*******####*##*#####*#####*#############################</span><br><span class="line">#####*#######**####****####**####*#######*####**######*#####*#############################</span><br></pre></td></tr></table></figure></p>
+<p>通过输入字符’U’’D’’L’’R’在迷宫中移动：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810142315_10.png" alt=""></p>
+<p>当坐标为(89, 28)的时候，输出<code>win</code>：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810142316_685.png" alt=""></p>
+<p>然后写了一个程序来走出迷宫：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_COL 90</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_ROW 33</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">//用于保存每个节点的四个方向是否被尝试过  0表示这个方向还没有被尝试过，1相反 </span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tried_direction</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> up;</span><br><span class="line">	<span class="keyword">int</span> down;</span><br><span class="line">	<span class="keyword">int</span> left;</span><br><span class="line">	<span class="keyword">int</span> right;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈的每个结点 </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> pos_x;    </span><br><span class="line">	<span class="keyword">int</span> pos_y;</span><br><span class="line">	<span class="keyword">char</span> direction; <span class="comment">// 是从哪个方向到这个位置的，'U'/'D'/'L'/'R' </span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span> * <span class="title">pNext</span>;</span></span><br><span class="line">&#125;Node, *pNode;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">stack</span>&#123;</span></span><br><span class="line">	pNode top;  <span class="comment">// 栈顶 </span></span><br><span class="line">	pNode bottom;  <span class="comment">// 栈底 </span></span><br><span class="line">&#125;Stack, *pStack; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initStack</span><span class="params">(pStack ps)</span></span>;  <span class="comment">// 初始化栈 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">push</span><span class="params">(pStack ps, <span class="keyword">int</span> pos_x, <span class="keyword">int</span> pos_y, <span class="keyword">char</span> dir)</span></span>;  <span class="comment">// 向栈中压入一个节点 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(pStack ps)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(pStack ps)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse2</span><span class="params">(pNode temp, pNode bottom)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	每到一个位置，都执行同样的动作：对每个位置进行判断（1.是否走过 2.是否能走，如果能走，入栈，进入下一次循环，</span></span><br><span class="line"><span class="comment">//	不能走，判断下一个方向，如果所有方向都不能走，那么就应该出栈，回到之前的位置） </span></span><br><span class="line"><span class="comment">//  总体是一个循环，结束条件是到达出口 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//   从txt文件中读入迷宫</span></span><br><span class="line">	FILE *fp;</span><br><span class="line">	<span class="keyword">char</span> maze[MAX_ROW][MAX_COL];   <span class="comment">// 用来保存迷宫 </span></span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == (fp = fopen(<span class="string">"maze_array.txt"</span>,<span class="string">"r"</span>)))&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"can not open the file\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX_ROW; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; MAX_COL; j++)&#123;</span><br><span class="line">			maze[i][j] = fgetc(fp); </span><br><span class="line">		&#125;</span><br><span class="line">		fgetc(fp);</span><br><span class="line">	&#125;</span><br><span class="line">	 </span><br><span class="line"><span class="comment">//一个当前位置变量，然后对每个位置，应该还要有一个结构体来保存对每个方向的尝试 </span></span><br><span class="line">	<span class="keyword">int</span> pos_x;</span><br><span class="line">	<span class="keyword">int</span> pos_y;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">tried_direction</span> <span class="title">td</span>[<span class="title">MAX_COL</span>][<span class="title">MAX_ROW</span>];</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">//	对保存方向信息的数组进行初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX_COL; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; MAX_ROW; j++)&#123;</span><br><span class="line">			td[i][j].up = <span class="number">0</span>; </span><br><span class="line">			td[i][j].down = <span class="number">0</span>; </span><br><span class="line">			td[i][j].left = <span class="number">0</span>; 			 </span><br><span class="line">			td[i][j].right = <span class="number">0</span>;						</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	Stack <span class="built_in">stack</span>;</span><br><span class="line">	pStack ps = &amp;<span class="built_in">stack</span>;</span><br><span class="line">	initStack(ps);</span><br><span class="line">	pos_x = <span class="number">0</span>;</span><br><span class="line">	pos_y = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((pos_x != MAX_COL - <span class="number">1</span>) || (pos_y != <span class="number">28</span>))&#123;</span><br><span class="line">		pos_x=ps-&gt;top-&gt;pos_x;</span><br><span class="line">		pos_y=ps-&gt;top-&gt;pos_y;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"(%d %d %c)\n"</span>, pos_x, pos_y, ps-&gt;top-&gt;direction);</span><br><span class="line">		maze[pos_y][pos_x] = <span class="string">'2'</span>;  <span class="comment">//将当前所在的坐标的字符由'*'改为'2'	</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(td[pos_x][pos_y].up == <span class="number">0</span> &amp;&amp; pos_y &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			td[pos_x][pos_y].up = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(<span class="string">'*'</span> == maze[pos_y<span class="number">-1</span>][pos_x])&#123;</span><br><span class="line">				td[pos_x][pos_y<span class="number">-1</span>].down = <span class="number">1</span>;   <span class="comment">//除非回退，否则不会再往来的方向走，所以将标志置为1 </span></span><br><span class="line">				push(ps, pos_x, pos_y<span class="number">-1</span>, <span class="string">'U'</span>);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(td[pos_x][pos_y].down == <span class="number">0</span> &amp;&amp; pos_y &lt; MAX_ROW<span class="number">-1</span>)&#123;</span><br><span class="line">			td[pos_x][pos_y].down = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(<span class="string">'*'</span> == maze[pos_y+<span class="number">1</span>][pos_x])&#123;</span><br><span class="line">				td[pos_x][pos_y+<span class="number">1</span>].up = <span class="number">1</span>;</span><br><span class="line">				push(ps, pos_x, pos_y+<span class="number">1</span>, <span class="string">'D'</span>);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">if</span>(td[pos_x][pos_y].left == <span class="number">0</span> &amp;&amp; pos_x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			td[pos_x][pos_y].left = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(<span class="string">'*'</span> == maze[pos_y][pos_x<span class="number">-1</span>])&#123;</span><br><span class="line">				td[pos_x<span class="number">-1</span>][pos_y].right = <span class="number">1</span>;</span><br><span class="line">				push(ps, pos_x<span class="number">-1</span>, pos_y, <span class="string">'L'</span>);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">if</span>(td[pos_x][pos_y].right == <span class="number">0</span> &amp;&amp; pos_x &lt; MAX_COL<span class="number">-1</span>)&#123;</span><br><span class="line">			td[pos_x][pos_y].right = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(<span class="string">'*'</span> == maze[pos_y][pos_x+<span class="number">1</span>])&#123;</span><br><span class="line">				td[pos_x+<span class="number">1</span>][pos_y].left = <span class="number">1</span>;</span><br><span class="line">				push(ps, pos_x+<span class="number">1</span>, pos_y, <span class="string">'R'</span>);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(<span class="number">0</span> == pos_x &amp;&amp; <span class="number">0</span> == pos_y)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"找不到出口！！！\n"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			maze[ps-&gt;top-&gt;pos_y][ps-&gt;top-&gt;pos_x] = <span class="string">'*'</span>;  <span class="comment">//回退的时候要将'2'改回'*' </span></span><br><span class="line">			pop(ps);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	FILE *fp2;</span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == (fp2 = fopen(<span class="string">"maze_array2.txt"</span>,<span class="string">"w+"</span>)))&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"can not open the file\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX_ROW; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; MAX_COL; j++)&#123;</span><br><span class="line">			fputc(maze[i][j], fp2); </span><br><span class="line">		&#125;</span><br><span class="line">		fputc(<span class="string">'\n'</span>, fp2);</span><br><span class="line">	&#125;</span><br><span class="line">	fclose(fp2);</span><br><span class="line">	</span><br><span class="line">	traverse2(ps-&gt;top, ps-&gt;bottom);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initStack</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	ps-&gt;top = (pNode)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == ps-&gt;top)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"分配内存失败\n"</span>); </span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		ps-&gt;top-&gt;pos_x = <span class="number">0</span>;</span><br><span class="line">		ps-&gt;top-&gt;pos_y = <span class="number">0</span>;</span><br><span class="line">		ps-&gt;top-&gt;direction = <span class="string">'#'</span>;</span><br><span class="line">		ps-&gt;bottom = ps-&gt;top;</span><br><span class="line">		ps-&gt;bottom-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">push</span><span class="params">(pStack ps, <span class="keyword">int</span> pos_x, <span class="keyword">int</span> pos_y, <span class="keyword">char</span> dir)</span></span>&#123;</span><br><span class="line">	pNode newNode = (pNode)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == newNode)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		newNode-&gt;pos_x = pos_x;</span><br><span class="line">		newNode-&gt;pos_y = pos_y;</span><br><span class="line">		newNode-&gt;direction = dir;</span><br><span class="line">		newNode-&gt;pNext = ps-&gt;top;</span><br><span class="line">		ps-&gt;top = newNode;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ps-&gt;top == ps-&gt;bottom)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		pNode tempNodePointer;</span><br><span class="line">		tempNodePointer = ps-&gt;top;</span><br><span class="line">		ps-&gt;top = ps-&gt;top-&gt;pNext;</span><br><span class="line">		<span class="built_in">free</span>(tempNodePointer); </span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	pNode temp = ps-&gt;top;</span><br><span class="line">	<span class="keyword">while</span>(temp != ps-&gt;bottom)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%c"</span>, temp-&gt;direction);</span><br><span class="line">		temp = temp-&gt;pNext;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse2</span><span class="params">(pNode temp, pNode bottom)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(temp != bottom)&#123;</span><br><span class="line">		traverse2(temp-&gt;pNext, bottom);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%c"</span>, temp-&gt;direction);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/hexo资源文件夹功能/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -464,7 +637,7 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -624,7 +797,7 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -797,7 +970,7 @@ int main(){
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -966,7 +1139,7 @@ int main(){
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1195,7 +1368,7 @@ hexo d
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">xnightmare</p>
-              <div class="site-description motion-element" itemprop="description">信息安全专业学生，喜欢心理学，希望能够和大家多多交流。   我的github：https://github.com/xunightmare。邮箱：549761281@qq.com</div>
+              <div class="site-description motion-element" itemprop="description">信息安全专业学生，喜欢心理学。</div>
           </div>
 
           
@@ -1205,7 +1378,7 @@ hexo d
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
