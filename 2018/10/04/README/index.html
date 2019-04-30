@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810041956_872.png">
 <meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810042006_488.png">
 <meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810042011_280.png">
-<meta property="og:updated_time" content="2019-04-08T03:17:14.141Z">
+<meta property="og:updated_time" content="2019-04-28T11:28:42.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为什么我要搭建这个博客+搭建这个博客的过程">
 <meta name="twitter:description" content="其实想要搭建这样一个博客很久了，觉得作为一个程序员，有一个自己域名的博客是一件非常酷的事情，但是因为各种各样的原因，一直拖着没有动手。10月2日是我的生日，那天突然想要发一些分享，但是又不想在QQ空间或者朋友圈发，所以就想要买一个域名，祝自己生日快乐！  下面简单记录我搭建这个博客的过程 0x00 搭建步骤： 创建自己的github pages 在本地用hexo搭建博客 将本地的hexo博客发布">
@@ -200,7 +200,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -228,7 +228,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Accueil</a>
 
   </li>
         
@@ -245,7 +245,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -333,14 +333,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2018-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">2018-10-04</time>
+              <time title="Post created: 2018-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">2018-10-04</time>
             
 
             
@@ -355,9 +355,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Geändert am: 2019-04-08 11:17:14" itemprop="dateModified" datetime="2019-04-08T11:17:14+08:00">2019-04-08</time>
+                <time title="Updated at: 2019-04-28 19:28:42" itemprop="dateModified" datetime="2019-04-28T19:28:42+08:00">2019-04-28</time>
               
             
           </span>
@@ -426,7 +426,8 @@ hexo g
 hexo d
 </code></pre><p>就把博客推送到<code>github pages</code>上了。</p>
 <h2 id="0x04-用github学生优惠包在namecheap上获得-me的免费域名"><a href="#0x04-用github学生优惠包在namecheap上获得-me的免费域名" class="headerlink" title="0x04 用github学生优惠包在namecheap上获得.me的免费域名"></a>0x04 用github学生优惠包在<code>namecheap</code>上获得<code>.me</code>的免费域名</h2><p>这个就不详细写了，给一个地址：<a href="https://education.github.com/students" target="_blank" rel="noopener">https://education.github.com/students</a></p>
-<h2 id="0x05-设置DNS解析"><a href="#0x05-设置DNS解析" class="headerlink" title="0x05 设置DNS解析"></a>0x05 设置<code>DNS解析</code></h2><p>在namecheap注册域名时，有一步可以选择github pages，我不太清楚那个是什么东西，但是后面发现自己的域名就可以解析了，猜测是自动和github pages绑定了吧<br>本来这样多省事，但是我这个人偏偏有强迫症，莫名其妙来的，我也不知道到底是怎么回事，总是感觉很不爽，于是两天时间断断续续，不断尝试，总算找到了怎么配置：</p>
+<h2 id="0x05-设置DNS解析"><a href="#0x05-设置DNS解析" class="headerlink" title="0x05 设置DNS解析"></a>0x05 设置<code>DNS解析</code></h2><p>这一步的设置的目的是，当我们在地址栏中输入个人域名并按下回车的时候，域名解析系统能够找到我们的<code>github pages</code>页面。</p>
+<p>在namecheap注册域名时，有一步可以选择github pages，我不太清楚那个是什么东西，但是后面发现自己的域名就可以解析了，猜测是自动和github pages绑定了吧<br>本来这样多省事，但是我这个人偏偏有强迫症，莫名其妙来的，我也不知道到底是怎么回事，总是感觉很不爽，于是两天时间断断续续，不断尝试，总算找到了怎么配置：</p>
 <p>namecheap自己提供了DNS解析服务，可以在如下图所示的界面中设置：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810042006_488.png" alt=""></p>
 <p>参考：<a href="https://www.namecheap.com/support/knowledgebase/article.aspx/9645/2208/how-do-i-link-my-domain-to-github-pages" target="_blank" rel="noopener">How do I link my domain to GitHub Pages</a></p>
 <h2 id="0x06-设置github-pages的CNAME文件"><a href="#0x06-设置github-pages的CNAME文件" class="headerlink" title="0x06 设置github pages的CNAME文件"></a>0x06 设置<code>github pages</code>的<code>CNAME</code>文件</h2><p>先说设置的方法，我知道的有两种：</p>
@@ -539,10 +540,10 @@ hexo d
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -562,8 +563,8 @@ hexo d
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">articles</span>
                   </a>
                 </div>
               
@@ -600,7 +601,7 @@ hexo d
                       
                     
                     <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">schlagwörter</span>
+                    <span class="site-state-item-name">tags</span>
                   
                 </div>
               
@@ -670,7 +671,7 @@ hexo d
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -678,7 +679,7 @@ hexo d
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">Thème – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
