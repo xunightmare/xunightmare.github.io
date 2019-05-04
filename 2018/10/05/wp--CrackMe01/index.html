@@ -96,30 +96,29 @@
 
 
 
-  <meta name="description" content="想起LunaticGame题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag 于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag 用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改： 最后保存：这样，程序就不会进入game over的分支，就相当于无敌模式了   最后就是玩游戏通关拿到flag了">
-<meta name="keywords" content="ctf">
+  <meta name="description" content="writeup–CrackMe01 题目地址：https://www.ichunqiu.com/battalion?t=1&amp;amp;r=0   拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了： 函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数">
+<meta name="keywords" content="ctf,reverse">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wp-LCTF">
-<meta property="og:url" content="http://yoursite.com/2018/11/18/wp-LCTF/index.html">
+<meta property="og:title" content="writeup--CrackMe01">
+<meta property="og:url" content="http://yoursite.com/2018/10/05/wp--CrackMe01/index.html">
 <meta property="og:site_name" content="xnightmare">
-<meta property="og:description" content="想起LunaticGame题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag 于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag 用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改： 最后保存：这样，程序就不会进入game over的分支，就相当于无敌模式了   最后就是玩游戏通关拿到flag了">
+<meta property="og:description" content="writeup–CrackMe01 题目地址：https://www.ichunqiu.com/battalion?t=1&amp;amp;r=0   拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了： 函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181904_820.png">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181903_328.png">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181910_929.png">
-<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181901_34.png">
-<meta property="og:updated_time" content="2018-12-14T14:38:05.175Z">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051101_118.png">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051107_1000.png">
+<meta property="og:updated_time" content="2018-10-05T03:20:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wp-LCTF">
-<meta name="twitter:description" content="想起LunaticGame题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag 于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag 用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改： 最后保存：这样，程序就不会进入game over的分支，就相当于无敌模式了   最后就是玩游戏通关拿到flag了">
-<meta name="twitter:image" content="http://pdt2ibwo5.bkt.clouddn.com/201811181904_820.png">
+<meta name="twitter:title" content="writeup--CrackMe01">
+<meta name="twitter:description" content="writeup–CrackMe01 题目地址：https://www.ichunqiu.com/battalion?t=1&amp;amp;r=0   拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了： 函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数">
+<meta name="twitter:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/18/wp-LCTF/">
+  <link rel="canonical" href="http://yoursite.com/2018/10/05/wp--CrackMe01/">
 
 
 
@@ -129,7 +128,7 @@
   };
 </script>
 
-  <title>wp-LCTF | xnightmare</title>
+  <title>writeup--CrackMe01 | xnightmare</title>
   
 
 
@@ -298,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/wp-LCTF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/wp--CrackMe01/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
@@ -315,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">wp-LCTF
+          <h1 class="post-title" itemprop="name headline">writeup--CrackMe01
 
               
             
@@ -341,24 +340,12 @@
                 
               
 
-              <time title="Post created: 2018-11-18 19:07:12" itemprop="dateCreated datePublished" datetime="2018-11-18T19:07:12+08:00">2018-11-18</time>
+              <time title="Post created: 2018-10-05 00:00:00 / Updated at: 11:20:20" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">2018-10-05</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2018-12-14 22:38:05" itemprop="dateModified" datetime="2018-12-14T22:38:05+08:00">2018-12-14</time>
               
             
           </span>
@@ -392,11 +379,33 @@
       
 
       
-        <h1 id="想起LunaticGame"><a href="#想起LunaticGame" class="headerlink" title="想起LunaticGame"></a>想起LunaticGame</h1><p>题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag</p>
-<p>于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag</p>
-<p>用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181904_820.png" alt=""></p>
-<p><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181903_328.png" alt=""><br>最后保存：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181910_929.png" alt=""><br>这样，程序就不会进入game over的分支，就相当于无敌模式了  </p>
-<p>最后就是玩游戏通关拿到flag了<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181901_34.png" alt=""></p>
+        <h1 id="writeup–CrackMe01"><a href="#writeup–CrackMe01" class="headerlink" title="writeup–CrackMe01"></a>writeup–CrackMe01</h1><blockquote>
+<p>题目地址：<a href="https://www.ichunqiu.com/battalion?t=1&amp;r=0" target="_blank" rel="noopener">https://www.ichunqiu.com/battalion?t=1&amp;r=0</a></p>
+</blockquote>
+<ol>
+<li>拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了：<ul>
+<li>函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数  </li>
+<li>搜索字符串也找不到有意义的字符串  </li>
+</ul>
+</li>
+<li><p>这个时候最重要的就是要定位到关键代码，运行程序的时候会有一个图形界面，图形界面中有一个输入框，我尝试随便输入一些东西，并没有反应，但是可以猜测，如果输入的是正确的flag，那么一定会有不一定的反应，很大可能就是会有一个弹框，于是尝试去找弹框的函数，先尝试了MessageBox函数没有找到关键代码，后来尝试了PostMessageW函数，向下翻找到了关键的代码：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png" alt=""><br>按F5反编译：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051101_118.png" alt=""><br>发现如果v6等于0x4b6的时候，就会弹窗<br>往前找可以发现v6用来和chText中的字符进行了异或，所以猜测异或得到的结果就是flag，于是写脚本验证：  </p>
+<p> #include &lt;stdio.h&gt;<br> #include&lt;string.h&gt;</p>
+</li>
+</ol>
+<pre><code>int main()
+{
+    char flag[] = { 0xF0,0xDA,0xD7,0xD1,0x8C,0xFF,0xF5,0xFE,0xE3,0xF8,0xE7,0xFF,0xE3,0xE9,0xF0,0xF3,0x85,0x80,0x84,0xF2,0xF4,0xF3,0 };
+
+
+    for (int i = 0; i &lt; strlen(flag); i++)
+    {
+        printf(&quot;%c&quot;,flag[i] ^ 0x4b6);
+    }
+
+
+    return 0;
+}
+</code></pre><p>得到结果：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051107_1000.png" alt=""></p>
 
       
     </div>
@@ -422,6 +431,8 @@
           
             <a href="/tags/ctf/" rel="tag"># ctf</a>
           
+            <a href="/tags/reverse/" rel="tag"># reverse</a>
+          
         </div>
       
 
@@ -433,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/12/ctf搭建题目环境/" rel="next" title="ctf搭建题目环境">
-                <i class="fa fa-chevron-left"></i> ctf搭建题目环境
+              <a href="/2018/10/04/README/" rel="next" title="为什么我要搭建这个博客+搭建这个博客的过程">
+                <i class="fa fa-chevron-left"></i> 为什么我要搭建这个博客+搭建这个博客的过程
               </a>
             
           </div>
@@ -443,8 +454,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/25/wp-柏鹭杯/" rel="prev" title="wp-柏鹭杯">
-                wp-柏鹭杯 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/09/从一个有趣的例子引出C语言缓冲区/" rel="prev" title="从一个有趣的例子引出C语言缓冲区">
+                从一个有趣的例子引出C语言缓冲区 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -589,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#想起LunaticGame"><span class="nav-number">1.</span> <span class="nav-text">想起LunaticGame</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#writeup–CrackMe01"><span class="nav-number">1.</span> <span class="nav-text">writeup–CrackMe01</span></a></li></ol></div>
             
 
           </div>
