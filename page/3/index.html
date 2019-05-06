@@ -292,6 +292,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/wp-LCTF/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/18/wp-LCTF/" class="post-title-link" itemprop="url">wp-LCTF</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2018-11-18 19:07:12" itemprop="dateCreated datePublished" datetime="2018-11-18T19:07:12+08:00">2018-11-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2018-12-14 22:38:05" itemprop="dateModified" datetime="2018-12-14T22:38:05+08:00">2018-12-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="想起LunaticGame"><a href="#想起LunaticGame" class="headerlink" title="想起LunaticGame"></a>想起LunaticGame</h1><p>题目要求很清晰，程序是一个扫雷游戏，只要游戏通关就可以得到flag</p>
+<p>于是考虑是否能够修改程序变成无敌模式，然后玩游戏拿到flag</p>
+<p>用IDA反编译，通过字符串定位到判断失败的逻辑，然后进行修改：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181904_820.png" alt=""></p>
+<p><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181903_328.png" alt=""><br>最后保存：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181910_929.png" alt=""><br>这样，程序就不会进入game over的分支，就相当于无敌模式了  </p>
+<p>最后就是玩游戏通关拿到flag了<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201811181901_34.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/ctf搭建题目环境/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1798,175 +1957,6 @@ int main(){
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/wp--CrackMe01/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/05/wp--CrackMe01/" class="post-title-link" itemprop="url">writeup--CrackMe01</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2018-10-05 00:00:00 / Geändert am: 11:20:20" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">2018-10-05</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="writeup–CrackMe01"><a href="#writeup–CrackMe01" class="headerlink" title="writeup–CrackMe01"></a>writeup–CrackMe01</h1><blockquote>
-<p>题目地址：<a href="https://www.ichunqiu.com/battalion?t=1&amp;r=0" target="_blank" rel="noopener">https://www.ichunqiu.com/battalion?t=1&amp;r=0</a></p>
-</blockquote>
-<ol>
-<li>拿到这道题目的时候其实我很蒙，看起来只给了一个exe文件，应该是一道很平常的逆向题，但是用IDA打开之后才发现难度，以前常用的定位关键代码的方法全部失效了：<ul>
-<li>函数窗口中找不到main函数，也找不到一个有明确意义的函数，只有一大堆不知道是什么函数的函数  </li>
-<li>搜索字符串也找不到有意义的字符串  </li>
-</ul>
-</li>
-<li><p>这个时候最重要的就是要定位到关键代码，运行程序的时候会有一个图形界面，图形界面中有一个输入框，我尝试随便输入一些东西，并没有反应，但是可以猜测，如果输入的是正确的flag，那么一定会有不一定的反应，很大可能就是会有一个弹框，于是尝试去找弹框的函数，先尝试了MessageBox函数没有找到关键代码，后来尝试了PostMessageW函数，向下翻找到了关键的代码：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051100_824.png" alt=""><br>按F5反编译：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051101_118.png" alt=""><br>发现如果v6等于0x4b6的时候，就会弹窗<br>往前找可以发现v6用来和chText中的字符进行了异或，所以猜测异或得到的结果就是flag，于是写脚本验证：  </p>
-<p> #include &lt;stdio.h&gt;<br> #include&lt;string.h&gt;</p>
-</li>
-</ol>
-<pre><code>int main()
-{
-    char flag[] = { 0xF0,0xDA,0xD7,0xD1,0x8C,0xFF,0xF5,0xFE,0xE3,0xF8,0xE7,0xFF,0xE3,0xE9,0xF0,0xF3,0x85,0x80,0x84,0xF2,0xF4,0xF3,0 };
-
-
-    for (int i = 0; i &lt; strlen(flag); i++)
-    {
-        printf(&quot;%c&quot;,flag[i] ^ 0x4b6);
-    }
-
-
-    return 0;
-}
-</code></pre><p>得到结果：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810051107_1000.png" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2013,7 +2003,7 @@ int main(){
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
