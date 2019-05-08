@@ -292,6 +292,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/从一个有趣的例子引出C语言缓冲区/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/09/从一个有趣的例子引出C语言缓冲区/" class="post-title-link" itemprop="url">从一个有趣的例子引出C语言缓冲区</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2018-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-09T00:00:00+08:00">2018-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2018-12-14 22:26:17" itemprop="dateModified" datetime="2018-12-14T22:26:17+08:00">2018-12-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="从一个有趣的例子引出C语言缓冲区"><a href="#从一个有趣的例子引出C语言缓冲区" class="headerlink" title="从一个有趣的例子引出C语言缓冲区"></a>从一个有趣的例子引出C语言缓冲区</h1><pre><code>#include &lt;stdio.h&gt;
+
+int main(){
+    printf(&quot;I&apos;m ok&quot;);
+    sleep(5);
+    printf(&quot;I&apos;m ok2&quot;);
+    sleep(5);
+}
+</code></pre><p>上面的程序，在执行的时候，并不是我刚开始所预期的先输出第一句话，然后休眠5s，然后再输出第二句，然后再休眠5s，而是休眠10s之后再依次输出这两句话。</p>
+<p>感觉很奇怪，程序是不是按顺序执行的吗？</p>
+<p>去google了一下，加上自己的尝试，终于搞明白了问题所在：标准输出有缓冲区，printf的内容并不会马上打印出来，而是会先暂时保存在缓冲区里。</p>
+<p>为什么要这样做呢？<br>为了提高磁盘的读写效率，提高计算机的运行速度。</p>
+<p>如果想要让内容马上打印出来，有什么方法吗？ </p>
+<ol>
+<li>用输出的内容将缓冲区填满，这个方法我只是觉得理论上可行，但是并没有实际尝试过，我也不知道缓冲区究竟有多大。</li>
+<li>在想要立即输出的内容后面输出<code>\n</code>，或者调用函数<code>fflush(stdout)</code></li>
+<li>程序退出的时候会清空缓冲区</li>
+</ol>
+<p>关于C语言缓冲区的详细解释，请参考这篇博客：<a href="https://www.zfl9.com/c-buffer.html" target="_blank" rel="noopener">c语言 - 缓冲区详解</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/wp--CrackMe01/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -705,7 +878,7 @@ hexo d
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
@@ -742,7 +915,9 @@ hexo d
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">schlagwörter</span>
                   
                 </div>
