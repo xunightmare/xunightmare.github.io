@@ -292,6 +292,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/28/脚本实现交互式命令-md/" class="post-title-link" itemprop="url">脚本实现交互式命令.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-28 11:53:03 / Modified: 12:05:48" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:03+08:00">2019-03-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。</p>
+</blockquote>
+<ol>
+<li>创建一个输入文件。</li>
+<li>将交互时需要用到的数据写入到文件。</li>
+<li>重定向。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RUN touch input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt;&gt; input.data</span><br><span class="line">RUN passwd root &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data</span><br><span class="line">RUN adduser test &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN rm input.data</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/21/搭建vsftpd-2.3.4笑脸漏洞环境过程/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1797,168 +1948,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/C语言实现栈/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/21/C语言实现栈/" class="post-title-link" itemprop="url">C语言实现栈.md</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-21 11:20:42" itemprop="dateCreated datePublished" datetime="2018-10-21T11:20:42+08:00">2018-10-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-14 22:26:05" itemprop="dateModified" datetime="2018-12-14T22:26:05+08:00">2018-12-14</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="C语言实现栈"><a href="#C语言实现栈" class="headerlink" title="C语言实现栈"></a>C语言实现栈</h1><h2 id="为什么要使用栈？"><a href="#为什么要使用栈？" class="headerlink" title="为什么要使用栈？"></a>为什么要使用栈？</h2><p>栈的特点是先进后出，可以用于保存之前的状态，比如调用子函数，还有迷宫问题中保存路径。</p>
-<h2 id="栈需要用的数据结构？"><a href="#栈需要用的数据结构？" class="headerlink" title="栈需要用的数据结构？"></a>栈需要用的数据结构？</h2><p>定义栈<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">stack</span>&#123;</span></span><br><span class="line">	pNode top;  <span class="comment">// 栈顶 </span></span><br><span class="line">	pNode bottom;  <span class="comment">// 栈底 </span></span><br><span class="line">&#125;Stack, *pStack;</span><br></pre></td></tr></table></figure></p>
-<p>定义结点<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;   <span class="comment">//数据可以根据自己的需要定制</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span> * <span class="title">pNext</span>;</span>  <span class="comment">//指向下一个结点的指针</span></span><br><span class="line">&#125;Node, *pNode;</span><br></pre></td></tr></table></figure></p>
-<h2 id="栈需要实现的一些操作"><a href="#栈需要实现的一些操作" class="headerlink" title="栈需要实现的一些操作"></a>栈需要实现的一些操作</h2><p>初始化栈（申请底结点，并初始化数据和top、bottom指针）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initStack</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	ps-&gt;top = (pNode)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == ps-&gt;top)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"分配内存失败\n"</span>); </span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		ps-&gt;top-&gt;pos_x = <span class="number">0</span>;</span><br><span class="line">		ps-&gt;top-&gt;pos_y = <span class="number">0</span>;</span><br><span class="line">		ps-&gt;top-&gt;direction = <span class="string">'#'</span>;</span><br><span class="line">		ps-&gt;bottom = ps-&gt;top;</span><br><span class="line">		ps-&gt;bottom-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>出栈（检查栈是否为空，如果不为空，让top指针指向下一个结点，然后释放之前的头结点的内存）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ps-&gt;top == ps-&gt;bottom)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		pNode tempNodePointer;</span><br><span class="line">		tempNodePointer = ps-&gt;top;</span><br><span class="line">		ps-&gt;top = ps-&gt;top-&gt;pNext;</span><br><span class="line">		<span class="built_in">free</span>(tempNodePointer); </span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>入栈（申请一个结点，设置好data和指针，然后将结点连到栈链表上）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">push</span><span class="params">(pStack ps, <span class="keyword">int</span> pos_x, <span class="keyword">int</span> pos_y, <span class="keyword">char</span> dir)</span></span>&#123;</span><br><span class="line">	pNode newNode = (pNode)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == newNode)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		newNode-&gt;pos_x = pos_x;</span><br><span class="line">		newNode-&gt;pos_y = pos_y;</span><br><span class="line">		newNode-&gt;direction = dir;</span><br><span class="line">		newNode-&gt;pNext = ps-&gt;top;</span><br><span class="line">		ps-&gt;top = newNode;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>遍历栈（从头结点开始）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	pNode temp = ps-&gt;top;</span><br><span class="line">	<span class="keyword">while</span>(temp != ps-&gt;bottom)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%c"</span>, temp-&gt;direction);</span><br><span class="line">		temp = temp-&gt;pNext;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>遍历栈（从底结点开始，用递归的方法，如果没有到底结点，不断调用自身，如果到了底结点，就返回）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse2</span><span class="params">(pNode temp, pNode bottom)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(temp != bottom)&#123;</span><br><span class="line">		traverse2(temp-&gt;pNext, bottom);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%c"</span>, temp-&gt;direction);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2005,7 +1994,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
