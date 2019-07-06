@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
-<meta name="keywords" content="docker">
+  <meta name="description" content="有时候需要在Windows和Linux系统之间传递文件/目录，如果只是偶尔使用这个功能，专门下载软件太麻烦了，这时候可以用scp命令实现我们的需求。  scp是secure copy的缩写，是Linux系统下基于ssh登录进行的安全文件/目录拷贝命令。 Usage: scp [-r] [[user@]host:]source [[user@]host:]target// 还有一些其他的选项，不一">
+<meta name="keywords" content="Linux命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="脚本实现交互式命令.md">
-<meta property="og:url" content="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/index.html">
+<meta property="og:title" content="使用scp在Windows和Linux之间传输文件&#x2F;目录">
+<meta property="og:url" content="http://yoursite.com/2019/07/06/使用scp在Windows和Linux之间传输文件-目录/index.html">
 <meta property="og:site_name" content="I have a dream.">
-<meta property="og:description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
+<meta property="og:description" content="有时候需要在Windows和Linux系统之间传递文件/目录，如果只是偶尔使用这个功能，专门下载软件太麻烦了，这时候可以用scp命令实现我们的需求。  scp是secure copy的缩写，是Linux系统下基于ssh登录进行的安全文件/目录拷贝命令。 Usage: scp [-r] [[user@]host:]source [[user@]host:]target// 还有一些其他的选项，不一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-12T03:53:17.846Z">
+<meta property="og:updated_time" content="2019-07-06T12:30:13.575Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="脚本实现交互式命令.md">
-<meta name="twitter:description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
+<meta name="twitter:title" content="使用scp在Windows和Linux之间传输文件&#x2F;目录">
+<meta name="twitter:description" content="有时候需要在Windows和Linux系统之间传递文件/目录，如果只是偶尔使用这个功能，专门下载软件太麻烦了，这时候可以用scp命令实现我们的需求。  scp是secure copy的缩写，是Linux系统下基于ssh登录进行的安全文件/目录拷贝命令。 Usage: scp [-r] [[user@]host:]source [[user@]host:]target// 还有一些其他的选项，不一">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/06/使用scp在Windows和Linux之间传输文件-目录/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>脚本实现交互式命令.md | I have a dream.</title>
+  <title>使用scp在Windows和Linux之间传输文件/目录 | I have a dream.</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/使用scp在Windows和Linux之间传输文件-目录/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">脚本实现交互式命令.md
+          <h1 class="post-title" itemprop="name headline">使用scp在Windows和Linux之间传输文件/目录
 
               
             
@@ -336,24 +336,12 @@
                 
               
 
-              <time title="Post created: 2019-03-28 11:53:03" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:03+08:00">2019-03-28</time>
+              <time title="Post created: 2019-07-06 19:52:48 / Updated at: 20:30:13" itemprop="dateCreated datePublished" datetime="2019-07-06T19:52:48+08:00">2019-07-06</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-05-12 11:53:17" itemprop="dateModified" datetime="2019-05-12T11:53:17+08:00">2019-05-12</time>
               
             
           </span>
@@ -370,7 +358,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -406,14 +394,34 @@
 
       
         <blockquote>
-<p>在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。</p>
+<p>有时候需要在Windows和Linux系统之间传递文件/目录，如果只是偶尔使用这个功能，专门下载软件太麻烦了，这时候可以用scp命令实现我们的需求。</p>
 </blockquote>
+<p>scp是secure copy的缩写，是Linux系统下基于ssh登录进行的安全文件/目录拷贝命令。</p>
+<p>Usage: scp [-r] [[user@]host:]source [[user@]host:]target<br>// 还有一些其他的选项，不一一列出</p>
+<p><strong>有几个注意事项：</strong></p>
 <ol>
-<li>创建一个输入文件。</li>
-<li>将交互时需要用到的数据写入到文件。</li>
-<li>重定向。</li>
+<li>在传输目录的时候，一定要加上参数<code>-r</code> 否则无法传输成功。</li>
+<li>客户端可以省略username，hostname，previous working directory，只需要填写相对路径就可以了。</li>
+<li>当Windows作为ssh server的时候，有几个注意事项：<ol>
+<li>Windows10 默认并没有安装ssh服务，通过 “设置 -&gt; 应用 -&gt; 应用和功能 -&gt; 可选功能 -&gt; 添加功能 -&gt; openssh服务端” 来安装ssh服务，然后通过命令<code>net start sshd</code>启动服务，通过命令<code>net stop sshd</code>停止服务。</li>
+<li>Windows账号的username可以通过在Cmd或者PowerShell中使用<code>whoami</code>命令查看，密码为Microsoft账号的密码。</li>
+<li>Windows的路径写法<code>/c:/path</code></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RUN touch input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt;&gt; input.data</span><br><span class="line">RUN passwd root &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data</span><br><span class="line">RUN adduser test &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN rm input.data</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>具体来说，可以分为四种情况:</strong></p>
+<ol>
+<li>Linux为ssh client，Windows为ssh server：<ol>
+<li>从Linux上拷贝文件到Windows上</li>
+<li>从Windows上拷贝文件到Linux上</li>
+</ol>
+</li>
+<li>Windows为ssh client，Linux为ssh server：<ol>
+<li>从Linux上拷贝文件到Windows上</li>
+<li>从Windows上拷贝文件到Linux上</li>
+</ol>
+</li>
+</ol>
 
       
     </div>
@@ -437,7 +445,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
+            <a href="/tags/Linux命令/" rel="tag"># Linux命令</a>
           
         </div>
       
@@ -450,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/21/搭建vsftpd-2.3.4笑脸漏洞环境过程/" rel="next" title="vsftpd-2.3.4笑脸漏洞&docker漏洞复现">
-                <i class="fa fa-chevron-left"></i> vsftpd-2.3.4笑脸漏洞&docker漏洞复现
+              <a href="/2019/07/06/Windows-Terminal安装及体验过程记录/" rel="next" title="Windows  Terminal安装及体验过程记录">
+                <i class="fa fa-chevron-left"></i> Windows  Terminal安装及体验过程记录
               </a>
             
           </div>
@@ -459,10 +467,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/05/Detatch-from-a-Docker-Container-without-Stopping-It/" rel="prev" title="Detatch from a Docker Container without Stopping It">
-                Detatch from a Docker Container without Stopping It <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

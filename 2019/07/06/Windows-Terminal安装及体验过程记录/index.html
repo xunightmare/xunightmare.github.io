@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
-<meta name="keywords" content="docker">
+  <meta name="description" content="Microsoft在Build 2019开发者大会上发布了Windows Terminal，这是一款新的command line terminal工具。我安装使用了这个工具，在这里记录安装过程和自己的使用体验。  安装过程：  提示windows 10版本不够，下载windows10更新助手更新到最新版然后安装 更新过程中提示VMware Workstation Pro 15.01不兼容，升级到">
+<meta name="keywords" content="Windows10">
 <meta property="og:type" content="article">
-<meta property="og:title" content="脚本实现交互式命令.md">
-<meta property="og:url" content="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/index.html">
+<meta property="og:title" content="Windows  Terminal安装及体验过程记录">
+<meta property="og:url" content="http://yoursite.com/2019/07/06/Windows-Terminal安装及体验过程记录/index.html">
 <meta property="og:site_name" content="I have a dream.">
-<meta property="og:description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
+<meta property="og:description" content="Microsoft在Build 2019开发者大会上发布了Windows Terminal，这是一款新的command line terminal工具。我安装使用了这个工具，在这里记录安装过程和自己的使用体验。  安装过程：  提示windows 10版本不够，下载windows10更新助手更新到最新版然后安装 更新过程中提示VMware Workstation Pro 15.01不兼容，升级到">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-12T03:53:17.846Z">
+<meta property="og:updated_time" content="2019-07-06T12:03:00.595Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="脚本实现交互式命令.md">
-<meta name="twitter:description" content="在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。   创建一个输入文件。 将交互时需要用到的数据写入到文件。 重定向。  12345678910RUN touch input.dataRUN echo &amp;quot;bupthydewwwcn&amp;quot; &amp;gt; inpu">
+<meta name="twitter:title" content="Windows  Terminal安装及体验过程记录">
+<meta name="twitter:description" content="Microsoft在Build 2019开发者大会上发布了Windows Terminal，这是一款新的command line terminal工具。我安装使用了这个工具，在这里记录安装过程和自己的使用体验。  安装过程：  提示windows 10版本不够，下载windows10更新助手更新到最新版然后安装 更新过程中提示VMware Workstation Pro 15.01不兼容，升级到">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/06/Windows-Terminal安装及体验过程记录/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>脚本实现交互式命令.md | I have a dream.</title>
+  <title>Windows  Terminal安装及体验过程记录 | I have a dream.</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/Windows-Terminal安装及体验过程记录/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">脚本实现交互式命令.md
+          <h1 class="post-title" itemprop="name headline">Windows  Terminal安装及体验过程记录
 
               
             
@@ -336,24 +336,12 @@
                 
               
 
-              <time title="Post created: 2019-03-28 11:53:03" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:03+08:00">2019-03-28</time>
+              <time title="Post created: 2019-07-06 11:00:59 / Updated at: 20:03:00" itemprop="dateCreated datePublished" datetime="2019-07-06T11:00:59+08:00">2019-07-06</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-05-12 11:53:17" itemprop="dateModified" datetime="2019-05-12T11:53:17+08:00">2019-05-12</time>
               
             
           </span>
@@ -370,7 +358,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
                 
                 
@@ -406,14 +394,16 @@
 
       
         <blockquote>
-<p>在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。</p>
+<p>Microsoft在Build 2019开发者大会上发布了Windows Terminal，这是一款新的command line terminal工具。我安装使用了这个工具，在这里记录安装过程和自己的使用体验。</p>
 </blockquote>
+<p><strong>安装过程：</strong></p>
 <ol>
-<li>创建一个输入文件。</li>
-<li>将交互时需要用到的数据写入到文件。</li>
-<li>重定向。</li>
+<li>提示windows 10版本不够，下载windows10更新助手更新到最新版然后安装</li>
+<li>更新过程中提示VMware Workstation Pro 15.01不兼容，升级到15.10就可以了</li>
+<li>从Microsoft Store中安装Windows Terminal (Preview)，遇到了Microsoft Store无法连接网络的问题，通过 设置 -&gt; 网络和Internet -&gt; 代理 -&gt; 将【使用设置脚本】关闭 解决。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RUN touch input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt;&gt; input.data</span><br><span class="line">RUN passwd root &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data</span><br><span class="line">RUN adduser test &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN rm input.data</span><br></pre></td></tr></table></figure>
+<p><strong>体验</strong></p>
+<p>感觉还不错吧，相比于原来的PowerShell和Cmd终端，Windows Terminal的界面看起来要舒服得多，而且支持自定义配色方案。</p>
 
       
     </div>
@@ -437,7 +427,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
+            <a href="/tags/Windows10/" rel="tag"># Windows10</a>
           
         </div>
       
@@ -450,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/21/搭建vsftpd-2.3.4笑脸漏洞环境过程/" rel="next" title="vsftpd-2.3.4笑脸漏洞&docker漏洞复现">
-                <i class="fa fa-chevron-left"></i> vsftpd-2.3.4笑脸漏洞&docker漏洞复现
+              <a href="/2019/05/30/安全届四大顶会/" rel="next" title="安全届四大顶会">
+                <i class="fa fa-chevron-left"></i> 安全届四大顶会
               </a>
             
           </div>
@@ -460,8 +450,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/05/Detatch-from-a-Docker-Container-without-Stopping-It/" rel="prev" title="Detatch from a Docker Container without Stopping It">
-                Detatch from a Docker Container without Stopping It <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/06/使用scp在Windows和Linux之间传输文件-目录/" rel="prev" title="使用scp在Windows和Linux之间传输文件/目录">
+                使用scp在Windows和Linux之间传输文件/目录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
