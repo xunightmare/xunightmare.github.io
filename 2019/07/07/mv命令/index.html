@@ -96,24 +96,25 @@
 
 
 
-  <meta name="description" content="打完hctf之后题目挂了，调试的时候非常不方便，就想着自己搭建一个环境，方便自己调试学习 题目起得有点大，这里所谓的ctf搭建题目环境，其实不过是在虚拟机中运行一个python脚本并监听某个端口而已下面进入正题：用socat工具：执行命令 socat tcp-l:8888, fork exec:./example.py这个时候，如果你用 nc ip 8888 连接，就可以和example.py进行">
+  <meta name="description" content="mv命令用于为移动文件/目录和重命名文件/目录  在介绍这个命令的两种用法之前，首先强调两点理解：  目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。  基本用法：1Usage: mv source target 定义：将路径分为path和filename（包含目录）两部分，包含path和filen">
+<meta name="keywords" content="Linux命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ctf搭建题目环境">
-<meta property="og:url" content="http://yoursite.com/2018/11/12/ctf搭建题目环境/index.html">
+<meta property="og:title" content="mv命令">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/mv命令/index.html">
 <meta property="og:site_name" content="I have a dream.">
-<meta property="og:description" content="打完hctf之后题目挂了，调试的时候非常不方便，就想着自己搭建一个环境，方便自己调试学习 题目起得有点大，这里所谓的ctf搭建题目环境，其实不过是在虚拟机中运行一个python脚本并监听某个端口而已下面进入正题：用socat工具：执行命令 socat tcp-l:8888, fork exec:./example.py这个时候，如果你用 nc ip 8888 连接，就可以和example.py进行">
+<meta property="og:description" content="mv命令用于为移动文件/目录和重命名文件/目录  在介绍这个命令的两种用法之前，首先强调两点理解：  目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。  基本用法：1Usage: mv source target 定义：将路径分为path和filename（包含目录）两部分，包含path和filen">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-12T03:47:46.447Z">
+<meta property="og:updated_time" content="2019-07-07T16:40:56.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ctf搭建题目环境">
-<meta name="twitter:description" content="打完hctf之后题目挂了，调试的时候非常不方便，就想着自己搭建一个环境，方便自己调试学习 题目起得有点大，这里所谓的ctf搭建题目环境，其实不过是在虚拟机中运行一个python脚本并监听某个端口而已下面进入正题：用socat工具：执行命令 socat tcp-l:8888, fork exec:./example.py这个时候，如果你用 nc ip 8888 连接，就可以和example.py进行">
+<meta name="twitter:title" content="mv命令">
+<meta name="twitter:description" content="mv命令用于为移动文件/目录和重命名文件/目录  在介绍这个命令的两种用法之前，首先强调两点理解：  目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。  基本用法：1Usage: mv source target 定义：将路径分为path和filename（包含目录）两部分，包含path和filen">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/12/ctf搭建题目环境/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/07/mv命令/">
 
 
 
@@ -123,7 +124,7 @@
   };
 </script>
 
-  <title>ctf搭建题目环境 | I have a dream.</title>
+  <title>mv命令 | I have a dream.</title>
   
 
 
@@ -292,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/ctf搭建题目环境/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/mv命令/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xnightmare">
@@ -309,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ctf搭建题目环境
+          <h1 class="post-title" itemprop="name headline">mv命令
 
               
             
@@ -335,7 +336,7 @@
                 
               
 
-              <time title="Erstellt: 2018-11-12 20:35:23" itemprop="dateCreated datePublished" datetime="2018-11-12T20:35:23+08:00">2018-11-12</time>
+              <time title="Erstellt: 2019-07-07 22:22:33" itemprop="dateCreated datePublished" datetime="2019-07-07T22:22:33+08:00">2019-07-07</time>
             
 
             
@@ -352,7 +353,7 @@
                 
                   <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Geändert am: 2019-05-12 11:47:46" itemprop="dateModified" datetime="2019-05-12T11:47:46+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-07-08 00:40:56" itemprop="dateModified" datetime="2019-07-08T00:40:56+08:00">2019-07-08</time>
               
             
           </span>
@@ -369,7 +370,7 @@
                 <span class="post-meta-item-text">in</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -404,11 +405,39 @@
       
 
       
-        <p>打完hctf之后题目挂了，调试的时候非常不方便，就想着自己搭建一个环境，方便自己调试学习</p>
-<p>题目起得有点大，这里所谓的ctf搭建题目环境，其实不过是在虚拟机中运行一个python脚本并监听某个端口而已<br>下面进入正题：<br>用socat工具：执行命令 socat tcp-l:8888, fork exec:./example.py<br>这个时候，如果你用 nc ip 8888 连接，就可以和example.py进行交互了</p>
-<p>自己觉得比较好用的功能：</p>
+        <blockquote>
+<p>mv命令用于为移动文件/目录和重命名文件/目录</p>
+</blockquote>
+<p><strong>在介绍这个命令的两种用法之前，首先强调两点理解：</strong></p>
 <ol>
-<li>默认情况下socat只在前台运行，如果要让socat一直在后台运行，可以使用nohup来保证其在后台运行<br>（<strong>这个功能是从网上看到的，但是自己并没有实验成功，先在这里做个记录</strong>）</li>
+<li>目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。</li>
+<li>移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。</li>
+</ol>
+<p><strong>基本用法：</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Usage: mv <span class="built_in">source</span> target</span><br></pre></td></tr></table></figure></p>
+<p><strong>定义：</strong><br>将路径分为<code>path</code>和<code>filename</code>（包含目录）两部分，包含<code>path</code>和<code>filename</code>的写法称为完整路径，而省略了<code>filename</code>的写法称为不完整路径，即：<br><strong>完整路径：</strong><code>path/filename</code><br><strong>不完整路径：</strong><code>path</code></p>
+<p><strong>工作原理：</strong></p>
+<ol>
+<li>检查源路径是否存在，不存在报错并退出；</li>
+<li>首先认为目标路径是完整路径，首先检查<code>path</code>部分，如果该完整路径的<code>path</code>部分不存在，报错并退出；</li>
+<li>然后检查<code>filename</code>部分，如果不存在，直接修改路径，命令执行成功，如果存在，继续判断；<ol>
+<li>完整路径<code>path/filename</code>是文件，如果源路径是文件，则覆盖，如果是文件夹，则报错并退出。</li>
+<li>完整路径<code>path/filename</code>是目录，认为目标路径是不完整路径，即将原来的路径看作新的<code>path</code>，将源文件/目录名看作是<code>filename</code>，重新拼接成完整路径<code>path/filename</code>。新的完整路径如果不存在冲突，直接修改路径，命令执行成功；如果存在冲突，尝试覆盖，目录不能覆盖文件，文件不能覆盖目录，目录不能覆盖非空目录，文件可以覆盖文件。</li>
+</ol>
+</li>
+</ol>
+<p><strong>进阶用法：</strong></p>
+<ol>
+<li>如何批量移动文件呢 1. 正则表达式匹配 2. 多个路径输入</li>
+<li>选项</li>
+<li>是否可能导致文件丢失？</li>
+</ol>
+<ol>
+<li>如何区分移动文件和重命名</li>
+<li>如何区分移动文件和目录</li>
+<li>如何区分是否递归移动目录 可能默认就是递归的，不是递归的情况感觉怪怪的</li>
+<li></li>
+<li>如果命令出错后果是什么，会导致文件丢失吗？ 文件名重复、路径不存在、mv命令是如何实现的呢</li>
+<li>想象自己就是计算机，需要判断上面的这些问题，我需要哪些信息呢？ </li>
 </ol>
 
       
@@ -431,6 +460,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Linux命令/" rel="tag"># Linux命令</a>
+          
+        </div>
+      
 
       
       
@@ -440,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/11/wp-hctf/" rel="next" title="wp-xor_game-hctf">
-                <i class="fa fa-chevron-left"></i> wp-xor_game-hctf
+              <a href="/2019/07/07/解决VMware虚拟机“安装VMware-Tools”选项卡为灰色的问题/" rel="next" title="解决VMware虚拟机“安装VMware Tools”选项卡为灰色的问题">
+                <i class="fa fa-chevron-left"></i> 解决VMware虚拟机“安装VMware Tools”选项卡为灰色的问题
               </a>
             
           </div>
@@ -449,10 +484,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/18/wp-LCTF/" rel="prev" title="wp-LCTF">
-                wp-LCTF <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
