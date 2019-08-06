@@ -292,6 +292,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/wp-hxp-ctf/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I have a dream.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/07/wp-hxp-ctf/" class="post-title-link" itemprop="url">wp-hxp_ctf</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-07 21:00:41" itemprop="dateCreated datePublished" datetime="2018-12-07T21:00:41+08:00">2018-12-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-12 11:51:16" itemprop="dateModified" datetime="2019-05-12T11:51:16+08:00">2019-05-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="cat-flag"><a href="#cat-flag" class="headerlink" title="cat flag"></a>cat flag</h2><p>明明显示当前用户对flag文件具有read权限，为啥就是不能够cat呢：<br><img src="https://i.loli.net/2018/12/14/5c1366142fcc7.png" alt=""><br>用pwntools直接查看接收到的字节码：<br><img src="https://i.loli.net/2018/12/14/5c13663d6afcd.png" alt=""><br>发现flag是被隐藏了，所谓的Permission Denied也不是系统返回的，而是flag文件的内容。<br>从字节码序列可以看到，0x1b前面的字符被隐藏了，查询ASCII表0x1b对应的是ESC，但是具体原理是啥，没有找到比较好的解释</p>
+<p>补充两个从其他人的writeup中找到的方法：<br><img src="https://i.loli.net/2018/12/14/5c136d0c2a311.png" alt=""><br><img src="https://i.loli.net/2018/12/14/5c136d1ef29be.png" alt=""><br><img src="https://i.loli.net/2018/12/14/5c136d3640bb3.png" alt=""></p>
+<h2 id="angrme"><a href="#angrme" class="headerlink" title="angrme"></a>angrme</h2><a href="/2018/12/07/wp-hxp-ctf/angrme" title="点击下载题目文件">点击下载题目文件</a>  
+<p>其实这是一道非常基础的angr题目，但是因为我之前从来没有接触过angr，所以先用了一天的时间把angr的基础概念看了看，然后模仿其他ctf题目的脚本解出了这道题目：<br>推荐教程：<a href="https://github.com/firmianay/CTF-All-In-One" target="_blank" rel="noopener">CTF-All-In-One这本书5.3.1章节</a><br>脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"></span><br><span class="line">find  = <span class="number">0x00402370</span>  <span class="comment"># 输出:)的地址</span></span><br><span class="line">avoid = <span class="number">0x00402390</span>  <span class="comment"># 输出:(的地址</span></span><br><span class="line"></span><br><span class="line">p = angr.Project(<span class="string">'./angrme'</span>)</span><br><span class="line">state = p.factory.entry_state()</span><br><span class="line">pg = p.factory.simgr(state)</span><br><span class="line">ex = pg.explore(find=find, avoid=avoid)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> pg.found[<span class="number">0</span>].posix.dumps(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>脚本运行的结果：<br><img src="https://i.loli.net/2018/12/14/5c13754558e44.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/wp-柏鹭杯/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1969,166 +2146,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/14/护网杯总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I have a dream.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/14/护网杯总结/" class="post-title-link" itemprop="url">护网杯总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-14 00:00:00 / Modified: 21:34:27" itemprop="dateCreated datePublished" datetime="2018-10-14T00:00:00+08:00">2018-10-14</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="护网杯总结"><a href="#护网杯总结" class="headerlink" title="护网杯总结"></a>护网杯总结</h1><blockquote>
-<p>从大一开始断断续续接触ctf，也很多次下定决心要好好学一波，但是始终没有坚持下来，10月13日参加了护网杯的线上赛，只做出来了一道misc签到题，还是总结一下得失。</p>
-</blockquote>
-<p>先写一下签到题的wirteup。</p>
-<h3 id="write-up-迟到的签到题"><a href="#write-up-迟到的签到题" class="headerlink" title="write-up 迟到的签到题"></a>write-up 迟到的签到题</h3><p>题目给出了一个txt文件，里面是一串字符串：  AAoHAR1UIFBSJFFQU1AjUVEjVidWUVJVJVZUIyUnI18jVFNXVRs=</p>
-<p>很明显这个是base编码，用在线base64解码，会得到一串奇怪的字符：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810141548_260.png" alt=""></p>
-<p>然后根据题目描述<code>easy xor???</code>，将之前解码得到的字符串，取其16进制，依次和0-255进行异或，然后找出其中的flag。<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810141552_484.png" alt=""></p>
-<p>总结：</p>
-<ol>
-<li>base64解码出来的是不可见字符，并不能说明我们的做法是错误的</li>
-<li>对于这样的不可见字符，手动复制粘贴容易导致字符的错误和丢失，而且效率也很低，能不能想办法提高效率呢？<br>用python进行base64解码并转成16进制，然后将输出保存到文件中：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s = <span class="string">"AAoHAR1UIFBSJFFQU1AjUVEjVidWUVJVJVZUIyUnI18jVFNXVRs="</span></span><br><span class="line"><span class="comment"># 解码结果</span></span><br><span class="line">decode_result = base64.b64decode(s)</span><br><span class="line"><span class="comment"># 打印解码结果</span></span><br><span class="line">print(decode_result)</span><br><span class="line"><span class="comment"># 打印异或结果</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">256</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(decode_result)):</span><br><span class="line">        print(chr(decode_result[i]^j), end = <span class="string">""</span>)</span><br><span class="line">    print()</span><br></pre></td></tr></table></figure>
-<p>除了<code>迟来的签到</code>这道题，我还试着做了做<code>rerere</code>这道题，发现一个问题在于：</p>
-<ol>
-<li>在windows10下面用od调试，因为地址随机化的问题，每次加载内存地址都会改变，增大了调试难度，但是程序是64位的，我的windows xp虚拟机又是32位的，无法运行，考虑能否配置一个windows xp 64环境用于调试。</li>
-</ol>
-<p>还是太菜了，得学呀！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2175,7 +2192,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2249,7 +2266,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

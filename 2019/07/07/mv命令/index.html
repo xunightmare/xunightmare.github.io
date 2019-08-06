@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="mv命令用于为移动文件/目录和重命名文件/目录  在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。 优先级：无冲突修改 &amp;gt; 覆盖 &amp;gt; 失败  基本用法：1Usage: mv source target 定义：将路径分为path和filen">
+  <meta name="description" content="mv命令用于为移动文件/目录和重命名文件/目录  定义：将路径分为path和filename（包含目录）两部分，包含path和filename的写法称为完整路径，而省略了filename的写法称为不完整路径，即：完整路径：path/filename不完整路径：path 在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动">
 <meta name="keywords" content="Linux命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mv命令">
 <meta property="og:url" content="http://yoursite.com/2019/07/07/mv命令/index.html">
 <meta property="og:site_name" content="I have a dream.">
-<meta property="og:description" content="mv命令用于为移动文件/目录和重命名文件/目录  在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。 优先级：无冲突修改 &amp;gt; 覆盖 &amp;gt; 失败  基本用法：1Usage: mv source target 定义：将路径分为path和filen">
+<meta property="og:description" content="mv命令用于为移动文件/目录和重命名文件/目录  定义：将路径分为path和filename（包含目录）两部分，包含path和filename的写法称为完整路径，而省略了filename的写法称为不完整路径，即：完整路径：path/filename不完整路径：path 在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-07T16:51:35.209Z">
+<meta property="og:updated_time" content="2019-07-08T11:12:30.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mv命令">
-<meta name="twitter:description" content="mv命令用于为移动文件/目录和重命名文件/目录  在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。 优先级：无冲突修改 &amp;gt; 覆盖 &amp;gt; 失败  基本用法：1Usage: mv source target 定义：将路径分为path和filen">
+<meta name="twitter:description" content="mv命令用于为移动文件/目录和重命名文件/目录  定义：将路径分为path和filename（包含目录）两部分，包含path和filename的写法称为完整路径，而省略了filename的写法称为不完整路径，即：完整路径：path/filename不完整路径：path 在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动">
 
 
 
@@ -353,7 +353,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-08 00:51:35" itemprop="dateModified" datetime="2019-07-08T00:51:35+08:00">2019-07-08</time>
+                <time title="Modified: 2019-07-08 19:12:30" itemprop="dateModified" datetime="2019-07-08T19:12:30+08:00">2019-07-08</time>
               
             
           </span>
@@ -408,13 +408,13 @@
         <blockquote>
 <p>mv命令用于为移动文件/目录和重命名文件/目录</p>
 </blockquote>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>将路径分为<code>path</code>和<code>filename</code>（包含目录）两部分，包含<code>path</code>和<code>filename</code>的写法称为完整路径，而省略了<code>filename</code>的写法称为不完整路径，即：<br><strong>完整路径：</strong><code>path/filename</code><br><strong>不完整路径：</strong><code>path</code></p>
 <h3 id="在介绍这个命令的两种用法之前，首先强调三点理解："><a href="#在介绍这个命令的两种用法之前，首先强调三点理解：" class="headerlink" title="在介绍这个命令的两种用法之前，首先强调三点理解："></a>在介绍这个命令的两种用法之前，首先强调三点理解：</h3><ol>
 <li>目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。</li>
 <li>移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。</li>
-<li>优先级：无冲突修改 &gt; 覆盖 &gt; 失败</li>
+<li>处理优先级：首先尽量认为target是完整路径，先尽量无冲突修改路径，然后考虑覆盖；上面两种情况都不可行的情况下认为target是不完整路径，构造新的完整路径，同样先尽量无冲突修改路径，然后考虑覆盖；如果上面的情况都不行，只能修改失败退出。</li>
 </ol>
 <h3 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Usage: mv <span class="built_in">source</span> target</span><br></pre></td></tr></table></figure>
-<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>将路径分为<code>path</code>和<code>filename</code>（包含目录）两部分，包含<code>path</code>和<code>filename</code>的写法称为完整路径，而省略了<code>filename</code>的写法称为不完整路径，即：<br><strong>完整路径：</strong><code>path/filename</code><br><strong>不完整路径：</strong><code>path</code></p>
 <h3 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h3><ol>
 <li>检查源路径是否存在，不存在报错并退出；</li>
 <li>首先认为目标路径是完整路径，首先检查<code>path</code>部分，如果该完整路径的<code>path</code>部分不存在，报错并退出；</li>
@@ -425,7 +425,13 @@
 </li>
 </ol>
 <h3 id="进阶用法："><a href="#进阶用法：" class="headerlink" title="进阶用法："></a>进阶用法：</h3><ol>
-<li>如何批量移动文件呢 1. 正则表达式匹配 2. 多个路径输入</li>
+<li>批量移动文件<ol>
+<li>正则表达式匹配 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv <span class="built_in">test</span>* ../<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="2">
 <li>选项</li>
 <li>是否可能导致文件丢失？</li>
 </ol>
@@ -433,7 +439,7 @@
 <li>如何区分移动文件和重命名</li>
 <li>如何区分移动文件和目录</li>
 <li>如何区分是否递归移动目录 可能默认就是递归的，不是递归的情况感觉怪怪的</li>
-<li></li>
+<li>如果移动的文件正在读写，会出现什么情况。</li>
 <li>如果命令出错后果是什么，会导致文件丢失吗？ 文件名重复、路径不存在、mv命令是如何实现的呢</li>
 <li>想象自己就是计算机，需要判断上面的这些问题，我需要哪些信息呢？</li>
 </ol>
@@ -482,6 +488,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/06/CVE-2018-15928-漏洞复现/" rel="prev" title="CVE-2018-15928 漏洞复现">
+                CVE-2018-15928 漏洞复现 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -550,7 +560,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -624,7 +634,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -662,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在介绍这个命令的两种用法之前，首先强调三点理解："><span class="nav-number">1.</span> <span class="nav-text">在介绍这个命令的两种用法之前，首先强调三点理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法："><span class="nav-number">2.</span> <span class="nav-text">基本用法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义："><span class="nav-number">3.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理："><span class="nav-number">4.</span> <span class="nav-text">工作原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶用法："><span class="nav-number">5.</span> <span class="nav-text">进阶用法：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义："><span class="nav-number">1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在介绍这个命令的两种用法之前，首先强调三点理解："><span class="nav-number">2.</span> <span class="nav-text">在介绍这个命令的两种用法之前，首先强调三点理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法："><span class="nav-number">3.</span> <span class="nav-text">基本用法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理："><span class="nav-number">4.</span> <span class="nav-text">工作原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶用法："><span class="nav-number">5.</span> <span class="nav-text">进阶用法：</span></a></li></ol></div>
             
 
           </div>
