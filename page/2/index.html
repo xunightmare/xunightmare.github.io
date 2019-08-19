@@ -195,7 +195,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -223,7 +223,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
 
   </li>
         
@@ -240,7 +240,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
   </li>
 
@@ -276,6 +276,902 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/使用scp在Windows和Linux之间传输文件-目录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I have a dream.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/06/使用scp在Windows和Linux之间传输文件-目录/" class="post-title-link" itemprop="url">使用scp在Windows和Linux之间传输文件/目录</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-07-06 19:52:48 / Geändert am: 21:12:39" itemprop="dateCreated datePublished" datetime="2019-07-06T19:52:48+08:00">2019-07-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>有时候需要在Windows和Linux系统之间传递文件/目录，如果只是偶尔使用这个功能，专门下载软件太麻烦了，这时候可以用scp命令实现我们的需求。</p>
+</blockquote>
+<p>scp是secure copy的缩写，是Linux系统下基于ssh登录进行的安全文件/目录拷贝命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Usage: scp [-r] [[user@]host:]<span class="built_in">source</span> [[user@]host:]target</span><br><span class="line">// 还有一些其他的选项，不一一列出</span><br></pre></td></tr></table></figure>
+<p><strong>有几个注意事项：</strong></p>
+<ol>
+<li>在传输目录的时候，一定要加上参数<code>-r</code> 否则无法传输成功。</li>
+<li>客户端可以省略username，hostname，previous working directory，只需要填写相对路径就可以了。</li>
+<li>当Windows作为ssh server的时候，有几个注意事项：<ol>
+<li>Windows10 默认并没有安装ssh服务，通过 “设置 -&gt; 应用 -&gt; 应用和功能 -&gt; 可选功能 -&gt; 添加功能 -&gt; openssh服务端” 来安装ssh服务，然后通过命令<code>net start sshd</code>启动服务，通过命令<code>net stop sshd</code>停止服务。</li>
+<li>Windows账号的username可以通过在Cmd或者PowerShell中使用<code>whoami</code>命令查看，密码为Microsoft账号的密码。</li>
+<li>Windows的路径写法<code>/c:/path</code></li>
+</ol>
+</li>
+</ol>
+<p><strong>具体来说，可以分为四种情况:</strong></p>
+<ol>
+<li>Linux为ssh client，Windows为ssh server：<ol>
+<li>从Linux上拷贝文件到Windows上</li>
+<li>从Windows上拷贝文件到Linux上</li>
+</ol>
+</li>
+<li>Windows为ssh client，Linux为ssh server：<ol>
+<li>从Linux上拷贝文件到Windows上</li>
+<li>从Windows上拷贝文件到Linux上</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/Windows-Terminal安装及体验过程记录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I have a dream.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/06/Windows-Terminal安装及体验过程记录/" class="post-title-link" itemprop="url">Windows  Terminal安装及体验过程记录</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-07-06 11:00:59" itemprop="dateCreated datePublished" datetime="2019-07-06T11:00:59+08:00">2019-07-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-07-08 19:59:38" itemprop="dateModified" datetime="2019-07-08T19:59:38+08:00">2019-07-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Microsoft在Build 2019开发者大会上发布了Windows Terminal，这是一款新的command line terminal工具。</p>
+</blockquote>
+<p><strong>特点：</strong></p>
+<ol>
+<li>更好看的UI。</li>
+<li>支持多标签。</li>
+<li>支持自定义配色方案。</li>
+<li>能够访问PowerShell、Cmd、WSL等环境。</li>
+</ol>
+<p><strong>安装过程：</strong></p>
+<ol>
+<li>提示windows 10版本不够，下载windows10更新助手更新到最新版然后安装</li>
+<li>更新过程中提示VMware Workstation Pro 15.01不兼容，升级到15.10就可以了</li>
+<li>从Microsoft Store中安装Windows Terminal (Preview)，遇到了Microsoft Store无法连接网络的问题，通过 设置 -&gt; 网络和Internet -&gt; 代理 -&gt; 将【使用设置脚本】关闭 解决。</li>
+</ol>
+<p><strong>体验：</strong><br>和Cmd和PowerShell相比，用起来确实舒服很多，但是Preview版本bug还是很多，经常莫名其妙崩溃，非常影响使用体验。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/安全届四大顶会/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I have a dream.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/30/安全届四大顶会/" class="post-title-link" itemprop="url">安全届四大顶会</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-05-30 23:29:40 / Geändert am: 23:31:55" itemprop="dateCreated datePublished" datetime="2019-05-30T23:29:40+08:00">2019-05-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/论文阅读/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>CCS: ACM Conference on Computer and Communications Security</li>
+<li>Oakland/ S&amp;P: IEEE Symposium on Security and Privacy</li>
+<li>USENIX Security</li>
+<li>NDSS: The Network and Distributed System Security Symposium</li>
+</ul>
+<blockquote>
+<p>记忆方法：取每个会议名称的首字母：coun 对策</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/强网杯2019-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I have a dream.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/26/强网杯2019-wp/" class="post-title-link" itemprop="url">强网杯2019-wp</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-05-26 22:02:02" itemprop="dateCreated datePublished" datetime="2019-05-26T22:02:02+08:00">2019-05-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-08-06 21:59:17" itemprop="dateModified" datetime="2019-08-06T21:59:17+08:00">2019-08-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h2><h3 id="强网先锋-AD"><a href="#强网先锋-AD" class="headerlink" title="强网先锋_AD"></a>强网先锋_AD</h3><p>用IDA分析：<br>查看字符串猜测是base64：<br><img src="/images/2019/05/26/fee95890-7fbe-11e9-832a-3b016e9f5980.png" alt="image.png"><br>分析main函数，v5到v40就是一串字符串base64编码后的结果：<br><img src="/images/2019/05/26/40680230-7fbf-11e9-832a-3b016e9f5980.png" alt="image.png"><br>解码得到flag：flag{mafakuailaiqiandaob}</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/hexo-草稿功能/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I have a dream.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/14/hexo-草稿功能/" class="post-title-link" itemprop="url">hexo -- 草稿功能</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-05-14 20:34:46" itemprop="dateCreated datePublished" datetime="2019-05-14T20:34:46+08:00">2019-05-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-05-26 12:57:11" itemprop="dateModified" datetime="2019-05-26T12:57:11+08:00">2019-05-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>草稿相当于很多博客都有的“私密文章”功能。使用如下命令创建：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft &quot;new draft&quot;</span><br></pre></td></tr></table></figure></p>
+<p>会在source/_drafts目录下生成一个new-draft.md文件。但是这个文件不被显示在页面上，链接也访问不到。<strong>也就是说如果你想把某一篇文章移除显示，又不舍得删除，可以把它移动到_drafts目录之中。
+</strong><br>如果你希望强行预览草稿，更改配置文件（_config.yml）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render_drafts: true</span><br></pre></td></tr></table></figure></p>
+<p><strong>或者</strong>如下方式启动server：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo server --drafts</span><br><span class="line">或</span><br><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -330,14 +1226,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-22 21:34:05" itemprop="dateCreated datePublished" datetime="2019-04-22T21:34:05+08:00">2019-04-22</time>
+              <time title="Erstellt: 2019-04-22 21:34:05" itemprop="dateCreated datePublished" datetime="2019-04-22T21:34:05+08:00">2019-04-22</time>
             
 
             
@@ -352,9 +1248,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2019-05-12 11:46:18" itemprop="dateModified" datetime="2019-05-12T11:46:18+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:46:18" itemprop="dateModified" datetime="2019-05-12T11:46:18+08:00">2019-05-12</time>
               
             
           </span>
@@ -368,7 +1264,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔-日记/" itemprop="url" rel="index"><span itemprop="name">随笔&日记</span></a></span>
@@ -504,14 +1400,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-22 20:51:13" itemprop="dateCreated datePublished" datetime="2019-04-22T20:51:13+08:00">2019-04-22</time>
+              <time title="Erstellt: 2019-04-22 20:51:13" itemprop="dateCreated datePublished" datetime="2019-04-22T20:51:13+08:00">2019-04-22</time>
             
 
             
@@ -526,9 +1422,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2019-05-12 11:49:00" itemprop="dateModified" datetime="2019-05-12T11:49:00+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:49:00" itemprop="dateModified" datetime="2019-05-12T11:49:00+08:00">2019-05-12</time>
               
             
           </span>
@@ -542,7 +1438,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
@@ -681,14 +1577,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-22 20:34:56" itemprop="dateCreated datePublished" datetime="2019-04-22T20:34:56+08:00">2019-04-22</time>
+              <time title="Erstellt: 2019-04-22 20:34:56" itemprop="dateCreated datePublished" datetime="2019-04-22T20:34:56+08:00">2019-04-22</time>
             
 
             
@@ -703,9 +1599,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2019-05-12 11:47:06" itemprop="dateModified" datetime="2019-05-12T11:47:06+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:47:06" itemprop="dateModified" datetime="2019-05-12T11:47:06+08:00">2019-05-12</time>
               
             
           </span>
@@ -719,7 +1615,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
@@ -868,14 +1764,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-08 21:15:16" itemprop="dateCreated datePublished" datetime="2019-04-08T21:15:16+08:00">2019-04-08</time>
+              <time title="Erstellt: 2019-04-08 21:15:16" itemprop="dateCreated datePublished" datetime="2019-04-08T21:15:16+08:00">2019-04-08</time>
             
 
             
@@ -890,9 +1786,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2019-05-12 11:48:38" itemprop="dateModified" datetime="2019-05-12T11:48:38+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:48:38" itemprop="dateModified" datetime="2019-05-12T11:48:38+08:00">2019-05-12</time>
               
             
           </span>
@@ -906,7 +1802,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/论文阅读/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a></span>
@@ -1068,14 +1964,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-08 11:16:45" itemprop="dateCreated datePublished" datetime="2019-04-08T11:16:45+08:00">2019-04-08</time>
+              <time title="Erstellt: 2019-04-08 11:16:45" itemprop="dateCreated datePublished" datetime="2019-04-08T11:16:45+08:00">2019-04-08</time>
             
 
             
@@ -1090,9 +1986,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Modified: 2019-05-12 11:49:30" itemprop="dateModified" datetime="2019-05-12T11:49:30+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:49:30" itemprop="dateModified" datetime="2019-05-12T11:49:30+08:00">2019-05-12</time>
               
             
           </span>
@@ -1106,7 +2002,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
@@ -1190,951 +2086,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/语音识别工作总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I have a dream.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/08/语音识别工作总结/" class="post-title-link" itemprop="url">语音识别工作总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-08 09:53:46" itemprop="dateCreated datePublished" datetime="2019-04-08T09:53:46+08:00">2019-04-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-12 11:53:26" itemprop="dateModified" datetime="2019-05-12T11:53:26+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="0x00-语音分段"><a href="#0x00-语音分段" class="headerlink" title="0x00 语音分段"></a>0x00 语音分段</h2><blockquote>
-<p>输入的音频是一段话，将音频截成多个小段，每一个小段都包含一完整的话。<br>使用代码：<a href="https://github.com/wblgers/py_speech_seg.git" target="_blank" rel="noopener">https://github.com/wblgers/py_speech_seg.git</a></p>
-</blockquote>
-<ol>
-<li>安装Anaconda：<a href="https://www.jianshu.com/p/895bcd4430c9" target="_blank" rel="noopener">https://www.jianshu.com/p/895bcd4430c9</a>  （注意！最上面的是最老版本的安装文件，我们需要的是下面的新版本）</li>
-<li>执行<code>python multi_detect.py</code>，遇到报错缺少库就使用命令<code>conda install package_name</code>安装</li>
-<li><code>librosa</code>比较特殊，需要用命令<code>conda install -c conda-forge librosa</code>安装</li>
-<li>安装成功之后，在multi_detect.py中填入需要分段的音频路径，执行<code>python multi_detect.py</code>，就会在文件夹<code>save_audio</code>生成分段后的音频。</li>
-</ol>
-<h2 id="0x01-使用百度语音识别Python-SDK进行语音识别"><a href="#0x01-使用百度语音识别Python-SDK进行语音识别" class="headerlink" title="0x01 使用百度语音识别Python SDK进行语音识别"></a>0x01 使用百度语音识别Python SDK进行语音识别</h2><p>百度语音识别官方文档：<a href="http://ai.baidu.com/docs#/ASR-API/top" target="_blank" rel="noopener">http://ai.baidu.com/docs#/ASR-API/top</a></p>
-<p><strong>注意事项：</strong></p>
-<ol>
-<li>编码问题<blockquote>
-<p>格式支持：pcm（不压缩）、wav（不压缩，pcm编码）、amr（压缩格式）。推荐pcm 采样率 ：16000 固定值。 编码：16bit 位深的单声道。百度服务端会将非pcm格式，转为pcm格式，因此使用wav、amr会有额外的转换耗时。</p>
-</blockquote>
-</li>
-</ol>
-<p><strong>如果音频不是指定的格式，用在线音频格式转换或者格式工厂可能会出现编码错误，进而导致百度语音识别出一堆乱七八糟的东西，最好使用ffmpeg转换：</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 转码示例</span></span><br><span class="line">ffmpeg -y  -i test5.m4a  -acodec pcm_s16le -f s16le -ac 1 -ar 16000 test5.pcm</span><br></pre></td></tr></table></figure></p>
-<ol start="2">
-<li>搜索模型问题<blockquote>
-<p>搜索模型： 效果同手机百度搜索的语音输入。适合于短语识别，没有逗号。<br>输入法模型：效果同百度输入法的语音输入。适合于长句识别，有逗号。<br><img src="https://i.loli.net/2019/04/07/5ca9b9f18720d.png" alt=""></p>
-</blockquote>
-</li>
-</ol>
-<p><strong>代码示例：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> aip <span class="keyword">import</span> AipSpeech</span><br><span class="line"></span><br><span class="line"><span class="string">""" 你的 APPID AK SK """</span></span><br><span class="line">APP_ID = <span class="string">'你的 App ID'</span></span><br><span class="line">API_KEY = <span class="string">'你的 Api Key'</span></span><br><span class="line">SECRET_KEY = <span class="string">'你的 Secret Key'</span></span><br><span class="line"></span><br><span class="line">client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file_content</span><span class="params">(filePath)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(filePath, <span class="string">'rb'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        <span class="keyword">return</span> fp.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 识别本地文件</span></span><br><span class="line">result = client.asr(get_file_content(<span class="string">'audio.pcm'</span>), <span class="string">'pcm'</span>, <span class="number">16000</span>, &#123;</span><br><span class="line">    <span class="string">'dev_pid'</span>: <span class="number">1536</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># result是一个字典</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/Detatch-from-a-Docker-Container-without-Stopping-It/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I have a dream.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/05/Detatch-from-a-Docker-Container-without-Stopping-It/" class="post-title-link" itemprop="url">Detatch from a Docker Container without Stopping It</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-05 21:16:24" itemprop="dateCreated datePublished" datetime="2019-04-05T21:16:24+08:00">2019-04-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-12 11:53:53" itemprop="dateModified" datetime="2019-05-12T11:53:53+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>在使用docker的时候，常常exit之后容器就停止了，甚至很多时候就再也没法运行起来了，非常浪费时间，学到了一个小技巧，可以在断开和docker连接的同时容器不停止运行。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+P, Ctrl+Q</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://dscottraynsford.wordpress.com/2015/08/28/detatch-from-a-docker-container-without-stopping-it/" target="_blank" rel="noopener">https://dscottraynsford.wordpress.com/2015/08/28/detatch-from-a-docker-container-without-stopping-it/</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/脚本实现交互式命令-md/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I have a dream.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/28/脚本实现交互式命令-md/" class="post-title-link" itemprop="url">脚本实现交互式命令.md</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-28 11:53:03" itemprop="dateCreated datePublished" datetime="2019-03-28T11:53:03+08:00">2019-03-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-12 11:53:17" itemprop="dateModified" datetime="2019-05-12T11:53:17+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>在使用Dockerfile构建docker镜像的时候，一些命令（比如修改密码）需要和shell进行交互，通过查阅资料，学会了一种通过文件重定向来在脚本中实现交互式命令的方法。</p>
-</blockquote>
-<ol>
-<li>创建一个输入文件。</li>
-<li>将交互时需要用到的数据写入到文件。</li>
-<li>重定向。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RUN touch input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;bupthydewwwcn&quot; &gt;&gt; input.data</span><br><span class="line">RUN passwd root &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data</span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data</span><br><span class="line">RUN adduser test &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN rm input.data</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/21/搭建vsftpd-2.3.4笑脸漏洞环境过程/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I have a dream.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/21/搭建vsftpd-2.3.4笑脸漏洞环境过程/" class="post-title-link" itemprop="url">vsftpd-2.3.4笑脸漏洞&docker漏洞复现</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-21T00:00:00+08:00">2019-03-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-12 11:54:56" itemprop="dateModified" datetime="2019-05-12T11:54:56+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="0x01-在ubuntu镜像上使用源码配置vsftpd-2-3-4"><a href="#0x01-在ubuntu镜像上使用源码配置vsftpd-2-3-4" class="headerlink" title="0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4"></a>0x01 在ubuntu镜像上使用源码配置vsftpd-2.3.4</h2><blockquote>
-<p>源码配置较为麻烦，但是镜像的选用上要自由很多。</p>
-</blockquote>
-<ol>
-<li>安装依赖环境和相关工具。</li>
-</ol>
-<p>在使用Dockerfile构建镜像的时候，经常出现<code>fetch error</code>，后来发现是源的问题，使用命令<code>sed -i s@/archive.ubuntu.com/@/mirrors.163.com/@g /etc/apt/sources.list</code>换成163的源之后下载速度快了很多，也不会出现<code>fetch error</code>的问题了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RUN sed -i s@/archive.ubuntu.com/@/mirrors.163.com/@g /etc/apt/sources.list \</span><br><span class="line">    &amp;&amp; apt-get clean \</span><br><span class="line">    &amp;&amp; apt-get update --fix-missing \</span><br><span class="line">    &amp;&amp; apt-get upgrade -y \</span><br><span class="line">    &amp;&amp; apt-get install -y wget vim make gcc git autoconf automake byacc flex --fix-missing</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建用户和目录。</li>
-</ol>
-<p>这一步是看着教程做的，具体是为了什么我不清楚。</p>
-<ol start="3">
-<li>下载vsftpd-2.3.4源码并安装</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># vsftpd-2.3.4的源码有两个版本：有后门和没有后门的，[trace down the backdoor in vsFTPd 2.3.4](https://0ffff7f000001ipv6literalnet.wordpress.com/2012/06/26/trace-down-the-backdoor-in-vsftpd-2-3-4/)。在github上找到了有后门的版本。</span><br><span class="line">RUN git clone https://github.com/nikdubois/vsftpd-2.3.4-infected \</span><br><span class="line">    &amp;&amp; cd /vsftpd-2.3.4-infected \</span><br><span class="line">    &amp;&amp; sed -i -e &apos;s|#define VSF_SYSDEP_HAVE_LIBCAP|//&amp;|&apos; sysdeputil.c \</span><br><span class="line">    &amp;&amp; cp Makefile Makefile.bak \</span><br><span class="line">    &amp;&amp; sed &apos;s/vsf_findlibs.sh`/&amp; -lcrypt/&apos; Makefile.bak &gt; Makefile \</span><br><span class="line">    &amp;&amp; make</span><br><span class="line"></span><br><span class="line">RUN mkdir /usr/local/man/man8 \</span><br><span class="line">    &amp;&amp; mkdir /usr/local/man/man5 \</span><br><span class="line">    &amp;&amp; cd /vsftpd-2.3.4-infected \</span><br><span class="line">    &amp;&amp; make install \</span><br><span class="line">    &amp;&amp; cp vsftpd.conf /etc/vsftpd.conf.bak \</span><br><span class="line">    &amp;&amp; sed &apos;$a\secure_chroot_dir=/opt/usr/share/empty&apos; /etc/vsftpd.conf.bak &gt; /etc/vsftpd.conf.bak2 \</span><br><span class="line">    &amp;&amp; mkdir -p /opt/usr/share/empty \</span><br><span class="line">    &amp;&amp; sed &apos;s/#local_enable=YES/local_enable=YES/&apos; /etc/vsftpd.conf.bak2 &gt; /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>创建用户并更改密码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RUN touch input.data </span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data </span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data </span><br><span class="line">RUN passwd root &lt; input.data</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; &gt; input.data </span><br><span class="line">RUN echo &quot;123456&quot; &gt;&gt; input.data RUN adduser test &lt; input.data</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>最后只要进入容器执行vsftpd命令，就可以启动服务了。</p>
-<h2 id="0x02-使用docker镜像配置漏洞环境"><a href="#0x02-使用docker镜像配置漏洞环境" class="headerlink" title="0x02 使用docker镜像配置漏洞环境"></a>0x02 使用docker镜像配置漏洞环境</h2><blockquote>
-<p>使用镜像配置环境非常简单，但是现有的vsftpd-2.3.4的镜像是基于alpine linux的，和ubuntu差别较大，经常遇到一些问题。</p>
-</blockquote>
-<p>找到了一个<a href="https://hub.docker.com/r/penkit/vsftpd" target="_blank" rel="noopener">已经安装好了vsftpd-2.3.4的镜像。</a>,还找到了<a href="https://gitlab.com/penkit/vsftpd" target="_blank" rel="noopener">对应的Dockerfile</a></p>
-<p>拉取镜像：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull penkit/vsftpd:2.3.4</span><br></pre></td></tr></table></figure></p>
-<p>启动镜像<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm -p 21:21 penkit/vsftpd:2.3.4 <span class="string">"vsftpd /etc/vsftpd/vsftpd.conf"</span></span><br></pre></td></tr></table></figure></p>
-<p>启动vsftpd<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vsftpd /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure></p>
-<h2 id="0x03-使用metasploitable2镜像配置"><a href="#0x03-使用metasploitable2镜像配置" class="headerlink" title="0x03 使用metasploitable2镜像配置"></a>0x03 使用metasploitable2镜像配置</h2><p>这种方法网上教程应该很多，我自己并没有尝试，所以不详细介绍。</p>
-<h2 id="0x03-利用笑脸漏洞"><a href="#0x03-利用笑脸漏洞" class="headerlink" title="0x03 利用笑脸漏洞"></a>0x03 利用笑脸漏洞</h2><h3 id="手工利用"><a href="#手工利用" class="headerlink" title="手工利用"></a>手工利用</h3><p><a href="https://blog.csdn.net/qq_34122419/article/details/82957510" target="_blank" rel="noopener">https://blog.csdn.net/qq_34122419/article/details/82957510</a></p>
-<h3 id="metasploit"><a href="#metasploit" class="headerlink" title="metasploit"></a>metasploit</h3><p><a href="https://www.whj.website/blog/2018/09/13/Vsftpd2.3.4%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">https://www.whj.website/blog/2018/09/13/Vsftpd2.3.4%E7%AC%91%E8%84%B8%E6%BC%8F%E6%B4%9E/</a></p>
-<blockquote>
-<p>注意：在一次攻击结束后，马上进行第二次攻击，会失败。原因是之前的ftp连接和6200端口连接没有关闭。只要等到超时自动关闭就可以了。</p>
-</blockquote>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="http://www.linuxfromscratch.org/~thomasp/blfs-book-xsl/server/vsftpd.html" target="_blank" rel="noopener">vsftpd-2.3.4源码安装教程</a></li>
-<li><a href="https://whereisk0shl.top/post/vsftpd-v2.3.4hou-men-fen-xi" target="_blank" rel="noopener">VSFTPD V2.3.4后门分析</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/wp-x-mas-ctf/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="信息安全专业学生，喜欢心理学。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I have a dream.">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/18/wp-x-mas-ctf/" class="post-title-link" itemprop="url">wp-x-mas-ctf</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-12-18 08:05:47" itemprop="dateCreated datePublished" datetime="2018-12-18T08:05:47+08:00">2018-12-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-12 11:51:33" itemprop="dateModified" datetime="2019-05-12T11:51:33+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##<br><a href="/2018/12/18/wp-x-mas-ctf/classified_gift_distribution_schema.img" title="点击下载题目文件">点击下载题目文件</a><br>题目很简单，在磁盘映像文件中隐藏了很多png图片，用binwalk分析磁盘映像文件，然后用foremost工具提取出来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">binwalk classified_gift_distribution_schema.img</span><br><span class="line">foremost classified_gift_distribution_schema.img</span><br></pre></td></tr></table></figure></p>
-<p>最后用powerpoint将图片拼接起来得到flag：<br><img src="https://i.loli.net/2018/12/18/5c183aed514fb.png" alt=""></p>
-<p><strong>flag</strong>: <em>X-MAS{1t_l00k5_l1k3_s4nta_m4de_4_m1stak3_sorry}</em></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
   </nav>
 
 
@@ -2176,8 +2132,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -2205,8 +2161,10 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">categories</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">Kategorien</span>
                   
                 </div>
               
@@ -2250,8 +2208,10 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
-                    <span class="site-state-item-name">tags</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">schlagwörter</span>
                   
                 </div>
               
@@ -2304,7 +2264,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -2312,7 +2272,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
