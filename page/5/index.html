@@ -188,14 +188,14 @@
     </div>
     
       
-        <p class="site-subtitle">WXVuIExpLCBJIHdpbGwgcHVyc3VlIHlvdS4</p>
+        <p class="site-subtitle">WXVuLCBJIHdpbGwgcHVyc3VlIHlvdS4</p>
       
     
     
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -223,7 +223,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Accueil</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
 
   </li>
         
@@ -240,7 +240,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
   </li>
 
@@ -276,6 +276,186 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/C语言实现栈/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="爱看玄幻小说 爱胡思乱想 想成为侠客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/21/C语言实现栈/" class="post-title-link" itemprop="url">C语言实现栈.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2018-10-21 11:20:42" itemprop="dateCreated datePublished" datetime="2018-10-21T11:20:42+08:00">2018-10-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-05-12 11:52:54" itemprop="dateModified" datetime="2019-05-12T11:52:54+08:00">2019-05-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">coding</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="C语言实现栈"><a href="#C语言实现栈" class="headerlink" title="C语言实现栈"></a>C语言实现栈</h1><h2 id="为什么要使用栈？"><a href="#为什么要使用栈？" class="headerlink" title="为什么要使用栈？"></a>为什么要使用栈？</h2><p>栈的特点是先进后出，可以用于保存之前的状态，比如调用子函数，还有迷宫问题中保存路径。</p>
+<h2 id="栈需要用的数据结构？"><a href="#栈需要用的数据结构？" class="headerlink" title="栈需要用的数据结构？"></a>栈需要用的数据结构？</h2><p>定义栈<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">stack</span>&#123;</span></span><br><span class="line">	pNode top;  <span class="comment">// 栈顶 </span></span><br><span class="line">	pNode bottom;  <span class="comment">// 栈底 </span></span><br><span class="line">&#125;Stack, *pStack;</span><br></pre></td></tr></table></figure></p>
+<p>定义结点<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;   <span class="comment">//数据可以根据自己的需要定制</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span> * <span class="title">pNext</span>;</span>  <span class="comment">//指向下一个结点的指针</span></span><br><span class="line">&#125;Node, *pNode;</span><br></pre></td></tr></table></figure></p>
+<h2 id="栈需要实现的一些操作"><a href="#栈需要实现的一些操作" class="headerlink" title="栈需要实现的一些操作"></a>栈需要实现的一些操作</h2><p>初始化栈（申请底结点，并初始化数据和top、bottom指针）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initStack</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	ps-&gt;top = (pNode)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == ps-&gt;top)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"分配内存失败\n"</span>); </span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		ps-&gt;top-&gt;pos_x = <span class="number">0</span>;</span><br><span class="line">		ps-&gt;top-&gt;pos_y = <span class="number">0</span>;</span><br><span class="line">		ps-&gt;top-&gt;direction = <span class="string">'#'</span>;</span><br><span class="line">		ps-&gt;bottom = ps-&gt;top;</span><br><span class="line">		ps-&gt;bottom-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>出栈（检查栈是否为空，如果不为空，让top指针指向下一个结点，然后释放之前的头结点的内存）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ps-&gt;top == ps-&gt;bottom)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		pNode tempNodePointer;</span><br><span class="line">		tempNodePointer = ps-&gt;top;</span><br><span class="line">		ps-&gt;top = ps-&gt;top-&gt;pNext;</span><br><span class="line">		<span class="built_in">free</span>(tempNodePointer); </span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>入栈（申请一个结点，设置好data和指针，然后将结点连到栈链表上）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">push</span><span class="params">(pStack ps, <span class="keyword">int</span> pos_x, <span class="keyword">int</span> pos_y, <span class="keyword">char</span> dir)</span></span>&#123;</span><br><span class="line">	pNode newNode = (pNode)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">	<span class="keyword">if</span>(<span class="literal">NULL</span> == newNode)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		newNode-&gt;pos_x = pos_x;</span><br><span class="line">		newNode-&gt;pos_y = pos_y;</span><br><span class="line">		newNode-&gt;direction = dir;</span><br><span class="line">		newNode-&gt;pNext = ps-&gt;top;</span><br><span class="line">		ps-&gt;top = newNode;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>遍历栈（从头结点开始）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(pStack ps)</span></span>&#123;</span><br><span class="line">	pNode temp = ps-&gt;top;</span><br><span class="line">	<span class="keyword">while</span>(temp != ps-&gt;bottom)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%c"</span>, temp-&gt;direction);</span><br><span class="line">		temp = temp-&gt;pNext;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>遍历栈（从底结点开始，用递归的方法，如果没有到底结点，不断调用自身，如果到了底结点，就返回）<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse2</span><span class="params">(pNode temp, pNode bottom)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(temp != bottom)&#123;</span><br><span class="line">		traverse2(temp-&gt;pNext, bottom);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%c"</span>, temp-&gt;direction);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -330,14 +510,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-10-15 10:36:05" itemprop="dateCreated datePublished" datetime="2018-10-15T10:36:05+08:00">2018-10-15</time>
+              <time title="Erstellt: 2018-10-15 10:36:05" itemprop="dateCreated datePublished" datetime="2018-10-15T10:36:05+08:00">2018-10-15</time>
             
 
             
@@ -352,9 +532,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Updated at: 2019-05-12 11:52:08" itemprop="dateModified" datetime="2019-05-12T11:52:08+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:52:08" itemprop="dateModified" datetime="2019-05-12T11:52:08+08:00">2019-05-12</time>
               
             
           </span>
@@ -368,7 +548,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
@@ -524,14 +704,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-10-15 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-15T00:00:00+08:00">2018-10-15</time>
+              <time title="Erstellt: 2018-10-15 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-15T00:00:00+08:00">2018-10-15</time>
             
 
             
@@ -546,9 +726,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Updated at: 2019-05-12 11:48:22" itemprop="dateModified" datetime="2019-05-12T11:48:22+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:48:22" itemprop="dateModified" datetime="2019-05-12T11:48:22+08:00">2019-05-12</time>
               
             
           </span>
@@ -562,7 +742,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
@@ -710,14 +890,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-10-14 00:00:00 / Updated at: 21:34:27" itemprop="dateCreated datePublished" datetime="2018-10-14T00:00:00+08:00">2018-10-14</time>
+              <time title="Erstellt: 2018-10-14 00:00:00 / Geändert am: 21:34:27" itemprop="dateCreated datePublished" datetime="2018-10-14T00:00:00+08:00">2018-10-14</time>
             
 
             
@@ -870,14 +1050,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-09T00:00:00+08:00">2018-10-09</time>
+              <time title="Erstellt: 2018-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-09T00:00:00+08:00">2018-10-09</time>
             
 
             
@@ -892,9 +1072,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Updated at: 2019-05-12 11:52:42" itemprop="dateModified" datetime="2019-05-12T11:52:42+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:52:42" itemprop="dateModified" datetime="2019-05-12T11:52:42+08:00">2019-05-12</time>
               
             
           </span>
@@ -908,7 +1088,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">coding</span></a></span>
@@ -1061,14 +1241,14 @@ int main(){
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-10-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">2018-10-05</time>
+              <time title="Erstellt: 2018-10-05 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">2018-10-05</time>
             
 
             
@@ -1083,9 +1263,9 @@ int main(){
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Updated at: 2019-05-12 11:49:54" itemprop="dateModified" datetime="2019-05-12T11:49:54+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:49:54" itemprop="dateModified" datetime="2019-05-12T11:49:54+08:00">2019-05-12</time>
               
             
           </span>
@@ -1099,7 +1279,7 @@ int main(){
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
@@ -1260,14 +1440,14 @@ int main(){
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">2018-10-04</time>
+              <time title="Erstellt: 2018-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">2018-10-04</time>
             
 
             
@@ -1282,9 +1462,9 @@ int main(){
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Updated at: 2019-05-12 11:58:55" itemprop="dateModified" datetime="2019-05-12T11:58:55+08:00">2019-05-12</time>
+                <time title="Geändert am: 2019-05-12 11:58:55" itemprop="dateModified" datetime="2019-05-12T11:58:55+08:00">2019-05-12</time>
               
             
           </span>
@@ -1298,7 +1478,7 @@ int main(){
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔-日记/" itemprop="url" rel="index"><span itemprop="name">随笔&日记</span></a></span>
@@ -1442,7 +1622,7 @@ hexo d
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Page précédente"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 
@@ -1484,8 +1664,8 @@ hexo d
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
-                    <span class="site-state-item-name">articles</span>
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -1516,7 +1696,7 @@ hexo d
                       
                     
                     <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">categories</span>
+                    <span class="site-state-item-name">Kategorien</span>
                   
                 </div>
               
@@ -1563,7 +1743,7 @@ hexo d
                       
                     
                     <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">schlagwörter</span>
                   
                 </div>
               
@@ -1616,7 +1796,7 @@ hexo d
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -1624,7 +1804,7 @@ hexo d
 
 
 
-  <div class="theme-info">Thème – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
