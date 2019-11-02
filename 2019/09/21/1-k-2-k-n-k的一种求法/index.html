@@ -96,19 +96,19 @@
 
 
 
-  <meta name="description" content="当k=1时，推导过程如下图：  使用和上图相似的推导过程，依次可以计算得到，k=2,3,4时的公式。 更进一步，不加证明的给出一个通用的公式：">
+  <meta name="description" content="当k=1时，推导过程如下图：  使用和上图相似的推导过程，依次可以计算得到，k=2,3,4时的公式。 更进一步，不加证明的给出一个通用的公式：  代码实现：// 这种算法12345678910111213141516171819202122232425262728293031323334#include &amp;lt;stdio.h&amp;gt;int pow(int n, int k)&amp;#123;    i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1^k+2^k+...+n^k的一种求法">
 <meta property="og:url" content="http://yoursite.com/2019/09/21/1-k-2-k-n-k的一种求法/index.html">
 <meta property="og:site_name" content="xnightmare&#39;s blog">
-<meta property="og:description" content="当k=1时，推导过程如下图：  使用和上图相似的推导过程，依次可以计算得到，k=2,3,4时的公式。 更进一步，不加证明的给出一个通用的公式：">
+<meta property="og:description" content="当k=1时，推导过程如下图：  使用和上图相似的推导过程，依次可以计算得到，k=2,3,4时的公式。 更进一步，不加证明的给出一个通用的公式：  代码实现：// 这种算法12345678910111213141516171819202122232425262728293031323334#include &amp;lt;stdio.h&amp;gt;int pow(int n, int k)&amp;#123;    i">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/2019/09/21/a1c6a4f0-dc08-11e9-94e2-853818bd8475.png">
 <meta property="og:image" content="http://yoursite.com/images/2019/09/21/122f7890-dc0c-11e9-94e2-853818bd8475.png">
-<meta property="og:updated_time" content="2019-09-21T15:11:30.872Z">
+<meta property="og:updated_time" content="2019-10-01T08:52:56.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1^k+2^k+...+n^k的一种求法">
-<meta name="twitter:description" content="当k=1时，推导过程如下图：  使用和上图相似的推导过程，依次可以计算得到，k=2,3,4时的公式。 更进一步，不加证明的给出一个通用的公式：">
+<meta name="twitter:description" content="当k=1时，推导过程如下图：  使用和上图相似的推导过程，依次可以计算得到，k=2,3,4时的公式。 更进一步，不加证明的给出一个通用的公式：  代码实现：// 这种算法12345678910111213141516171819202122232425262728293031323334#include &amp;lt;stdio.h&amp;gt;int pow(int n, int k)&amp;#123;    i">
 <meta name="twitter:image" content="http://yoursite.com/images/2019/09/21/a1c6a4f0-dc08-11e9-94e2-853818bd8475.png">
 
 
@@ -338,12 +338,24 @@
                 
               
 
-              <time title="Erstellt: 2019-09-21 08:38:08 / Geändert am: 23:11:30" itemprop="dateCreated datePublished" datetime="2019-09-21T08:38:08+08:00">2019-09-21</time>
+              <time title="Erstellt: 2019-09-21 08:38:08" itemprop="dateCreated datePublished" datetime="2019-09-21T08:38:08+08:00">2019-09-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-10-01 16:52:56" itemprop="dateModified" datetime="2019-10-01T16:52:56+08:00">2019-10-01</time>
               
             
           </span>
@@ -400,6 +412,7 @@
 <p>使用和上图相似的推导过程，依次可以计算得到，k=2,3,4时的公式。</p>
 <p>更进一步，不加证明的给出一个通用的公式：</p>
 <p><img src="/images/2019/09/21/122f7890-dc0c-11e9-94e2-853818bd8475.png" alt="通用公式.png"></p>
+<p><strong>代码实现：</strong><br>// 这种算法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> multi = n;</span><br><span class="line">    <span class="keyword">while</span>(k)&#123;</span><br><span class="line">        <span class="keyword">if</span>(k % <span class="number">2</span> == <span class="number">1</span>)&#123;</span><br><span class="line"> 	    res *= multi;</span><br><span class="line">        &#125;</span><br><span class="line">        multi = multi * multi;</span><br><span class="line">        k /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kn</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k == <span class="number">1</span>) <span class="keyword">return</span> n * (n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="built_in">pow</span>(n+<span class="number">1</span>, k+<span class="number">1</span>);</span><br><span class="line">    res -= <span class="number">1</span> + n;</span><br><span class="line">    <span class="keyword">int</span> multi = (k + <span class="number">1</span>) * k / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;k+<span class="number">1</span>; i++)&#123;</span><br><span class="line">        res -= multi * kn(n, k-i+<span class="number">1</span>);</span><br><span class="line">        multi = multi * (k - i + <span class="number">1</span>) / (i + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res / (k + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, k;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k) != EOF)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, kn(n, k));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -439,6 +452,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/01/模逆元-费马小定理/" rel="prev" title="模逆元-费马小定理">
+                模逆元-费马小定理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -498,7 +515,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
@@ -529,7 +546,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">Kategorien</span>
                   
                 </div>
