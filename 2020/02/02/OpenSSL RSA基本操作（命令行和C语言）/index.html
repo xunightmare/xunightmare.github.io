@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="命令行密钥对生成12openssl genrsa -out pri.key 2048openssl rsa -in pri.key -pubout &amp;gt; pub.key 公钥加密、私钥解密1234openssl rsautl -encrypt -in hello -inkey test_pub.key -pubin -out hello.en # -in指定要加密的文件，-inkey指定密钥，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xnightmare&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2020/02/02/OpenSSL RSA基本操作（命令行和C语言）/index.html">
+<meta property="og:site_name" content="xnightmare&#39;s Blog">
+<meta property="og:description" content="命令行密钥对生成12openssl genrsa -out pri.key 2048openssl rsa -in pri.key -pubout &amp;gt; pub.key 公钥加密、私钥解密1234openssl rsautl -encrypt -in hello -inkey test_pub.key -pubin -out hello.en # -in指定要加密的文件，-inkey指定密钥，">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-13T15:15:03.600Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xnightmare&#39;s Blog">
+<meta name="twitter:description" content="命令行密钥对生成12openssl genrsa -out pri.key 2048openssl rsa -in pri.key -pubout &amp;gt; pub.key 公钥加密、私钥解密1234openssl rsautl -encrypt -in hello -inkey test_pub.key -pubin -out hello.en # -in指定要加密的文件，-inkey指定密钥，">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/02/OpenSSL RSA基本操作（命令行和C语言）/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | xnightmare's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xnightmare's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/02/OpenSSL RSA基本操作（命令行和C语言）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2020-02-02 13:14:20" itemprop="dateCreated datePublished" datetime="2020-02-02T13:14:20+08:00">2020-02-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2020-01-13 23:15:03" itemprop="dateModified" datetime="2020-01-13T23:15:03+08:00">2020-01-13</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Kommentare: </span>
+                <a href="/2020/02/02/OpenSSL RSA基本操作（命令行和C语言）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/02/OpenSSL RSA基本操作（命令行和C语言）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><h3 id="密钥对生成"><a href="#密钥对生成" class="headerlink" title="密钥对生成"></a>密钥对生成</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out pri.key 2048</span><br><span class="line">openssl rsa -<span class="keyword">in</span> pri.key -pubout &gt; pub.key</span><br></pre></td></tr></table></figure>
+<h3 id="公钥加密、私钥解密"><a href="#公钥加密、私钥解密" class="headerlink" title="公钥加密、私钥解密"></a>公钥加密、私钥解密</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -encrypt -<span class="keyword">in</span> hello -inkey test_pub.key -pubin -out hello.en </span><br><span class="line"><span class="comment"># -in指定要加密的文件，-inkey指定密钥，-pubin表明是用纯公钥文件加密，-out为加密后的文件。</span></span><br><span class="line">openssl rsautl -decrypt -<span class="keyword">in</span> hello.en -inkey test.key -out hello.de</span><br><span class="line"><span class="comment"># -in指定被加密的文件，-inkey指定私钥文件，-out为解密后的文件</span></span><br></pre></td></tr></table></figure>
+<h3 id="私钥签名、公钥验证"><a href="#私钥签名、公钥验证" class="headerlink" title="私钥签名、公钥验证"></a>私钥签名、公钥验证</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -sign -<span class="keyword">in</span> plain.txt -inkey RSA.pem -passin pass:123456 -out sign.txt</span><br><span class="line">openssl rsautl -verify -<span class="keyword">in</span> sign.txt -inkey RSA.pem -passin pass:123456 -out replain.txt</span><br><span class="line"><span class="comment"># 实际上使用私钥加密、公钥解密</span></span><br></pre></td></tr></table></figure>
+<h2 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h2><h3 id="从文件中读取密钥"><a href="#从文件中读取密钥" class="headerlink" title="从文件中读取密钥"></a>从文件中读取密钥</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从文件中读取公钥</span></span><br><span class="line"><span class="function">RSA * <span class="title">get_pubkey_from_file</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *key)</span></span>&#123;</span><br><span class="line">    RSA *p_rsa;</span><br><span class="line">    FILE *fp_key;</span><br><span class="line">    fp_key = fopen(key, <span class="string">"rb"</span>);</span><br><span class="line">    p_rsa = PEM_read_RSA_PUBKEY(fp_key, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p_rsa;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 从文件中读取私钥</span></span><br><span class="line"><span class="function">RSA * <span class="title">get_prikey_from_file</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *key)</span></span>&#123;</span><br><span class="line">    RSA *p_rsa;</span><br><span class="line">    FILE *fp_key;</span><br><span class="line">    fp_key = fopen(key, <span class="string">"rb"</span>);</span><br><span class="line">    p_rsa = PEM_read_RSAPrivateKey(fp_key, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> p_rsa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><p>RSA加密需要进行分组加密，分组的长度与密钥长度有关，比如当密钥长度为2048 bit时，分组的长度就为256 bytes（输入为256字节，输出也为256字节，因此密文长度一定为256字节的倍数）。</p>
+<p>加密的时候还要考虑到padding的影响，不同padding方式实际每组能够加密的长度不同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">private_key_encrypt</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *data, <span class="keyword">int</span> data_len, RSA * key, FILE * fp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rsa_len = RSA_size(key);</span><br><span class="line">    <span class="keyword">char</span> *buf = <span class="built_in">malloc</span>(rsa_len + <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, rsa_len+<span class="number">1</span>);</span><br><span class="line">    RSA_private_encrypt(data_len, data, buf, key, RSA_PKCS1_PADDING);</span><br><span class="line">    fwrite(buf, <span class="number">1</span>, rsa_len, fp);</span><br><span class="line">    <span class="built_in">free</span>(buf);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 私钥加密的核心代码，公钥加密的逻辑是相同的，仅仅是调用的加密函数不同（RSA_private_encrypt换成RSA_public_encrypt）</span></span><br><span class="line">RSA * p_rsa = get_prikey_from_file(key);</span><br><span class="line"><span class="keyword">int</span> rsa_len = RSA_size(p_rsa);</span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(plain);</span><br><span class="line"><span class="keyword">int</span> data_len = rsa_len - <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> num = len / data_len;</span><br><span class="line">FILE * fp_out = fopen(outfile, <span class="string">"w"</span>);</span><br><span class="line"><span class="keyword">char</span> * off_plain = plain;</span><br><span class="line"><span class="keyword">while</span>(num--)&#123;</span><br><span class="line">    private_key_encrypt(off_plain, data_len, p_rsa, fp_out);</span><br><span class="line">    off_plain += data_len;</span><br><span class="line">&#125;</span><br><span class="line">private_key_encrypt(off_plain, len%data_len, p_rsa, fp_out);</span><br><span class="line">fclose(fp_out);</span><br></pre></td></tr></table></figure>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h3><p>上面已经提到过，当密钥长度为2048 bit时，密文的长度一定为256字节的倍数。因此，解密时只要以256字节为单位，依次解密，然后将结果拼起来就可以了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 私钥解密的核心代码，公钥解密的逻辑是相同的，仅仅是调用的加密函数不同（RSA_private_decrypt换成RSA_public_decrypt）</span></span><br><span class="line">RSA * p_rsa;</span><br><span class="line">p_rsa = get_prikey_from_file(key);</span><br><span class="line"><span class="keyword">int</span> rsa_len = RSA_size(p_rsa);</span><br><span class="line"><span class="keyword">int</span> num = len / rsa_len;</span><br><span class="line"><span class="keyword">char</span> * off_en = en;</span><br><span class="line"><span class="keyword">char</span> buf[rsa_len + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">while</span>(num--)&#123;</span><br><span class="line">	<span class="built_in">memset</span>(buf, <span class="number">0</span>, rsa_len+<span class="number">1</span>);</span><br><span class="line">    RSA_private_decrypt(rsa_len, off_en, buf, p_rsa, RSA_PKCS1_PADDING);</span><br><span class="line">    <span class="built_in">strcat</span>(plain, buf);</span><br><span class="line">    off_en += rsa_len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/26/TCPIP/Kerberos协议/" rel="next" title="Kerberos协议">
+                <i class="fa fa-chevron-left"></i> Kerberos协议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/02/Linux编译生成并使用共享库/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xnightmare</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行"><span class="nav-number">1.</span> <span class="nav-text">命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#密钥对生成"><span class="nav-number">1.1.</span> <span class="nav-text">密钥对生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公钥加密、私钥解密"><span class="nav-number">1.2.</span> <span class="nav-text">公钥加密、私钥解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私钥签名、公钥验证"><span class="nav-number">1.3.</span> <span class="nav-text">私钥签名、公钥验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C语言"><span class="nav-number">2.</span> <span class="nav-text">C语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从文件中读取密钥"><span class="nav-number">2.1.</span> <span class="nav-text">从文件中读取密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加密"><span class="nav-number">2.2.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解密"><span class="nav-number">2.3.</span> <span class="nav-text">解密</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xnightmare</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'eNqFvc4tiiJvb8Jg5HKsTU5J-gzGzoHsz',
+    appKey: 'CfdevVap1O7vKuKWJFDSrIjb',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

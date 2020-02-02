@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么是重定向？程序运行时，可以使用Shell执行的特殊标记重定向它的输入和输出。举例来说：将命令输出保存到日志文件中；从文件中读取命令输入；… 输出重定向原理分析我们可以通过strace来监控重定向的系统调用来了解其原理。如果直接执行命令strace ls &amp;gt; /dev/null 2&amp;gt;&amp;amp;1，实际上strace跟踪的是ls命令的系统调用，要实现strace跟踪重定向的系统调用，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell 输出&#x2F;输入重定向">
+<meta property="og:url" content="http://yoursite.com/2019/12/10/Linux/Shell-输出-输入重定向/index.html">
+<meta property="og:site_name" content="xnightmare&#39;s Blog">
+<meta property="og:description" content="什么是重定向？程序运行时，可以使用Shell执行的特殊标记重定向它的输入和输出。举例来说：将命令输出保存到日志文件中；从文件中读取命令输入；… 输出重定向原理分析我们可以通过strace来监控重定向的系统调用来了解其原理。如果直接执行命令strace ls &amp;gt; /dev/null 2&amp;gt;&amp;amp;1，实际上strace跟踪的是ls命令的系统调用，要实现strace跟踪重定向的系统调用，可">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="c:/Users/xnightmare/OneDrive/blog/source/images/074bee80-1b28-11ea-8b77-e9fe3ffa469e.png">
+<meta property="og:updated_time" content="2019-12-29T15:21:35.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell 输出&#x2F;输入重定向">
+<meta name="twitter:description" content="什么是重定向？程序运行时，可以使用Shell执行的特殊标记重定向它的输入和输出。举例来说：将命令输出保存到日志文件中；从文件中读取命令输入；… 输出重定向原理分析我们可以通过strace来监控重定向的系统调用来了解其原理。如果直接执行命令strace ls &amp;gt; /dev/null 2&amp;gt;&amp;amp;1，实际上strace跟踪的是ls命令的系统调用，要实现strace跟踪重定向的系统调用，可">
+<meta name="twitter:image" content="c:/Users/xnightmare/OneDrive/blog/source/images/074bee80-1b28-11ea-8b77-e9fe3ffa469e.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/10/Linux/Shell-输出-输入重定向/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Shell 输出/输入重定向 | xnightmare's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xnightmare's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/Linux/Shell-输出-输入重定向/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Shell 输出/输入重定向
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-12-10 14:48:38" itemprop="dateCreated datePublished" datetime="2019-12-10T14:48:38+08:00">2019-12-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-12-29 23:21:35" itemprop="dateModified" datetime="2019-12-29T23:21:35+08:00">2019-12-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Kommentare: </span>
+                <a href="/2019/12/10/Linux/Shell-输出-输入重定向/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/10/Linux/Shell-输出-输入重定向/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是重定向？"><a href="#什么是重定向？" class="headerlink" title="什么是重定向？"></a>什么是重定向？</h3><p>程序运行时，可以使用Shell执行的特殊标记重定向它的输入和输出。<br>举例来说：将命令输出保存到日志文件中；从文件中读取命令输入；…</p>
+<h3 id="输出重定向原理分析"><a href="#输出重定向原理分析" class="headerlink" title="输出重定向原理分析"></a>输出重定向原理分析</h3><p>我们可以通过strace来监控重定向的系统调用来了解其原理。<br>如果直接执行命令<code>strace ls &gt; /dev/null 2&gt;&amp;1</code>，实际上strace跟踪的是ls命令的系统调用，要实现strace跟踪重定向的系统调用，可以使用两个Shell，称为A和B，在A中执行重定向，B中执行strace命令跟踪A，具体操作如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># A中</span></span><br><span class="line"><span class="built_in">echo</span> $$ 		<span class="comment"># $$表示当前Shell的进程ID</span></span><br><span class="line"><span class="comment"># 切换到B</span></span><br><span class="line">strace -o <span class="built_in">log</span> -f -p PID 	<span class="comment"># -o：输出文件；-p：跟踪的进程ID；-f：跟踪指定进程通过fork、vfork、clone得到的子进程，因为ls是A的子进程</span></span><br><span class="line"><span class="comment"># 再切换回A</span></span><br><span class="line">ls &gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<p>输出重定向有3种形式，我们分别查看其系统调用：<br>设文件描述符m、n，文件名filename</p>
+<ol>
+<li>m&gt;filename（m可以为空，缺省为STDOUT_FILENO）</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 命令为：ls &gt; /dev/null</span><br><span class="line"><span class="number">52758</span> open(<span class="string">"/dev/null"</span>, O_WRONLY|O_CREAT|O_TRUNC, <span class="number">0666</span>) = <span class="number">3</span></span><br><span class="line"><span class="number">52758</span> dup2(<span class="number">3</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>m&gt;&gt;filename（m可以为空，缺省为STDOUT_FILENO）</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 命令为：ls &gt;&gt; /dev/null</span><br><span class="line"><span class="number">53457</span> open(<span class="string">"/dev/null"</span>, O_WRONLY|O_CREAT|O_APPEND, <span class="number">0666</span>) = <span class="number">3</span></span><br><span class="line"><span class="number">53457</span> dup2(<span class="number">3</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>m&gt;&amp;n（m可以为空，缺省为STDOUT_FILENO）</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 命令为：ls &gt;&amp;<span class="number">2</span></span><br><span class="line"><span class="number">54234</span> dup2(<span class="number">2</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>我们发现，<strong>输出重定向实质上是执行了系统调用dup2</strong>，dup2的执行过程是这样的：<br>int dup2(int fd, int fd2); // fd2为新的文件描述符的值<br>dup2执行结束后，fd2和fd共享同一个文件表项，内核数据结构如下图所示：<br><img src="C:\Users\xnightmare\OneDrive\blog\source\images\074bee80-1b28-11ea-8b77-e9fe3ffa469e.png" alt="dup2后的内核数据结构"></p>
+<p><strong>输入重定向的原理和输出重定向大致相同，只是方向相反。</strong></p>
+<h3 id="重定向符号的顺序对重定向结果的影响"><a href="#重定向符号的顺序对重定向结果的影响" class="headerlink" title="重定向符号的顺序对重定向结果的影响"></a>重定向符号的顺序对重定向结果的影响</h3><p>有多个重定向符号时，按照从左到右的顺序执行。一个经典的例子如下：</p>
+<p><strong>写法一：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>分析：第一步，标准输出指向/dev/null的文件表项；第二步，标准错误指向标准输出的文件表项，实际上也是指向了/dev/null的文件表项。<br>结果：将标准输出和标准错误都输出到/dev/null</p>
+<p><strong>写法二</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls <span class="number">2</span>&gt;&amp;<span class="number">1</span> &gt; /dev/null</span><br></pre></td></tr></table></figure>
+<p>分析：第一步，标准错误指向标准输出的文件表项；第二步，标准输出指向/dev/null的文件表项。<br>结果：标准错误指向了标准输出，标准输出指向/dev/null</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><a href="https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Redirections" target="_blank" rel="noopener">Bash Reference Manual——3.6 Redirections</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/10/Linux/wc命令/" rel="next" title="Linux命令-wc">
+                <i class="fa fa-chevron-left"></i> Linux命令-wc
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/14/Ubuntu安装Web环境/" rel="prev" title="Ubuntu安装Web环境">
+                Ubuntu安装Web环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xnightmare</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是重定向？"><span class="nav-number">1.</span> <span class="nav-text">什么是重定向？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出重定向原理分析"><span class="nav-number">2.</span> <span class="nav-text">输出重定向原理分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定向符号的顺序对重定向结果的影响"><span class="nav-number">3.</span> <span class="nav-text">重定向符号的顺序对重定向结果的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料："><span class="nav-number">4.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xnightmare</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'eNqFvc4tiiJvb8Jg5HKsTU5J-gzGzoHsz',
+    appKey: 'CfdevVap1O7vKuKWJFDSrIjb',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="mv命令用于为移动文件/目录和重命名文件/目录  定义：将路径分为path和filename（包含目录）两部分，包含path和filename的写法称为完整路径，而省略了filename的写法称为不完整路径，即：完整路径：path/filename不完整路径：path 在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动">
+<meta name="keywords" content="Linux命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mv命令">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/Linux/mv命令/index.html">
+<meta property="og:site_name" content="xnightmare&#39;s Blog">
+<meta property="og:description" content="mv命令用于为移动文件/目录和重命名文件/目录  定义：将路径分为path和filename（包含目录）两部分，包含path和filename的写法称为完整路径，而省略了filename的写法称为不完整路径，即：完整路径：path/filename不完整路径：path 在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-07-08T11:12:30.631Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mv命令">
+<meta name="twitter:description" content="mv命令用于为移动文件/目录和重命名文件/目录  定义：将路径分为path和filename（包含目录）两部分，包含path和filename的写法称为完整路径，而省略了filename的写法称为不完整路径，即：完整路径：path/filename不完整路径：path 在介绍这个命令的两种用法之前，首先强调三点理解： 目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。 移动">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/07/Linux/mv命令/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mv命令 | xnightmare's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xnightmare's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/Linux/mv命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mv命令
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-07-07 22:22:33" itemprop="dateCreated datePublished" datetime="2019-07-07T22:22:33+08:00">2019-07-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-07-08 19:12:30" itemprop="dateModified" datetime="2019-07-08T19:12:30+08:00">2019-07-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Kommentare: </span>
+                <a href="/2019/07/07/Linux/mv命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/07/Linux/mv命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>mv命令用于为移动文件/目录和重命名文件/目录</p>
+</blockquote>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>将路径分为<code>path</code>和<code>filename</code>（包含目录）两部分，包含<code>path</code>和<code>filename</code>的写法称为完整路径，而省略了<code>filename</code>的写法称为不完整路径，即：<br><strong>完整路径：</strong><code>path/filename</code><br><strong>不完整路径：</strong><code>path</code></p>
+<h3 id="在介绍这个命令的两种用法之前，首先强调三点理解："><a href="#在介绍这个命令的两种用法之前，首先强调三点理解：" class="headerlink" title="在介绍这个命令的两种用法之前，首先强调三点理解："></a>在介绍这个命令的两种用法之前，首先强调三点理解：</h3><ol>
+<li>目录本质上是特殊的文件，所以大部分时候处理方法和文件一致，无需特别区分。</li>
+<li>移动文件/目录和重命名文件/目录本质上都是改变文件的路径，无需特别区分。</li>
+<li>处理优先级：首先尽量认为target是完整路径，先尽量无冲突修改路径，然后考虑覆盖；上面两种情况都不可行的情况下认为target是不完整路径，构造新的完整路径，同样先尽量无冲突修改路径，然后考虑覆盖；如果上面的情况都不行，只能修改失败退出。</li>
+</ol>
+<h3 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Usage: mv <span class="built_in">source</span> target</span><br></pre></td></tr></table></figure>
+<h3 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h3><ol>
+<li>检查源路径是否存在，不存在报错并退出；</li>
+<li>首先认为目标路径是完整路径，首先检查<code>path</code>部分，如果该完整路径的<code>path</code>部分不存在，报错并退出；</li>
+<li>然后检查<code>filename</code>部分，如果不存在，直接修改路径，命令执行成功，如果存在，继续判断；<ol>
+<li>完整路径<code>path/filename</code>是文件，如果源路径是文件，则覆盖，如果是文件夹，则报错并退出。</li>
+<li>完整路径<code>path/filename</code>是目录，认为目标路径是不完整路径，即将原来的路径看作新的<code>path</code>，将源文件/目录名看作是<code>filename</code>，重新拼接成完整路径<code>path/filename</code>。新的完整路径如果不存在冲突，直接修改路径，命令执行成功；如果存在冲突，尝试覆盖，目录不能覆盖文件，文件不能覆盖目录，目录不能覆盖非空目录，文件可以覆盖文件。</li>
+</ol>
+</li>
+</ol>
+<h3 id="进阶用法："><a href="#进阶用法：" class="headerlink" title="进阶用法："></a>进阶用法：</h3><ol>
+<li>批量移动文件<ol>
+<li>正则表达式匹配 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv <span class="built_in">test</span>* ../<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="2">
+<li>选项</li>
+<li>是否可能导致文件丢失？</li>
+</ol>
+<ol>
+<li>如何区分移动文件和重命名</li>
+<li>如何区分移动文件和目录</li>
+<li>如何区分是否递归移动目录 可能默认就是递归的，不是递归的情况感觉怪怪的</li>
+<li>如果移动的文件正在读写，会出现什么情况。</li>
+<li>如果命令出错后果是什么，会导致文件丢失吗？ 文件名重复、路径不存在、mv命令是如何实现的呢</li>
+<li>想象自己就是计算机，需要判断上面的这些问题，我需要哪些信息呢？</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux命令/" rel="tag"># Linux命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/07/解决VMware虚拟机“安装VMware-Tools”选项卡为灰色的问题/" rel="next" title="解决VMware虚拟机“安装VMware Tools”选项卡为灰色的问题">
+                <i class="fa fa-chevron-left"></i> 解决VMware虚拟机“安装VMware Tools”选项卡为灰色的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/06/CVE-2018-15928-漏洞复现/" rel="prev" title="CVE-2018-15928 漏洞复现">
+                CVE-2018-15928 漏洞复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xnightmare</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义："><span class="nav-number">1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在介绍这个命令的两种用法之前，首先强调三点理解："><span class="nav-number">2.</span> <span class="nav-text">在介绍这个命令的两种用法之前，首先强调三点理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法："><span class="nav-number">3.</span> <span class="nav-text">基本用法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理："><span class="nav-number">4.</span> <span class="nav-text">工作原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶用法："><span class="nav-number">5.</span> <span class="nav-text">进阶用法：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xnightmare</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'eNqFvc4tiiJvb8Jg5HKsTU5J-gzGzoHsz',
+    appKey: 'CfdevVap1O7vKuKWJFDSrIjb',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

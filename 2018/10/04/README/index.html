@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="其实想要搭建这样一个博客很久了，觉得作为一个程序员，有一个自己域名的博客是一件非常酷的事情，但是因为各种各样的原因，一直拖着没有动手。10月2日是我的生日，那天突然想要发一些分享，但是又不想在QQ空间或者朋友圈发，所以就想要买一个域名，祝自己生日快乐！  下面简单记录我搭建这个博客的过程 0x00 搭建步骤： 创建自己的github pages 在本地用hexo搭建博客 将本地的hexo博客发布">
+<meta name="keywords" content="随笔,hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么我要搭建这个博客+搭建这个博客的过程">
+<meta property="og:url" content="http://yoursite.com/2018/10/04/README/index.html">
+<meta property="og:site_name" content="xnightmare&#39;s Blog">
+<meta property="og:description" content="其实想要搭建这样一个博客很久了，觉得作为一个程序员，有一个自己域名的博客是一件非常酷的事情，但是因为各种各样的原因，一直拖着没有动手。10月2日是我的生日，那天突然想要发一些分享，但是又不想在QQ空间或者朋友圈发，所以就想要买一个域名，祝自己生日快乐！  下面简单记录我搭建这个博客的过程 0x00 搭建步骤： 创建自己的github pages 在本地用hexo搭建博客 将本地的hexo博客发布">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810041956_872.png">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810042006_488.png">
+<meta property="og:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810042011_280.png">
+<meta property="og:updated_time" content="2019-05-12T03:58:55.503Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为什么我要搭建这个博客+搭建这个博客的过程">
+<meta name="twitter:description" content="其实想要搭建这样一个博客很久了，觉得作为一个程序员，有一个自己域名的博客是一件非常酷的事情，但是因为各种各样的原因，一直拖着没有动手。10月2日是我的生日，那天突然想要发一些分享，但是又不想在QQ空间或者朋友圈发，所以就想要买一个域名，祝自己生日快乐！  下面简单记录我搭建这个博客的过程 0x00 搭建步骤： 创建自己的github pages 在本地用hexo搭建博客 将本地的hexo博客发布">
+<meta name="twitter:image" content="http://pdt2ibwo5.bkt.clouddn.com/201810041956_872.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/04/README/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>为什么我要搭建这个博客+搭建这个博客的过程 | xnightmare's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xnightmare's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/README/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xnightmare">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xnightmare's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">为什么我要搭建这个博客+搭建这个博客的过程
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2018-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-04T00:00:00+08:00">2018-10-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-05-12 11:58:55" itemprop="dateModified" datetime="2019-05-12T11:58:55+08:00">2019-05-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔-日记/" itemprop="url" rel="index"><span itemprop="name">随笔&日记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Kommentare: </span>
+                <a href="/2018/10/04/README/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/04/README/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>其实想要搭建这样一个博客很久了，觉得作为一个程序员，有一个自己域名的博客是一件非常酷的事情，但是因为各种各样的原因，一直拖着没有动手。10月2日是我的生日，那天突然想要发一些分享，但是又不想在QQ空间或者朋友圈发，所以就想要买一个域名，祝自己生日快乐！</p>
+</blockquote>
+<p>下面简单记录我搭建这个博客的过程</p>
+<h2 id="0x00-搭建步骤："><a href="#0x00-搭建步骤：" class="headerlink" title="0x00 搭建步骤："></a>0x00 搭建步骤：</h2><ul>
+<li>创建自己的<code>github pages</code></li>
+<li>在本地用<code>hexo</code>搭建博客</li>
+<li>将本地的<code>hexo</code>博客发布到自己的<code>github pages</code>上</li>
+<li>用github学生优惠包在<code>namecheap</code>上获得<code>.me</code>的免费域名</li>
+<li>设置<code>DNS解析</code></li>
+<li>设置<code>github pages</code>的<code>CNAME</code>文件</li>
+</ul>
+<h2 id="0x01-创建自己的github-pages"><a href="#0x01-创建自己的github-pages" class="headerlink" title="0x01 创建自己的github pages"></a>0x01 创建自己的<code>github pages</code></h2><p>我的理解，github pages其实就是一个特殊的repository，就像create一个普通的repository一样来创建它，<strong>唯一不同的在于：这个repository的名字是固定的（user_name.github.io）</strong></p>
+<p>创建这个了这个repository之后，就可以通过域名<code>user_name.github.io</code>来访问自己的github pages，其中，刚刚创建的名为user_name.github.io的repository为主页，而其他的页面则是子页面</p>
+<h2 id="0x02-在本地用hexo搭建博客"><a href="#0x02-在本地用hexo搭建博客" class="headerlink" title="0x02 在本地用hexo搭建博客"></a>0x02 在本地用<code>hexo</code>搭建博客</h2><p>分享一篇教程：<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">知乎专栏：GitHub+Hexo 搭建个人网站详细教程</a></p>
+<p>首先需要进行配置环境（Node.js + git）：</p>
+<ol>
+<li>Hexo基于Node.js，安装过程：从<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">官方网站</a>下载对应的版本并安装，安装完成后可以通过<code>Node.js command prompt</code>打开命令行界面，输入命令<code>node -v</code>来判断是否安装成功，因为Node.js还包含了环境变量和npm的安装，所以还需要用命令<code>npm -v</code>来判断npm是否安装成功。</li>
+<li>安装git的过程：到官网下载安装，配置用户名和密码，然后生成密钥文件，在github上配置ssh公钥，最后可以在<code>git bash</code>中输入命令<code>ssh git@github.com</code>来检测是否配置完成。</li>
+</ol>
+<p>完成了上面两步，安装Hexo的环境就已经全部搭建完成了。<br>下面开始安装Hexo：</p>
+<pre><code>npm install -g hexo-cli
+</code></pre><p>安装完成后，生成blog文件：</p>
+<pre><code>hexo init blog
+</code></pre><p>可以在本地先检测网站的雏形，输入命令：</p>
+<pre><code>hexo g 
+hexo s
+</code></pre><p>第一句命令的意思是通过source文件夹中的文件生成网页，第二句是启动服务器，我们就可以在浏览器地址栏输入<code>localhost:4000</code>来访问我们的博客。</p>
+<h2 id="0x03-将本地的hexo博客发布到自己的github-pages上"><a href="#0x03-将本地的hexo博客发布到自己的github-pages上" class="headerlink" title="0x03  将本地的hexo博客发布到自己的github pages上"></a>0x03  将本地的<code>hexo</code>博客发布到自己的<code>github pages</code>上</h2><p>首先需要配置文件：<br>编辑blog根目录下的<code>_config.yml</code>文件，将最后的deploy修改为如图所示（用户名注意改成自己的）：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810041956_872.png" alt=""></p>
+<p>接下来使用命令：</p>
+<pre><code>hexo clean
+hexo g
+hexo d
+</code></pre><p>就把博客推送到<code>github pages</code>上了。</p>
+<h2 id="0x04-用github学生优惠包在namecheap上获得-me的免费域名"><a href="#0x04-用github学生优惠包在namecheap上获得-me的免费域名" class="headerlink" title="0x04 用github学生优惠包在namecheap上获得.me的免费域名"></a>0x04 用github学生优惠包在<code>namecheap</code>上获得<code>.me</code>的免费域名</h2><p>这个就不详细写了，给一个地址：<a href="https://education.github.com/students" target="_blank" rel="noopener">https://education.github.com/students</a></p>
+<h2 id="0x05-设置DNS解析"><a href="#0x05-设置DNS解析" class="headerlink" title="0x05 设置DNS解析"></a>0x05 设置<code>DNS解析</code></h2><p>这一步的设置的目的是，当我们在地址栏中输入个人域名并按下回车的时候，域名解析系统能够找到我们的<code>github pages</code>页面。</p>
+<p>在namecheap注册域名时，有一步可以选择github pages，我不太清楚那个是什么东西，但是后面发现自己的域名就可以解析了，猜测是自动和github pages绑定了吧<br>本来这样多省事，但是我这个人偏偏有强迫症，莫名其妙来的，我也不知道到底是怎么回事，总是感觉很不爽，于是两天时间断断续续，不断尝试，总算找到了怎么配置：</p>
+<p>namecheap自己提供了DNS解析服务，可以在如下图所示的界面中设置：<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810042006_488.png" alt=""></p>
+<p>参考：<a href="https://www.namecheap.com/support/knowledgebase/article.aspx/9645/2208/how-do-i-link-my-domain-to-github-pages" target="_blank" rel="noopener">How do I link my domain to GitHub Pages</a></p>
+<h2 id="0x06-设置github-pages的CNAME文件"><a href="#0x06-设置github-pages的CNAME文件" class="headerlink" title="0x06 设置github pages的CNAME文件"></a>0x06 设置<code>github pages</code>的<code>CNAME</code>文件</h2><p>先说设置的方法，我知道的有两种：</p>
+<ol>
+<li>手动在user_name.github.io这个repository中创建一个名为CNAME的新文件，里面第一行写入你的域名</li>
+<li>在user_name.github.io的settings中设置<br><img src="http://pdt2ibwo5.bkt.clouddn.com/201810042011_280.png" alt=""></li>
+</ol>
+<p>我对CNAME这个文件的理解，它的作用有两个：1. 允许我们的域名绑定到github pages上；2. 将user_name.github.io这个域名重定向到我们的域名上</p>
+<p>但是如果只是手动修改的话，每次推送博客之后，CNAME文件就会被覆盖，解决办法是将CNAME文件写入/blog/source/中，这样每次推送也会保留了（README.md文件也是同理）</p>
+<p><strong>完成了上面的步骤，就可以通过自己域名访问自己的博客了，虽然很粗糙，但是成就感满满呢！</strong></p>
+<h2 id="0x07-注意事项"><a href="#0x07-注意事项" class="headerlink" title="0x07 注意事项"></a>0x07 注意事项</h2><ol>
+<li>在设置DNS解析的时候，总是存在一定的延迟，我又没有找到判断刚刚的修改是否生效的方法，所以出现了各种奇奇怪怪的问题，走了很多弯路</li>
+<li>浏览器的缓存可能会影响我们的修改，如果出现了无法理解的现象，可以尝试换个设备，换个浏览器试试，还有一个后来才想到的方法，也许可以利用浏览器的无痕模式</li>
+<li>在0x02中，因为这个过程是事后写的，不太确定安装<code>git</code>是否一定需要在安装<code>Node.js</code>之前</li>
+</ol>
+<h2 id="0x08-参考"><a href="#0x08-参考" class="headerlink" title="0x08 参考"></a>0x08 参考</h2><ul>
+<li><a href="http://ryane.top/2018/01/10/2018%EF%BC%8C%E4%BD%A0%E8%AF%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BA%86%EF%BC%81/" target="_blank" rel="noopener">2018，你该搭建自己的博客了！</a>  </li>
+<li><a href="https://www.jianshu.com/p/4ba39737969a" target="_blank" rel="noopener">域名解析后主机记录和记录值怎么填写？都是什么意思？</a>  </li>
+<li><a href="https://zhuanlan.zhihu.com/p/33261777" target="_blank" rel="noopener">NameCheap域名解析教程 —— BasicDNS</a></li>
+</ul>
+<h2 id="0x09-hexo-client"><a href="#0x09-hexo-client" class="headerlink" title="0x09 hexo-client"></a>0x09 hexo-client</h2><p>新鲜劲慢慢过去后，开始嫌弃手动管理私人博客的麻烦，但是又不愿意放弃自己定制博客的自由和炫酷，最后找到了一个hexo客户端，能够帮助我更加轻松地管理博客。</p>
+<p>我先尝试一段时间，如果感觉好用的话，我会回来加上教程的。<br><a href="https://electronjs.org/apps/hexo-client" target="_blank" rel="noopener">HexoClient</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/随笔/" rel="tag"># 随笔</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/15/hexo资源文件夹功能/" rel="prev" title="hexo资源文件夹功能">
+                hexo资源文件夹功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xnightmare</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-搭建步骤："><span class="nav-number">1.</span> <span class="nav-text">0x00 搭建步骤：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-创建自己的github-pages"><span class="nav-number">2.</span> <span class="nav-text">0x01 创建自己的github pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-在本地用hexo搭建博客"><span class="nav-number">3.</span> <span class="nav-text">0x02 在本地用hexo搭建博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-将本地的hexo博客发布到自己的github-pages上"><span class="nav-number">4.</span> <span class="nav-text">0x03  将本地的hexo博客发布到自己的github pages上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-用github学生优惠包在namecheap上获得-me的免费域名"><span class="nav-number">5.</span> <span class="nav-text">0x04 用github学生优惠包在namecheap上获得.me的免费域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-设置DNS解析"><span class="nav-number">6.</span> <span class="nav-text">0x05 设置DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-设置github-pages的CNAME文件"><span class="nav-number">7.</span> <span class="nav-text">0x06 设置github pages的CNAME文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-注意事项"><span class="nav-number">8.</span> <span class="nav-text">0x07 注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-参考"><span class="nav-number">9.</span> <span class="nav-text">0x08 参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x09-hexo-client"><span class="nav-number">10.</span> <span class="nav-text">0x09 hexo-client</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xnightmare</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'eNqFvc4tiiJvb8Jg5HKsTU5J-gzGzoHsz',
+    appKey: 'CfdevVap1O7vKuKWJFDSrIjb',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
