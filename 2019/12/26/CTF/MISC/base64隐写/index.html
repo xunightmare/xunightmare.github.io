@@ -15,16 +15,17 @@
 <meta property="og:site_name" content="xnightmare&#39;s Blog">
 <meta property="og:description" content="Base64编码的原理Base64时一种基于64个可打印字符表示二进制数据的表示方法，其一大特点是能够将不可打印字符编码为可打印字符。 Base64使用的64个可打印字符及其索引如下表：  简单来说，就是A-Za-z0-9+&#x2F;这64个可打印字符。 编码时，将要编码的内容转换为二进制数据，每6位作为一组，从表中找到对应的字符。因为ASCII编码8位表示一个字符，3个ASCII刚好可以编码成4个字符（">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://yoursite.com/images/2019/12/26/1abac7c0-278a-11ea-97c9-0b30b4425fa2.png">
-<meta property="og:image" content="http://yoursite.com/images/2019/12/26/52c32290-2792-11ea-97c9-0b30b4425fa2.png">
-<meta property="og:image" content="http://yoursite.com/images/2019/12/26/2aa8cc90-2794-11ea-9805-e16b370af4b8.png">
-<meta property="og:image" content="http://yoursite.com/images/2019/12/26/c39c2f10-2793-11ea-9805-e16b370af4b8.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/images/2019/12/26/1abac7c0-278a-11ea-97c9-0b30b4425fa2.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/images/2019/12/26/52c32290-2792-11ea-97c9-0b30b4425fa2.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/images/2019/12/26/2aa8cc90-2794-11ea-9805-e16b370af4b8.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/images/2019/12/26/c39c2f10-2793-11ea-9805-e16b370af4b8.png">
 <meta property="article:published_time" content="2019-12-26T02:34:31.000Z">
-<meta property="article:modified_time" content="2019-12-26T04:29:57.006Z">
+<meta property="article:modified_time" content="2020-02-02T12:17:13.881Z">
 <meta property="article:author" content="xnightmare">
 <meta property="article:tag" content="隐写">
+<meta property="article:tag" content="Base64">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/2019/12/26/1abac7c0-278a-11ea-97c9-0b30b4425fa2.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/images/2019/12/26/1abac7c0-278a-11ea-97c9-0b30b4425fa2.png">
   
     <link rel="alternative" href="/atom.xml" title="xnightmare&#39;s Blog" type="application/atom+xml">
   
@@ -53,7 +54,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/images/goku.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">xnightmare</a></h1>
@@ -63,10 +64,6 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
-	        
-				<li><a href="/categories">分类</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -101,17 +98,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/images/goku.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">xnightmare</h1>
 			</hgroup>
 			
 			
-			
-				
-			
-				
 			
 			
 			
@@ -125,10 +118,6 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/categories">分类</a></li>
-		        
 				</ul>
 			</nav>
 		</header>				
@@ -164,12 +153,12 @@
       
         <h3 id="Base64编码的原理"><a href="#Base64编码的原理" class="headerlink" title="Base64编码的原理"></a>Base64编码的原理</h3><p>Base64时一种基于64个可打印字符表示二进制数据的表示方法，其一大特点是能够将不可打印字符编码为可打印字符。</p>
 <p><strong>Base64使用的64个可打印字符及其索引</strong>如下表：</p>
-<p><img src="/images/2019/12/26/1abac7c0-278a-11ea-97c9-0b30b4425fa2.png" alt="image.png"></p>
+<p><img src="../../../images/2019/12/26/1abac7c0-278a-11ea-97c9-0b30b4425fa2.png" alt=""></p>
 <p>简单来说，就是A-Za-z0-9+/这64个可打印字符。</p>
-<p>编码时，将要编码的内容转换为二进制数据，每6位作为一组，从表中找到对应的字符。因为ASCII编码8位表示一个字符，3个ASCII刚好可以编码成4个字符（3<em>8=4</em>6），因此一般以3个ASCII字符为一个编码的基本单位：<br><img src="/images/2019/12/26/52c32290-2792-11ea-97c9-0b30b4425fa2.png" alt="image.png"></p>
+<p>编码时，将要编码的内容转换为二进制数据，每6位作为一组，从表中找到对应的字符。因为ASCII编码8位表示一个字符，3个ASCII刚好可以编码成4个字符（3<em>8=4</em>6），因此一般以3个ASCII字符为一个编码的基本单位：<br><img src="../../../images/2019/12/26/52c32290-2792-11ea-97c9-0b30b4425fa2.png" alt="image.png"></p>
 <p>但需要编码的文本字节数并不总是3的倍数，不可避免会遇见<strong>最后只剩下2个或1个字符的情况，需要特殊处理</strong>：</p>
-<p>%3=2的情况：<br><img src="/images/2019/12/26/2aa8cc90-2794-11ea-9805-e16b370af4b8.png" alt="image.png"></p>
-<p>%3=1的情况：<br><img src="/images/2019/12/26/c39c2f10-2793-11ea-9805-e16b370af4b8.png" alt="image.png"></p>
+<p>%3=2的情况：<br><img src="../../../images/2019/12/26/2aa8cc90-2794-11ea-9805-e16b370af4b8.png" alt="image.png"></p>
+<p>%3=1的情况：<br><img src="../../../images/2019/12/26/c39c2f10-2793-11ea-9805-e16b370af4b8.png" alt="image.png"></p>
 <h3 id="Base64隐写的原理"><a href="#Base64隐写的原理" class="headerlink" title="Base64隐写的原理"></a>Base64隐写的原理</h3><p>从Base64编码的原理我们很自然推出Base解码的过程：</p>
 <ol>
 <li>丢掉末尾的所有‘=’；</li>
@@ -184,27 +173,6 @@
       
 
       
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
     </div>
     <div class="article-info article-info-index">
       
@@ -215,6 +183,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">隐写</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Base64</a>
         		</li>
       		
 		</ul>
@@ -236,57 +208,6 @@
       
 
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/26/CTF/MISC/base64%E9%9A%90%E5%86%99/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
       <div class="clearfix"></div>
     </div>
   </div>
@@ -295,7 +216,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/26/TCPIP/Kerberos%E5%8D%8F%E8%AE%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/12/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Kerberos%E5%8D%8F%E8%AE%AE/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -441,35 +362,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">VMware</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vmware</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,15 +378,71 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">The C Language</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">机试</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vmware</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">隐写</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OpenSSL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CLion</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">红色警戒</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Bash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">汇编语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Base64</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ZIP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ARCHPR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">明文攻击</a>
               </li>
             
             <div class="clearfix"></div>

@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/images/goku.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">xnightmare</a></h1>
@@ -53,10 +53,6 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
-	        
-				<li><a href="/categories">分类</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -91,17 +87,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/images/goku.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">xnightmare</h1>
 			</hgroup>
 			
 			
-			
-				
-			
-				
 			
 			
 			
@@ -115,10 +107,6 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/categories">分类</a></li>
-		        
 				</ul>
 			</nav>
 		</header>				
@@ -199,6 +187,106 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/01/%E5%B7%A5%E5%85%B7/VMware-15-%E5%AE%89%E8%A3%85-macOS-10-14-%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux/Linux编译生成并使用共享库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/02/Linux/Linux%E7%BC%96%E8%AF%91%E7%94%9F%E6%88%90%E5%B9%B6%E4%BD%BF%E7%94%A8%E5%85%B1%E4%BA%AB%E5%BA%93/">Linux编译并使用共享库</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/02/Linux/Linux%E7%BC%96%E8%AF%91%E7%94%9F%E6%88%90%E5%B9%B6%E4%BD%BF%E7%94%A8%E5%85%B1%E4%BA%AB%E5%BA%93/" class="archive-article-date">
+  	<time datetime="2020-02-02T14:22:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux编译生成并使用共享库"><a href="#Linux编译生成并使用共享库" class="headerlink" title="Linux编译生成并使用共享库"></a>Linux编译生成并使用共享库</h2><p>共享库实际上就是将一些函数编译成可执行文件，以供其他程序调用。</p>
+<h3 id="生成共享库"><a href="#生成共享库" class="headerlink" title="生成共享库"></a>生成共享库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC -I ../../include -o libclient.so client.c hardware_id.c opts.c rsa_client.c</span><br><span class="line"><span class="comment"># -shared 告诉gcc输出共享库</span></span><br><span class="line"><span class="comment"># -fPIC 告诉GCC产生的代码不要包含对函数和变量具体内存位置的引用，这是因为现在还无法知道使用该消息代码的应用程序会将它连接到哪一段内存地址空间。这样编译出的.o文件可以被用于建立共享链接库</span></span><br><span class="line"><span class="comment"># 每个共享函数库都有个特殊的名字，称作“soname”。soname名字命名必须以“lib”作为前缀，然后是函数库的名字，然后是“.so”，最后是版本号信息。不过有个特例，就是非常底层的C库函数都不是以lib开头这样命名的。</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用共享库"><a href="#使用共享库" class="headerlink" title="使用共享库"></a>使用共享库</h3><ol>
+<li><p>编写代码时，在头文件中给出函数的声明。</p>
+</li>
+<li><p>编译选项中要给出包含对应函数实现的共享库。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c -o <span class="built_in">test</span> -L. -lclient -lssl</span><br><span class="line"><span class="comment"># -L . 表示共享库文件可能在当前工作目录下</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行时要保证在lib路径下能够找到共享库。</p>
+<p> 临时的方法：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH &#x3D; $(pwd)</span><br></pre></td></tr></table></figure>
+<p> 永久有效的方法：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">链接 或 复制到共享库目录下</span><br></pre></td></tr></table></figure>
+<p> Tips：可以使用命令<code>ldd ./exectuable</code>来查看可执行文件依赖的共享库。</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编译</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/02/Linux/Linux%E7%BC%96%E8%AF%91%E7%94%9F%E6%88%90%E5%B9%B6%E4%BD%BF%E7%94%A8%E5%85%B1%E4%BA%AB%E5%BA%93/">展开全文 >></a>
         </p>
       
 
@@ -362,6 +450,186 @@
 
 
   
+    <article id="post-计算机网络/hosts文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/hosts%E6%96%87%E4%BB%B6/">hosts文件</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/hosts%E6%96%87%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2020-02-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>域名解析文件，内容是域名和IP的映射表。</p>
+<p>在互联网上，使用IP标识每台机器的身份，但是IP地址不适合人类记忆，所以人们发明了域名（一串有意义的字符串），但这样又引入了将域名翻译成对应IP的问题。</p>
+<p>早期网络规模比较小，通过hosts文件将域名和IP地址对应起来。后来网络规模不断扩大，hosts文件的维护变得非常困难，于是又发明了DNS服务，hosts文件则成为了一个备用的域名解析手段。</p>
+<p>现在hosts文件仍然有其作用：</p>
+<ol>
+<li>强制将域名指向某IP：<ol>
+<li>指向错误的IP，过滤广告网站，节省流量；阻止软件在线验证版权；拦截网站的恶意请求；<ol start="2">
+<li>指向正确的IP</li>
+<li>减少对DNS服务器的访问</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机网络//" class="article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/hosts%E6%96%87%E4%BB%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-计算机组成原理及体系结构/机器语言、汇编语言和高级语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80%E3%80%81%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%92%8C%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/">机器语言、汇编语言和高级语言</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80%E3%80%81%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%92%8C%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/" class="archive-article-date">
+  	<time datetime="2020-02-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>计算机是通过一系列高低电平驱动电子器件运算的，我们用一系列二进制数字来表示高低电平，这些二进制数字就称为<strong>机器语言</strong>。</p>
+<p>一个最简单的程序如输出字符串都需要上百个二进制数字表示，显然，使用机器语言编写程序是非常繁琐的，并且难以辨析和记忆，于是人们又发明了<strong>汇编语言</strong>。</p>
+<p>汇编语言实际上可以认为是机器语言的一种表示方法——将二进制数字翻译成人类方便理解的字符串，方便人们编程。</p>
+<p>但是汇编语言仍然存在一些问题：</p>
+<ol>
+<li>程序可移植性差，因为不同型号的cpu支持的汇编语法是不同的。</li>
+<li>需要自己处理硬件问题：比如寄存器、栈、堆等。</li>
+</ol>
+<p>因此，人们又发明了<strong>高级语言</strong>，屏蔽了硬件细节，使编程人员能够集中精力处理程序逻辑方面的问题而不需要考虑硬件细节。时至今日，世界上有超过1000种编程语言（<a href="https://hellogithub.com/report/tiobe/" target="_blank" rel="noopener">TIOBE 编程语言排行榜</a>中列出了活跃度最高的50种语言）。一方面，随着时代的发展，一些语言慢慢被淘汰，一些具备新特性的语言不断出现；另一方面，不同的领域需求不同，适用的语言也不同。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机组成原理与体系结构//" class="article-tag-list-link color3">计算机组成原理与体系结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80%E3%80%81%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%92%8C%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-算法/Dijkstra算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -375,7 +643,7 @@
 
         
         <a href="/2020/02/02/%E7%AE%97%E6%B3%95/Dijkstra%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-02-02T05:14:21.041Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
+  	<time datetime="2020-02-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
 </a>
         
       </header>
@@ -413,6 +681,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -446,112 +725,23 @@
 
 
   
-    <article id="post-TCPIP/路由器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-计算机网络/Proxy和VPN的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>路由器是一种连接两个或两个以上网络的设备，好处是能够连接不同种类的网络，提供路由和转发两种功能。</p>
-<h3 id="路由器和交换机的区别"><a href="#路由器和交换机的区别" class="headerlink" title="路由器和交换机的区别"></a>路由器和交换机的区别</h3><ol>
-<li>概念上有所重叠也有所不同：交换机泛指在任何网络层次的数据中继设备（尽管多指网桥），而路由器更专注于网络层</li>
-<li>工作的OSI层次不同：路由器在三层，交换机在二层（记录mac信息，将数据发送给指定的电脑）。集线器是第一层的产品：将数据包发送给所有的电脑</li>
-</ol>
-<h3 id="路由器表项含义解释"><a href="#路由器表项含义解释" class="headerlink" title="路由器表项含义解释"></a>路由器表项含义解释</h3><p><strong>type：</strong><br>C：connected，表示直接与路由器相连的网络<br>S：static，静态路由信息，通过ip route之类的命令配置<br>L：local，表示本地路由，即此设备上的网络</p>
-<p><strong>mertic：</strong></p>
-<p>开销度量</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/TCPIP/%E8%B7%AF%E7%94%B1%E5%99%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+      <header class="article-header">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-TCPIP/常用名词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>CLI: command-line interface</p>
-<p>PUD: protocol data unit</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/TCPIP/%E5%B8%B8%E7%94%A8%E5%90%8D%E8%AF%8D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Proxy%E5%92%8CVPN%E7%9A%84%E5%8C%BA%E5%88%AB/">hosts文件</a>
+    </h1>
   
-    <article id="post-TCPIP/Proxy和VPN的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+
+        
+        <a href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Proxy%E5%92%8CVPN%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-02-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -593,10 +783,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机网络//" class="article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/TCPIP/Proxy%E5%92%8CVPN%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Proxy%E5%92%8CVPN%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 
@@ -626,32 +827,35 @@
 
 
   
-    <article id="post-TCPIP/ping的过程分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-密码学/OpenSSL RSA基本操作（命令行和C语言）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/02/%E5%AF%86%E7%A0%81%E5%AD%A6/OpenSSL%20RSA%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%88%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8CC%E8%AF%AD%E8%A8%80%EF%BC%89/">OpenSSL RSA基本操作（命令行和C语言）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/02/%E5%AF%86%E7%A0%81%E5%AD%A6/OpenSSL%20RSA%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%88%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8CC%E8%AF%AD%E8%A8%80%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-02-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>网络拓扑 路由信息 连接的网口</p>
-<p>为什么在这种情况下能够ping通，为什么现实情况无法ping通内网中的数据。</p>
-<p>PC0：</p>
-<p>目的IP是不是同一子网，</p>
-<p>ARP：</p>
-<p>子网中的通信：</p>
-<ol>
-<li>判断是否为同一子网，是则发给对应的mac地址（如果ARP表中没有则先通过ARP请求查找）</li>
-</ol>
-<p>最开始的时候PC之间应该是通过mac地址通信的，比如说一个子网内，我要发送数据给某个PC，只要将目的mac地址置为该PC的mac地址，然后广播出去，收到数据包的主机检查目的mac地址和自己的mac地址是否匹配，如果匹配，就接收数据，否则就转发给除接收到该数据包的端口外的所有端口。</p>
-<p>当网络规模较大时，会出现一些问题：</p>
-<ol>
-<li>大规模转发数据包会造成大量无效流量。</li>
-<li>用户如何知道对应的mac地址。</li>
-</ol>
-<p>想象将中国按分割成一个个面积为一平方千米的小方块，每个方块有一个唯一的编号，编号和该方块所处的位置没有关联，这时候要将一个消息从m方块传递到n方块。</p>
-<p>很显然，在问题规模很大，并且毫无规律的情况下，想要将数据准确发送到目标地址是非常困难的。</p>
-<p>为什么要有IP地址：</p>
-<p>如果用mac地址通信，</p>
-<p>mac地址到IP，就像是电话本一样，如果电话本中的数据是杂乱无章的，那么要查找一个电话会非常困难，但是如果将电话记录进行排序，那么查找起来就会方便得多，也就是说，有序可以提高查找的效率。</p>
-<p>如果其中一个过程无法完成，就会丢弃该包，等待回应的数据包超时后也会被丢弃。</p>
+        <h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><h3 id="密钥对生成"><a href="#密钥对生成" class="headerlink" title="密钥对生成"></a>密钥对生成</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out pri.key 2048</span><br><span class="line">openssl rsa -<span class="keyword">in</span> pri.key -pubout &gt; pub.key</span><br></pre></td></tr></table></figure>
+<h3 id="公钥加密、私钥解密"><a href="#公钥加密、私钥解密" class="headerlink" title="公钥加密、私钥解密"></a>公钥加密、私钥解密</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -encrypt -<span class="keyword">in</span> hello -inkey test_pub.key -pubin -out hello.en </span><br><span class="line"><span class="comment"># -in指定要加密的文件，-inkey指定密钥，-pubin表明是用纯公钥文件加密，-out为加密后的文件。</span></span><br><span class="line">openssl rsautl -decrypt -<span class="keyword">in</span> hello.en -inkey test.key -out hello.de</span><br><span class="line"><span class="comment"># -in指定被加密的文件，-inkey指定私钥文件，-out为解密后的文件</span></span><br></pre></td></tr></table></figure>
+<h3 id="私钥签名、公钥验证"><a href="#私钥签名、公钥验证" class="headerlink" title="私钥签名、公钥验证"></a>私钥签名、公钥验证</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -sign -<span class="keyword">in</span> plain.txt -inkey RSA.pem -passin pass:123456 -out sign.txt</span><br><span class="line">openssl rsautl -verify -<span class="keyword">in</span> sign.txt -inkey RSA.pem -passin pass:123456 -out replain.txt</span><br><span class="line"><span class="comment"># 实际上使用私钥加密、公钥解密</span></span><br></pre></td></tr></table></figure>
+<h2 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h2><h3 id="从文件中读取密钥"><a href="#从文件中读取密钥" class="headerlink" title="从文件中读取密钥"></a>从文件中读取密钥</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从文件中读取公钥</span></span><br><span class="line"><span class="function">RSA * <span class="title">get_pubkey_from_file</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *key)</span></span>&#123;</span><br><span class="line">    RSA *p_rsa;</span><br><span class="line">    FILE *fp_key;</span><br><span class="line">    fp_key = fopen(key, <span class="string">"rb"</span>);</span><br><span class="line">    p_rsa = PEM_read_RSA_PUBKEY(fp_key, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p_rsa;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 从文件中读取私钥</span></span><br><span class="line"><span class="function">RSA * <span class="title">get_prikey_from_file</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *key)</span></span>&#123;</span><br><span class="line">    RSA *p_rsa;</span><br><span class="line">    FILE *fp_key;</span><br><span class="line">    fp_key = fopen(key, <span class="string">"rb"</span>);</span><br><span class="line">    p_rsa = PEM_read_RSAPrivateKey(fp_key, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> p_rsa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><p>RSA加密需要进行分组加密，分组的长度与密钥长度有关，比如当密钥长度为2048 bit时，分组的长度就为256 bytes（输入为256字节，输出也为256字节，因此密文长度一定为256字节的倍数）。</p>
+<p>加密的时候还要考虑到padding的影响，不同padding方式实际每组能够加密的长度不同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">private_key_encrypt</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *data, <span class="keyword">int</span> data_len, RSA * key, FILE * fp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rsa_len = RSA_size(key);</span><br><span class="line">    <span class="keyword">char</span> *buf = <span class="built_in">malloc</span>(rsa_len + <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, rsa_len+<span class="number">1</span>);</span><br><span class="line">    RSA_private_encrypt(data_len, data, buf, key, RSA_PKCS1_PADDING);</span><br><span class="line">    fwrite(buf, <span class="number">1</span>, rsa_len, fp);</span><br><span class="line">    <span class="built_in">free</span>(buf);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 私钥加密的核心代码，公钥加密的逻辑是相同的，仅仅是调用的加密函数不同（RSA_private_encrypt换成RSA_public_encrypt）</span></span><br><span class="line">RSA * p_rsa = get_prikey_from_file(key);</span><br><span class="line"><span class="keyword">int</span> rsa_len = RSA_size(p_rsa);</span><br><span class="line"><span class="keyword">int</span> len = <span class="built_in">strlen</span>(plain);</span><br><span class="line"><span class="keyword">int</span> data_len = rsa_len - <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> num = len / data_len;</span><br><span class="line">FILE * fp_out = fopen(outfile, <span class="string">"w"</span>);</span><br><span class="line"><span class="keyword">char</span> * off_plain = plain;</span><br><span class="line"><span class="keyword">while</span>(num--)&#123;</span><br><span class="line">    private_key_encrypt(off_plain, data_len, p_rsa, fp_out);</span><br><span class="line">    off_plain += data_len;</span><br><span class="line">&#125;</span><br><span class="line">private_key_encrypt(off_plain, len%data_len, p_rsa, fp_out);</span><br><span class="line">fclose(fp_out);</span><br></pre></td></tr></table></figure>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h3><p>上面已经提到过，当密钥长度为2048 bit时，密文的长度一定为256字节的倍数。因此，解密时只要以256字节为单位，依次解密，然后将结果拼起来就可以了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 私钥解密的核心代码，公钥解密的逻辑是相同的，仅仅是调用的加密函数不同（RSA_private_decrypt换成RSA_public_decrypt）</span></span><br><span class="line">RSA * p_rsa;</span><br><span class="line">p_rsa = get_prikey_from_file(key);</span><br><span class="line"><span class="keyword">int</span> rsa_len = RSA_size(p_rsa);</span><br><span class="line"><span class="keyword">int</span> num = len / rsa_len;</span><br><span class="line"><span class="keyword">char</span> * off_en = en;</span><br><span class="line"><span class="keyword">char</span> buf[rsa_len + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">while</span>(num--)&#123;</span><br><span class="line">	<span class="built_in">memset</span>(buf, <span class="number">0</span>, rsa_len+<span class="number">1</span>);</span><br><span class="line">    RSA_private_decrypt(rsa_len, off_en, buf, p_rsa, RSA_PKCS1_PADDING);</span><br><span class="line">    <span class="built_in">strcat</span>(plain, buf);</span><br><span class="line">    off_en += rsa_len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -660,11 +864,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OpenSSL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/密码学//" class="article-tag-list-link color4">密码学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/TCPIP/ping%E7%9A%84%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/02/02/%E5%AF%86%E7%A0%81%E5%AD%A6/OpenSSL%20RSA%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%88%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8CC%E8%AF%AD%E8%A8%80%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -694,25 +920,46 @@
 
 
   
-    <article id="post-TCPIP/hosts文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-计算机网络/Kerberos协议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Kerberos%E5%8D%8F%E8%AE%AE/">Kerberos协议</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Kerberos%E5%8D%8F%E8%AE%AE/" class="archive-article-date">
+  	<time datetime="2019-12-26T09:26:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>域名解析文件，内容是域名和IP的映射表。</p>
-<p>在互联网上，使用IP标识每台机器的身份，但是IP地址不适合人类记忆，所以人们发明了域名（一串有意义的字符串），但这样又引入了将域名翻译成对应IP的问题。</p>
-<p>早期网络规模比较小，通过hosts文件将域名和IP地址对应起来。后来网络规模不断扩大，hosts文件的维护变得非常困难，于是又发明了DNS服务，hosts文件则成为了一个备用的域名解析手段。</p>
-<p>现在hosts文件仍然有其作用：</p>
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>由MIT设计的开源的网络认证协议。它的作用是实现在一个开放的分布式环境中，工作站的用户和服务器能够进行双向认证。</p>
+<p><strong>为什么要进行双向认证？</strong></p>
+<p>如果不认证工作站的身份，那么用户信息的机密性、完整性、不可抵赖性都将受到威胁。例如攻击者可以查看、修改、删除任意用户的文件，攻击者可以假冒任意用户请求服务。<br>如果不认证服务器的身份，那么攻击者可以假冒服务器，窃取客户的敏感信息。</p>
+<h3 id="分析——从简单到具体"><a href="#分析——从简单到具体" class="headerlink" title="分析——从简单到具体"></a>分析——从简单到具体</h3><p>建议先看<a href="https://zh.wikipedia.org/wiki/Kerberos" target="_blank" rel="noopener">维基百科</a>和其他介绍了具体流程的博客。<br>下面是按照自己的理解从简单到复杂不断扩展Kerberos，便于说明每个部分的作用。</p>
+<h4 id="版本1"><a href="#版本1" class="headerlink" title="版本1"></a>版本1</h4><p>每个用户都有自己的用户名和密码，通过向服务器发送自己的用户名密码进行认证。</p>
+<p>存在的问题：</p>
 <ol>
-<li>强制将域名指向某IP：<ol>
-<li>指向错误的IP，过滤广告网站，节省流量；阻止软件在线验证版权；拦截网站的恶意请求；<ol start="2">
-<li>指向正确的IP</li>
-<li>减少对DNS服务器的访问</li>
+<li>用户名和密码明文传输，非常容易被窃听。</li>
+<li>每个服务器都需要维护所有用户的信息。</li>
 </ol>
-</li>
+<h4 id="版本2"><a href="#版本2" class="headerlink" title="版本2"></a>版本2</h4><p>用零知识证明的方式解决密码明文传输的问题。用户向服务器发送自己的用户名，服务器在数据库中查找到对应的密码，然后用密码加密信息发送给用户，如果用户能够解密该信息，就能够证明用户的身份。</p>
+<p>引入可信第三方AS解决用户信息维护的问题。AS中保存了所有的用户信息，用户想要请求服务之前，先向AS证明自己的身份，AS审核通过之后发给用户一个Ticket（客户ID，用SS的密钥加密），用户可以用这个Ticket向SS证明自己的身份。</p>
+<p>存在的问题：</p>
+<ol>
+<li>用户每次访问一个新的服务都需要输入用户名和密码申请新的Ticket，对用户不友好。</li>
+<li>Ticket容易被攻击者窃听，进行重放攻击。</li>
 </ol>
-</li>
-</ol>
+<h4 id="版本3"><a href="#版本3" class="headerlink" title="版本3"></a>版本3</h4><p>引入TGS解决多次输入用户名和密码的问题。用户通过AS认证身份，AS审核通过后发给用户TGT，用户通过TGT向TGS证明自己的身份，TGS审核通过之后再给用户发送Ticket，使用Ticket访问服务，这样在用户的一次登陆过程中，只需要输入一次用户名和密码。</p>
+<p>引入Ticket有效期和address加大攻击的难度。审核用户身份时还检查Ticket是否过期以及address是否正确。<br>引入session key和Authenticator防御重放攻击。客户和TGS或SS之间都维护session key（TGS的session key由AS分配，SS的session key由TGS分配），用session key加密服务器和用户信息生成Authenticator，攻击者没有session key，无法生成正确的Authenticator，通过有效期和缓存机制保证Authenticator只能在一定时间内使用一次，保证攻击者无法通过重放假冒其他用户的身份。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://web.mit.edu/kerberos/dialogue.html" target="_blank" rel="noopener">http://web.mit.edu/kerberos/dialogue.html</a></p>
 
       
 
@@ -722,10 +969,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机网络//" class="article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/TCPIP/hosts%E6%96%87%E4%BB%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Kerberos%E5%8D%8F%E8%AE%AE/">展开全文 >></a>
         </p>
       
 
@@ -755,77 +1013,44 @@
 
 
   
-    <article id="post-计算机组成原理及体系结构/机器语言、汇编语言和高级语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CTF/MISC/base64隐写" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title: 机器语言、汇编语言和高级语言</span><br></pre></td></tr></table></figure>
-<p>计算机是通过一系列高低电平驱动电子器件运算的，我们用一系列二进制数字来表示高低电平，这些二进制数字就称为<strong>机器语言</strong>。</p>
-<p>一个最简单的程序如输出字符串都需要上百个二进制数字表示，显然，使用机器语言编写程序是非常繁琐的，并且难以辨析和记忆，于是人们又发明了<strong>汇编语言</strong>。</p>
-<p>汇编语言实际上可以认为是机器语言的一种表示方法——将二进制数字翻译成人类方便理解的字符串，方便人们编程。</p>
-<p>但是汇编语言仍然存在一些问题：</p>
-<ol>
-<li>程序可移植性差，因为不同型号的cpu支持的汇编语法是不同的。</li>
-<li>需要自己处理硬件问题：比如寄存器、栈、堆等。</li>
-</ol>
-<p>因此，人们又发明了<strong>高级语言</strong>，屏蔽了硬件细节，使编程人员能够集中精力处理程序逻辑方面的问题而不需要考虑硬件细节。时至今日，世界上有超过1000种编程语言（<a href="https://hellogithub.com/report/tiobe/" target="_blank" rel="noopener">TIOBE 编程语言排行榜</a>中列出了活跃度最高的50种语言）。一方面，随着时代的发展，一些语言慢慢被淘汰，一些具备新特性的语言不断出现；另一方面，不同的领域需求不同，适用的语言也不同。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80%E3%80%81%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%92%8C%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+      <header class="article-header">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-C语言编程常见错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/26/CTF/MISC/base64%E9%9A%90%E5%86%99/">base64隐写</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/26/CTF/MISC/base64%E9%9A%90%E5%86%99/" class="archive-article-date">
+  	<time datetime="2019-12-26T02:34:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">incompatible implicit declaration of built-in <span class="keyword">function</span> ‘xxxxx’</span><br><span class="line"><span class="comment"># 缺少对应的头文件</span></span><br></pre></td></tr></table></figure>
-<h3 id="undefined-reference-to-‘xxxxx’"><a href="#undefined-reference-to-‘xxxxx’" class="headerlink" title="undefined reference to ‘xxxxx’"></a>undefined reference to ‘xxxxx’</h3><p>报错的意思时找不到函数的实现，有下面几种常见情况：</p>
+        <h3 id="Base64编码的原理"><a href="#Base64编码的原理" class="headerlink" title="Base64编码的原理"></a>Base64编码的原理</h3><p>Base64时一种基于64个可打印字符表示二进制数据的表示方法，其一大特点是能够将不可打印字符编码为可打印字符。</p>
+<p><strong>Base64使用的64个可打印字符及其索引</strong>如下表：</p>
+<p><img src="../../../images/2019/12/26/1abac7c0-278a-11ea-97c9-0b30b4425fa2.png" alt=""></p>
+<p>简单来说，就是A-Za-z0-9+/这64个可打印字符。</p>
+<p>编码时，将要编码的内容转换为二进制数据，每6位作为一组，从表中找到对应的字符。因为ASCII编码8位表示一个字符，3个ASCII刚好可以编码成4个字符（3<em>8=4</em>6），因此一般以3个ASCII字符为一个编码的基本单位：<br><img src="../../../images/2019/12/26/52c32290-2792-11ea-97c9-0b30b4425fa2.png" alt="image.png"></p>
+<p>但需要编码的文本字节数并不总是3的倍数，不可避免会遇见<strong>最后只剩下2个或1个字符的情况，需要特殊处理</strong>：</p>
+<p>%3=2的情况：<br><img src="../../../images/2019/12/26/2aa8cc90-2794-11ea-9805-e16b370af4b8.png" alt="image.png"></p>
+<p>%3=1的情况：<br><img src="../../../images/2019/12/26/c39c2f10-2793-11ea-9805-e16b370af4b8.png" alt="image.png"></p>
+<h3 id="Base64隐写的原理"><a href="#Base64隐写的原理" class="headerlink" title="Base64隐写的原理"></a>Base64隐写的原理</h3><p>从Base64编码的原理我们很自然推出Base解码的过程：</p>
 <ol>
-<li><p>链接的时候缺少目标文件、静态库或动态库。比较隐蔽的情况有：一个共享库中又引用了另一个共享库；共享库的依赖顺序不对。</p>
-</li>
-<li><p>在C++代码中引用C语言的共享库。把与c语言库test.a相关的头文件包含添加一个extern “C”的声明即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extern <span class="string">"C"</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">#include "test.h"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>丢掉末尾的所有‘=’；</li>
+<li>每个字符查表转换为对应的6位索引，得到一串二进制字符串；</li>
+<li>从头开始，每次取8位转换为对应的ASCII字符，<strong>如果不足8位则丢弃。</strong></li>
 </ol>
+<p>Base64编码和解码脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">table = <span class="string">'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inttobin</span><span class="params">(a, n)</span>:</span></span><br><span class="line">    res = bin(a)[<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">while</span> len(res) &lt; n:</span><br><span class="line">        res = <span class="string">'0'</span> + res</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">b64encode</span><span class="params">(strin)</span>:</span></span><br><span class="line">    res = <span class="string">''</span></span><br><span class="line">    quotient = len(strin)/<span class="number">3</span></span><br><span class="line">    remainder = len(strin)%<span class="number">3</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(quotient):</span><br><span class="line">        tmp = strin[i*<span class="number">3</span>:i*<span class="number">3</span>+<span class="number">3</span>]</span><br><span class="line">        tmpbin = inttobin(ord(tmp[<span class="number">0</span>]), <span class="number">8</span>) + inttobin(ord(tmp[<span class="number">1</span>]), <span class="number">8</span>) + inttobin(ord(tmp[<span class="number">2</span>]), <span class="number">8</span>)</span><br><span class="line">        <span class="keyword">print</span> tmpbin</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">            index = int(tmpbin[<span class="number">6</span>*j:<span class="number">6</span>*j+<span class="number">6</span>], <span class="number">2</span>)</span><br><span class="line">            res += table[index]</span><br><span class="line">    <span class="keyword">if</span> remainder == <span class="number">1</span>:</span><br><span class="line">        tmpbin = inttobin(ord(strin[<span class="number">-1</span>]), <span class="number">8</span>) + <span class="string">'0000'</span></span><br><span class="line">        res += table[int(tmpbin[:<span class="number">6</span>], <span class="number">2</span>)]</span><br><span class="line">        res += table[int(tmpbin[<span class="number">6</span>:], <span class="number">2</span>)]</span><br><span class="line">        res += <span class="string">'=='</span></span><br><span class="line">    <span class="keyword">elif</span> remainder == <span class="number">2</span>:</span><br><span class="line">        tmpbin = inttobin(ord(strin[<span class="number">-2</span>]), <span class="number">8</span>) + inttobin(ord(strin[<span class="number">-1</span>]), <span class="number">8</span>) + <span class="string">'00'</span></span><br><span class="line">        res += table[int(tmpbin[:<span class="number">6</span>], <span class="number">2</span>)]</span><br><span class="line">        res += table[int(tmpbin[<span class="number">6</span>:<span class="number">12</span>], <span class="number">2</span>)]</span><br><span class="line">        res += table[int(tmpbin[<span class="number">12</span>:], <span class="number">2</span>)]</span><br><span class="line">        res += <span class="string">'='</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">b64decode</span><span class="params">(strin)</span>:</span></span><br><span class="line">    res = <span class="string">''</span></span><br><span class="line">    <span class="keyword">while</span> strin[<span class="number">-1</span>] == <span class="string">'='</span>:</span><br><span class="line">        strin = strin[:<span class="number">-1</span>]</span><br><span class="line">    tmpbin = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(strin)):</span><br><span class="line">        tmpbin += inttobin(table.index(strin[i]), <span class="number">6</span>)</span><br><span class="line">    remainder = len(tmpbin) / <span class="number">8</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(remainder):</span><br><span class="line">        res += chr(int(tmpbin[i*<span class="number">8</span>:i*<span class="number">8</span>+<span class="number">8</span>], <span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>在解码的第3步中，会有部分数据被丢弃（即不会影响解码结果），这些数据正是我们在编码过程中补的0。也就是说，如果我们在编码过程中不用0填充，而是用其他的数据填充，仍然可以正常编码解码，而这些位置便可以用于隐写。</p>
+<p>解开隐写的方法就是将这些不影响解码结果的位提取出来组成二进制串，然后转换成ASCII字符串。</p>
 
       
 
@@ -834,11 +1059,37 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">隐写</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Base64</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ctf//" class="article-tag-list-link color4">ctf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/C%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/26/CTF/MISC/base64%E9%9A%90%E5%86%99/">展开全文 >></a>
         </p>
       
 
@@ -870,7 +1121,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -961,35 +1212,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">VMware</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Vmware</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1001,15 +1228,71 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">The C Language</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">机试</a>
+                <a href="javascript:void(0)" class="js-tag color2">Vmware</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">隐写</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OpenSSL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CLion</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">红色警戒</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Bash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">汇编语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Base64</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ZIP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ARCHPR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">明文攻击</a>
               </li>
             
             <div class="clearfix"></div>
